@@ -1,0 +1,6 @@
+INSERT INTO `jumlah_kali` (`id`, `alternatif_id`, `nilai`, `created_at`, `updated_at`) VALUES
+(4, 1, 1.5343242171778155, NULL, NULL),
+(5, 2, 0.9988440191580135, NULL, NULL),
+(6, 3, 0.5461872534814457, NULL, NULL),
+(7, 5, 1.3696360983659344, NULL, NULL),
+(8, 6, 0.4196872534814457, NULL, NULL);

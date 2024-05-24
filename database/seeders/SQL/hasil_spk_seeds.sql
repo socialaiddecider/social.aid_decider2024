@@ -1,0 +1,6 @@
+INSERT INTO `hasil_spk` (`id`, `alternatif_id`, `nilai`, `created_at`, `updated_at`) VALUES
+(4, 1, 1.18619582686613, NULL, NULL),
+(5, 2, 0.6979043463983016, NULL, NULL),
+(6, 3, 0.3400833002612166, NULL, NULL),
+(7, 5, 1.01357254547669, NULL, NULL),
+(8, 6, 0.24948312552807259, NULL, NULL);
