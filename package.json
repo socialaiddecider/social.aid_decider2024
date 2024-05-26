@@ -16,6 +16,8 @@
         "vite": "^5.0"
     },
     "dependencies": {
+        "alpinejs": "^3.14.0",
+        "jquery": "^3.7.1",
         "prettier-plugin-blade": "^2.1.13"
     }
 }
