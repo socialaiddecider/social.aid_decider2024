@@ -20,12 +20,22 @@ class AuthController extends Controller
     {
         // get username and password and validate
         $credentials = $request->validate([
-            'email' => 'required|email',
+            'username' => 'required',
             'password' => 'required',
         ]);
 
+        if ($request->remember) {
+            $remember = true;
+        } else {
+            $remember = false;
+        }
 
-        $authenticated = Auth::attempt($credentials);
+        // check if user exists
+        $authenticated = Auth::attempt($credentials, $remember);
+
+        if (Auth::viaRemember()) {
+            $authenticated = true;
+        }
 
         if ($authenticated) {
             $request->session()->regenerate();
@@ -34,8 +44,8 @@ class AuthController extends Controller
         }
 
         return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
-        ])->onlyInput('email');
+            'username' => 'The provided credentials do not match our records.',
+        ])->onlyInput('username');
     }
 
     //signout function
