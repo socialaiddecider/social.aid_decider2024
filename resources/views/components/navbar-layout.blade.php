@@ -1,5 +1,5 @@
-<div class="w-full px-10 py-8 sticky top-0 z-40">
-    <nav class="w-full grid grid-cols-3 bg-white shadow-baseShadow px-8 py-4 rounded-2xl">
+<div class="w-full px-10 pt-8 sticky top-0 z-40 backdrop-blur-md mb-14">
+    <nav class="w-full grid grid-cols-3 bg-white/95 backdrop-opacity-60  shadow-baseShadow px-8 py-4 rounded-2xl">
         <div class="nav-brand flex items-center">
             {{ $brand }}
         </div>

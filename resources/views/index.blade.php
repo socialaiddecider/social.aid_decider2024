@@ -11,35 +11,6 @@
 @endphp
 
 @push('styles')
-    <style>
-        @foreach ($countData as $key => $value)
-                {
-                @property --num-{{ $key }} {
-                    syntax: "<integer>";
-                    initial-value: 0;
-                    inherits: false;
-                }
-            }
-        @endforeach
-
-        @keyframes counter {
-
-            /* @for ($i = 0; $i <= 100; $i += 10)
-            {{ $i }}% {
-                @foreach ($countData as $key => $value)
-                    @if ($i == 0)
-                        --num-{{ $key }}: {{ $i }};
-                    @elseif($i == 100)
-                        --num-{{ $key }}: {{ $value }};
-                    @else
-                        --num-{{ $key }}: {{ $i }};
-                    @endif
-                @endforeach
-            }
-        @endfor
-        */
-        }
-    </style>
 @endpush
 
 @section('contents')
@@ -61,15 +32,25 @@
                             sosial yang diberikan tepat sasaran.</p>
                     </div>
                     <ul class="action flex gap-8">
-                        <li><a href="{{ route('index') }}">
-                                <h1 class="px-8 py-6 bg-primary-base rounded-2xl text-neutral-50 leading-5">Masukkan Data
-                                </h1>
-                            </a></li>
-                        <li><a href="{{ route('index') }}">
-                                <h1 class="px-8 py-6 rounded-2xl border border-primary-300 text-primary-base leading-5">
-                                    Penerima
-                                    yang ideal</h1>
-                            </a></li>
+                        <li>
+                            <a href="{{ route('index') }}">
+                                <button onclick="window.utils.Animate.rippleEffect(event)" class="overflow-hidden relative">
+                                    <h1 class="px-8 py-6 bg-primary-base rounded-2xl text-neutral-50 leading-5">Masukkan
+                                        Data
+                                    </h1>
+                                </button>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('index') }}">
+                                <button onclick="window.utils.Animate.rippleEffect(event)" class="overflow-hidden relative">
+                                    <h1 class="px-8 py-6 rounded-2xl border border-primary-300 text-primary-base leading-5">
+                                        Penerima
+                                        yang ideal
+                                    </h1>
+                                </button>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -83,24 +64,18 @@
             </div>
         </section>
         <section class="hero-label bg-gradient-to-r from-primary-base to-primary-500 to-[55%] px-20 py-10">
-            <ul class="flex text-neutral-50 justify-around">
+            <ul class="flex text-neutral-50 justify-around" x-data="{}">
                 <li class="w-60">
-                    <h1 class="text-[64px] mb-1 font-bold "><span
-                            class="animate-[counter_1s_ease-out_forwards] tabular-nums [counter-set:_num_var(--num-users)] before:content-[counter(num)]"><span
-                                class="sr-only">15</span>k+</span></h1>
+                    <h1 class="text-[64px] mb-1 font-bold "><span class="Count">15</span>k+</h1>
                     <p class="font-normal leading-6">15 ribu lebih orang telah terbantu dengan baik melalui sistem ini</p>
                 </li>
                 <li class="w-60">
-                    <h1 class="text-[64px] mb-1 font-bold"><span
-                            class="animate-[counter_1s_ease-out_forwards] tabular-nums [counter-set:_num_var(--num-villages)] before:content-[counter(num)]"><span
-                                class="sr-only">50</span></span></h1>
+                    <h1 class="text-[64px] mb-1 font-bold"><span class="Count">50</span></h1>
                     <p class="font-normal leading-6">50 desa sudah menggunakan sistem ini untuk membantu menentukan penerima
                     </p>
                 </li>
                 <li class="w-60">
-                    <h1 class="text-[64px] mb-1 font-bold"><span
-                            class="animate-[counter_1s_ease-out_forwards] tabular-nums [counter-set:_num_var(--num-certification)] before:content-[counter(num)]"><span
-                                class="sr-only">5</span></span></h1>
+                    <h1 class="text-[64px] mb-1 font-bold"><span class="Count">5</span></h1>
                     <p class="font-normal leading-6">5 Sertifikasi langsung dari pemerintah dan lisensi penggunaan sistem
                     </p>
                 </li>

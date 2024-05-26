@@ -51,6 +51,7 @@ export default {
                 shiftRight: 'rotateRight 1s ease-in-out',
                 shiftLeft: 'rotateLeft 1.5s ease-in-out',
                 fadeIn: 'fadeIn 500ms ease-in-out',
+                fadeOut: 'fadeOut 500ms ease-in-out',
             },
         },
     },
