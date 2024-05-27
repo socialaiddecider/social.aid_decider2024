@@ -20,8 +20,8 @@ class AuthController extends Controller
     {
         // get username and password and validate
         $credentials = $request->validate([
-            'username' => 'required',
-            'password' => 'required',
+            'username' => 'bail|required|min:6',
+            'password' => 'required|min:6',
         ]);
 
         if ($request->remember) {
@@ -42,10 +42,12 @@ class AuthController extends Controller
 
             return redirect()->route('admin.dashboard');
         }
+        $request->flashOnly('username');
 
         return back()->withErrors([
-            'username' => 'The provided credentials do not match our records.',
-        ])->onlyInput('username');
+            'username' => 'incorrect username or password.',
+            'password' => 'The provided credentials do not match our records.',
+        ]);
     }
 
     //signout function
