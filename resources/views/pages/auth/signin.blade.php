@@ -13,11 +13,13 @@
                 <div class="left animate-fadeIn">
                     <div class="header py-16">
                         <div class="text-header text-center mb-8">
-                            <h2 class="text-[32px] text-primary-base">Social Aid Decider</h2>
-                            <p class="text-5xl leading-normal font-medium tracking-wider antialiased relative">Login untuk
+                            <h2 class="text-[32px] text-primary-base ">Social Aid Decider
+                            </h2>
+                            <p class="text-5xl leading-normal font-medium tracking-wider antialiased relative">
+                                Login untuk
                                 menambahkan data
                                 calon penerima <span
-                                    class="relative before:absolute before:-inset-1 before:-z-10 before:top-2/3 before:bottom-1 before:rounded-full before:bg-gradient-to-r before:from-primary-base before:from-[1%] before:to-[#3D6842] before:mix-blend-hard-light inline-block">
+                                    class="relative before:absolute before:-inset-0 before:-z-10 before:top-2/3 before:bottom-1 before:rounded-full mix-blend-hard-light before:bg-gradient-to-r before:from-primary-base before:from-[1%] before:to-[#3D6842]  inline-block before:animate-[fill_2s_ease-in-out] before:transition-all">
                                     bantuan
                                     sosial
                                 </span>
@@ -40,7 +42,7 @@
                             <div
                                 class="w-full h-full text  flex items-center justify-center flex-col backdrop-brightness-50">
                                 <h1 class="text-5xl font-semibold text-neutral-50 leading-relaxed">#PeduliRakyat</h1>
-                                <p class="bg-neutral-50 px-3">bersama social aid decider</p>
+                                <p class="bg-neutral-50 px-3 text-primary-base">bersama social aid decider</p>
                             </div>
                         </div>
                     </div>
@@ -60,22 +62,42 @@
                                             <label for="username"
                                                 class="block text-neutral-400 antialiased">Username</label>
                                             <input id="username" type="text" name="username"
-                                                class="w-full transition-all border-b py-3 outline-none focus:border-primary-500 placeholder:text-gray-200"
+                                                value="{{ old('username') }}"
+                                                class="w-full transition-all border-b py-3 outline-none focus:border-primary-500 placeholder:text-gray-200 
+                                            @error('username')
+                                                border-red-500
+                                            @enderror"
                                                 placeholder="Enter your username" autocomplete="off">
+
                                         </div>
                                         <div class="form-input">
                                             <label for="password"
                                                 class="block text-neutral-400 antialiased">Password</label>
                                             <input id="password" type="password" name="password"
-                                                class="w-full transition-all border-b py-3 outline-none focus:border-primary-500 placeholder:text-gray-200"
+                                                value="{{ old('password') }}"
+                                                class="w-full transition-all border-b py-3 outline-none focus:border-primary-500 placeholder:text-gray-200
+                                            @error('password')
+                                                border-red-500
+                                            @enderror"
                                                 placeholder="Enter your password" autocomplete="off">
                                         </div>
+                                        @if ($errors->any())
+                                            <div class="text-xs bg-error-300 rounded p-3">
+                                                <p class="font-normal text-error-800">
+                                                    @foreach ($errors->all() as $error)
+                                                        {{ $error }} @if (count($errors->all()) > 1 && !$loop->last)
+                                                            And&nbsp;
+                                                        @endif
+                                                    @endforeach
+                                                </p>
+                                            </div>
+                                        @endif
                                     </div>
                                     <div class="form-function">
                                         <div class="flex justify-between items-center">
                                             <div id="checkbox" class="inline-flex gap-2 items-center">
                                                 <label class="relative rounded-full cursor-pointer flex items-center">
-                                                    <input type="checkbox"
+                                                    <input id="remember" type="checkbox"
                                                         class="peer relative h-5 w-5 cursor-pointer appearance-none rounded-md border border-primary-200 transition-all before:absolute  before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-primary-500 before:opacity-0 before:transition-opacity checked:border-primary-base checked:bg-primary-base checked:before:bg-primary-base hover:before:opacity-10
                                                         "
                                                         name="remember" />
@@ -90,7 +112,7 @@
                                                         </svg>
                                                     </span>
                                                 </label>
-                                                <label
+                                                <label for="remember"
                                                     class="text-xs font-light text-primary-700 cursor-pointer select-none">
                                                     Remember Me
                                                 </label>
