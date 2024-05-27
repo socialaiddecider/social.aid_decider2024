@@ -98,3 +98,16 @@ span.ripple {
         opacity: 0;
     }
 }
+
+@keyframes fill {
+    from {
+        opacity: 0;
+        top: 0;
+        bottom: 0;
+    }
+    to {
+        opacity: 1;
+        top: -theme('inset.1');
+        bottom: -theme('bottom.1');
+    }
+}
