@@ -11,7 +11,7 @@
     @stack('styles')
 </head>
 
-<body class="font-PlusJakartaSans no-scrollbar relative overflow-hidden bg-neutral-100/20 antialiased"
+<body class="font-PlusJakartaSans no-scrollbar relative overflow-hidden bg-neutral-100 antialiased"
     onload="animateCount()">
     @yield('contents')
     @stack('modals')
