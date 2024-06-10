@@ -84,6 +84,26 @@
     }
 }
 
+@keyframes slideRight {
+    from {
+        transform: translateX(-100%);
+        transform: scale(0);
+    }
+    to {
+        transform: translateX(0);
+        transform: scale(1);
+    }
+}
+
+@keyframes slideLeft {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
 span.ripple {
     position: absolute;
     border-radius: 50%;

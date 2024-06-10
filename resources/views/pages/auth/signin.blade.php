@@ -127,7 +127,7 @@
                                     <div class="form-action">
                                         <button
                                             class="w-full py-3 px-4 relative overflow-hidden bg-primary-base rounded-2xl text-neutral-50 font-semibold transition-all hover:bg-primary-500"
-                                            type="submit" onclick="window.utils.Animate.rippleEffect(event)"
+                                            type="submit" onclick="window.utils.Animate.ripple.rippleEffect(event)"
                                             data-action="submit">Login</button>
                                     </div>
                                 </div>

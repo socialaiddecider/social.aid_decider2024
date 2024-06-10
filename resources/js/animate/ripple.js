@@ -25,7 +25,9 @@ export function rippleEffect(event) {
         if ($(btn).closest("form").length != 0) {
             $(btn).closest("form").submit()
         } else {
-            window.location = $(btn).closest("a").attr("href")
+            setTimeout(() => {
+                window.location = $(btn).closest("a").attr("href")
+            }, 500);
         }
     }, 500);
 }

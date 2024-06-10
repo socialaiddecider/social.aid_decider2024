@@ -29,7 +29,7 @@
     </ul>
     <x-slot:action>
         <a href="{{ route('auth.signIn') }}">
-            <button onclick="window.utils.Animate.rippleEffect(event)"
+            <button onclick="window.utils.Animate.ripple.rippleEffect(event)"
                 class="overflow-hidden relative bg-primary-base rounded-2xl">
                 <h1 class="text-neutral-50 px-8 py-4 leading-tight">{{ Auth::user() ? 'Dashboard' : 'Sign In' }}</h1>
             </button>
