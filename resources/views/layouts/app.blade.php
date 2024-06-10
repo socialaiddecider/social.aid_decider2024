@@ -6,16 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>{{ config('app.name', 'Social Aid Decider') }}</title>
-
+    {{-- this for import assets from vite --}}
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    {{-- push all the styles --}}
     @stack('styles')
 </head>
 
-<body class="font-PlusJakartaSans no-scrollbar relative overflow-hidden bg-neutral-100 antialiased"
-    onload="window.utils.Animate.counter.animateCount(event)">
+<body class="font-PlusJakartaSans no-scrollbar relative overflow-hidden bg-neutral-100 antialiased">
+    {{-- get all the contents --}}
     @yield('contents')
+    {{-- push all the modals --}}
     @stack('modals')
+    {{-- push all the scripts --}}
     @stack('scripts')
+
 </body>
 
 </html>

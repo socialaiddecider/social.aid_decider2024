@@ -52,7 +52,7 @@
     <main class="overflow-scroll h-screen no-scrollbar">
 
         @include('includes.navbar')
-        <section class="mx-20 flex justify-between xl:justify-around mt-3 mb-11">
+        <section id="hero" class="mx-20 flex justify-between xl:justify-around mt-3 mb-20">
             <div class="hero-desc flex justify-start animate-fadeIn transition-all">
                 <div class="w-[453px]">
                     <div class="text mb-8">
@@ -99,7 +99,7 @@
                 </div>
             </div>
         </section>
-        <section class="hero-label bg-gradient-to-r from-primary-500 to-[#1A5020] to-[55%] px-20 py-10">
+        <section id="banner" class="hero-label bg-gradient-to-r from-primary-500 to-[#1A5020] to-[55%] px-20 py-10">
             <ul class="flex text-neutral-50 justify-around" x-data="{}">
                 <li class="w-60">
                     <h1 class="text-[64px] mb-1 font-bold "><span class="Count">15</span>k+</h1>
@@ -162,13 +162,13 @@
                                 </svg>
                             </div>
                             <div class=" rounded-xl overflow-hidden flex justify-center items-center bg-neutral-50">
-                                <div class="brand fill-primary-base">
+                                <div class="brand-logo fill-primary-base">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="506" height="199"
                                         viewBox="0 0 84 34" fill="inherit" class="w-full">
                                         <g clip-path="url(#a)" fill="inherit">
-                                            <path class="animate-[slideRight_1.5s_ease-in-out]"
+                                            <path id="logo1" class="animate-[slideRight_1.5s_ease-in-out]"
                                                 d="M19.939.5a12.24 12.24 0 0 0-8.746 3.7l-7.57 7.733A12.77 12.77 0 0 0 0 20.866C0 27.844 5.538 33.5 12.369 33.5a12.24 12.24 0 0 0 8.746-3.7l5.236-5.349L41.608 8.867A5.85 5.85 0 0 1 45.785 7.1c2.623 0 4.847 1.746 5.618 4.163l4.815-4.919C54.02 2.83 50.169.5 45.785.5a12.24 12.24 0 0 0-8.746 3.7L16.546 25.133a5.85 5.85 0 0 1-4.177 1.767c-3.263 0-5.907-2.701-5.907-6.034a6.1 6.1 0 0 1 1.73-4.266l7.57-7.733A5.85 5.85 0 0 1 19.939 7.1c2.623 0 4.847 1.746 5.618 4.163l4.815-4.919C28.175 2.83 24.323.5 19.939.5" />
-                                            <path class="animate-[slideLeft_1.5s_ease-in-out]"
+                                            <path id="logo2" class="animate-[slideLeft_1.5s_ease-in-out]"
                                                 d="M42.392 25.133a5.85 5.85 0 0 1-4.177 1.767c-2.623 0-4.846-1.746-5.617-4.162l-4.815 4.919C29.979 31.17 33.83 33.5 38.215 33.5a12.24 12.24 0 0 0 8.746-3.7L67.454 8.867A5.85 5.85 0 0 1 71.631 7.1c3.263 0 5.907 2.701 5.907 6.034a6.1 6.1 0 0 1-1.73 4.266l-7.57 7.733a5.85 5.85 0 0 1-4.177 1.767c-2.623 0-4.846-1.746-5.617-4.162l-4.815 4.918C55.825 31.17 59.677 33.5 64.06 33.5a12.24 12.24 0 0 0 8.746-3.7l7.57-7.733A12.77 12.77 0 0 0 84 13.134C84 6.156 78.462.5 71.631.5a12.24 12.24 0 0 0-8.746 3.7z" />
                                         </g>
                                         <defs>
@@ -192,12 +192,12 @@
             <div class="grid grid-cols-3 grid-rows-2 gap-4">
                 @foreach ($teamImage as $memberName => $data)
                     <div class="team-card rounded-xl overflow-hidden">
-                        <div class="image-team w-full h-[564px] bg-cover bg-center hover:scale-110 transition-all duration-300 ease-in-out"
+                        <div class="image-team w-full h-[564px] bg-cover bg-center hover:scale-110 transition-all duration-300 ease-in-out delay-150"
                             @if ($data['nim'] == '') style="background: linear-gradient(180deg, rgba(0, 0, 0, 0.00) 15.45%, rgba(0, 0, 0, 0.60) 77.73%), url({{ $data['path'] }}) lightgray 0px -2.842px / 100% 117.586% no-repeat;" @elseif($data['nim'] == '2241720052') style="background: linear-gradient(180deg, rgba(0, 0, 0, 0.00) 15.45%, rgba(0, 0, 0, 0.60) 77.73%), url({{ $data['path'] }}) lightgray -54px -122.153px / 124.434% 130.024% no-repeat;" @else 
                             style="background:linear-gradient(180deg, rgba(0, 0, 0, 0.00) 15.45%, rgba(0, 0, 0, 0.60) 77.73%), url('{{ $data['path'] }}') lightgray 50% / cover no-repeat;" @endif>
 
                             <div
-                                class="px-4 pb-9 w-full h-full flex flex-col justify-end text-neutral-50 backdrop-grayscale hover:backdrop-grayscale-0 transition-all duration-200 ease-in hover:scale-75">
+                                class="px-4 pb-9 w-full h-full flex flex-col justify-end text-neutral-50 backdrop-grayscale hover:backdrop-grayscale-0 transition-all duration-200 ease-in hover:scale-75 delay-150">
                                 <h1 class="font-semibold text-2xl mb-1">{{ $memberName }}</h1>
                                 <h5 class="text-sm text-neutral-100 mb-2">{{ $data['nim'] }}</h5>
                                 <h2 class="font-medium">{{ $data['position'] }}</h2>
@@ -211,3 +211,38 @@
         @include('includes.footer')
     </main>
 @endsection
+
+@push('scripts')
+    <script type="module">
+        // Create the observer
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                // If the element is visible
+                if (entry.isIntersecting) {
+                    // run the animation class
+                    window.utils.Animate.counter.animateCount(event)
+                }
+            });
+        });
+
+        const observerLogo = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                // If the element is visible
+                if (entry.isIntersecting) {
+                    // run the animation class
+                    $(entry.target).find('#logo1').addClass('animate-[slideRight_1.5s_ease-in-out]')
+                    $(entry.target).find('#logo2').addClass('animate-[slideLeft_1.5s_ease-in-out]')
+                } else {
+
+                    $(entry.target).find('#logo1').removeClass('animate-[slideRight_1.5s_ease-in-out]')
+                    $(entry.target).find('#logo2').removeClass('animate-[slideLeft_1.5s_ease-in-out]')
+                }
+            });
+        });
+
+        // Tell the observer which elements to track
+        observer.observe(document.querySelector('.Count'));
+
+        observerLogo.observe(document.querySelector('.brand-logo'));
+    </script>
+@endpush
