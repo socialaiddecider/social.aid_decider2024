@@ -21,6 +21,7 @@ class UserSeeder extends Seeder
         User::factory()->create([
             'name' => 'Thoriq Fathurrozi',
             'username' => 'thoriq',
+            'email' => 'thoriqfathurrozi@gmail.com'
         ]);
         // send info to console
         $this->command->info('User table seeded!');
