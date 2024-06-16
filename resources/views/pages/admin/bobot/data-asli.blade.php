@@ -2,6 +2,6 @@
 
 @section('contents-admin')
     <div class="data">
-        <h1>dashboard</h1>
+        <h1>Data Asli</h1>
     </div>
 @endsection

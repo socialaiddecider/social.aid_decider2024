@@ -193,7 +193,9 @@
                 @foreach ($teamImage as $memberName => $data)
                     <div class="team-card rounded-xl overflow-hidden">
                         <div class="image-team w-full h-[564px] bg-cover bg-center hover:scale-110 transition-all duration-300 ease-in-out delay-150"
-                            @if ($data['nim'] == '') style="background: linear-gradient(180deg, rgba(0, 0, 0, 0.00) 15.45%, rgba(0, 0, 0, 0.60) 77.73%), url({{ $data['path'] }}) lightgray 0px -2.842px / 100% 117.586% no-repeat;" @elseif($data['nim'] == '2241720052') style="background: linear-gradient(180deg, rgba(0, 0, 0, 0.00) 15.45%, rgba(0, 0, 0, 0.60) 77.73%), url({{ $data['path'] }}) lightgray -54px -122.153px / 124.434% 130.024% no-repeat;" @else 
+                            @if ($data['nim'] == '') style="background: linear-gradient(180deg, rgba(0, 0, 0, 0.00) 15.45%, rgba(0, 0, 0, 0.60) 77.73%), url({{ $data['path'] }}) lightgray 0px -2.842px / 100% 117.586% no-repeat;" 
+                            @elseif($data['nim'] == '2241720052') style="background: linear-gradient(180deg, rgba(0, 0, 0, 0.00) 15.45%, rgba(0, 0, 0, 0.60) 77.73%), url({{ $data['path'] }}) lightgray -54px -122.153px / 124.434% 130.024% no-repeat;" 
+                            @else 
                             style="background:linear-gradient(180deg, rgba(0, 0, 0, 0.00) 15.45%, rgba(0, 0, 0, 0.60) 77.73%), url('{{ $data['path'] }}') lightgray 50% / cover no-repeat;" @endif>
 
                             <div
