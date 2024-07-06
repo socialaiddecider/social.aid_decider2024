@@ -20,4 +20,5 @@ class Subkriteria extends Model
     {
         return $this->belongsTo(Kriteria::class, 'kriteria_id');
     }
+
 }

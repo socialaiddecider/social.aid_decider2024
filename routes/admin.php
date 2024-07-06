@@ -30,9 +30,46 @@ Route::group([
         'prefix' => 'data',
         'as' => 'data.',
     ], function () {
-        Route::get('kriteria', [DataKriteriaController::class, 'index'])->name('kriteria');
-        Route::get('subkriteria', [DataSubkriteriaController::class, 'index'])->name('subkriteria');
-        Route::get('alternatif', [DataAlternatifController::class, 'index'])->name('alternatif');
+        // auth routes Data Kriteria
+        Route::group([
+            'prefix' => 'kriteria',
+            'as' => 'kriteria.',
+        ], function () {
+            Route::get('/', [DataKriteriaController::class, 'index'])->name('index');
+            Route::get('create', [DataKriteriaController::class, 'create'])->name('create');
+            Route::post('store', [DataKriteriaController::class, 'store'])->name('store');
+            Route::get('edit/{id}', [DataKriteriaController::class, 'edit'])->name('edit');
+            Route::put('update/{id}', [DataKriteriaController::class, 'update'])->name('update');
+            Route::delete('delete/{id}', [DataKriteriaController::class, 'destroy'])->name('delete');
+        });
+
+        // auth routes Data Subkriteria
+        Route::group([
+            'prefix' => 'subkriteria',
+            'as' => 'subkriteria.',
+        ], function () {
+            Route::get('/', [DataSubkriteriaController::class, 'index'])->name('index');
+            Route::get('detail/{id}', [DataSubkriteriaController::class, 'detail'])->name('detail');
+            Route::get('create/{id}', [DataSubkriteriaController::class, 'create'])->name('create');
+            Route::post('store', [DataSubkriteriaController::class, 'store'])->name('store');
+            Route::get('edit/{id}', [DataSubkriteriaController::class, 'edit'])->name('edit');
+            Route::put('update/{id}', [DataSubkriteriaController::class, 'update'])->name('update');
+            Route::delete('delete/{id}', [DataSubkriteriaController::class, 'destroy'])->name('delete');
+        });
+
+        // auth routes Data Alternatif
+        Route::group([
+            'prefix' => 'alternatif',
+            'as' => 'alternatif.',
+        ], function () {
+            Route::get('/', [DataAlternatifController::class, 'index'])->name('index');
+            Route::get('create', [DataAlternatifController::class, 'create'])->name('create');
+            Route::post('store', [DataAlternatifController::class, 'store'])->name('store');
+            Route::get('edit/{id}', [DataAlternatifController::class, 'edit'])->name('edit');
+            Route::put('update/{id}', [DataAlternatifController::class, 'update'])->name('update');
+            Route::delete('delete/{id}', [DataAlternatifController::class, 'destroy'])->name('delete');
+        });
+
     });
 
     // auth routes Management
