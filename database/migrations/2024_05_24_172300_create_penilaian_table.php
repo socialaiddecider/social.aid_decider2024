@@ -17,9 +17,9 @@ return new class extends Migration
         Schema::create('penilaian', function (Blueprint $table) {
             $table->id('id');
             $table->unsignedBigInteger('alternatif_id')->nullable();
-            $table->foreign('alternatif_id')->references('id')->on('alternatif');
+            $table->foreign('alternatif_id')->references('id')->on('alternatif')->onDelete('cascade');
             $table->unsignedBigInteger('kriteria_id')->nullable();
-            $table->foreign('kriteria_id')->references('id')->on('kriteria');
+            $table->foreign('kriteria_id')->references('id')->on('kriteria')->onDelete('cascade');
             $table->integer('nilai');
             $table->timestamps();
         });

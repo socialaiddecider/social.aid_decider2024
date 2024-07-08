@@ -29,7 +29,7 @@ return new class extends Migration
         Schema::create('subkriteria', function (Blueprint $table) {
             $table->id('id');
             $table->unsignedBigInteger('kriteria_id')->nullable();
-            $table->foreign('kriteria_id')->references('id')->on('kriteria');
+            $table->foreign('kriteria_id')->references('id')->on('kriteria')->onDelete('cascade');
             $table->string('nama', 100);
             $table->integer('nilai');
             $table->timestamps();
@@ -39,7 +39,7 @@ return new class extends Migration
         Schema::create('bobot', function (Blueprint $table) {
             $table->id('id');
             $table->unsignedBigInteger('kriteria_id')->nullable();
-            $table->foreign('kriteria_id')->references('id')->on('kriteria');
+            $table->foreign('kriteria_id')->references('id')->on('kriteria')->onDelete('cascade');
             $table->double('bobot');
             $table->timestamps();
         });

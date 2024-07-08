@@ -28,7 +28,7 @@ return new class extends Migration
         Schema::create('data_asli', function (Blueprint $table) {
             $table->id('id');
             $table->unsignedBigInteger('alternatif_id')->nullable();
-            $table->foreign('alternatif_id')->references('id')->on('alternatif');
+            $table->foreign('alternatif_id')->references('id')->on('alternatif')->onDelete('cascade');
             $table->string('status', 100);
             $table->timestamps();
         });
@@ -36,7 +36,7 @@ return new class extends Migration
         Schema::create('jumlah_kali', function (Blueprint $table) {
             $table->id('id');
             $table->unsignedBigInteger('alternatif_id')->nullable();
-            $table->foreign('alternatif_id')->references('id')->on('alternatif');
+            $table->foreign('alternatif_id')->references('id')->on('alternatif')->onDelete('cascade');
             $table->double('nilai');
             $table->timestamps();
         });
@@ -44,7 +44,7 @@ return new class extends Migration
         Schema::create('kali_pangkat', function (Blueprint $table) {
             $table->id('id');
             $table->unsignedBigInteger('alternatif_id')->nullable();
-            $table->foreign('alternatif_id')->references('id')->on('alternatif');
+            $table->foreign('alternatif_id')->references('id')->on('alternatif')->onDelete('cascade');
             $table->double('nilai');
             $table->timestamps();
         });
@@ -52,7 +52,7 @@ return new class extends Migration
         Schema::create('hasil_spk', function (Blueprint $table) {
             $table->id('id');
             $table->unsignedBigInteger('alternatif_id')->nullable();
-            $table->foreign('alternatif_id')->references('id')->on('alternatif');
+            $table->foreign('alternatif_id')->references('id')->on('alternatif')->onDelete('cascade');
             $table->double('nilai');
             $table->timestamps();
         });
@@ -60,7 +60,7 @@ return new class extends Migration
         Schema::create('penerima', function (Blueprint $table) {
             $table->id('id');
             $table->unsignedBigInteger('alternatif_id')->nullable();
-            $table->foreign('alternatif_id')->references('id')->on('alternatif');
+            $table->foreign('alternatif_id')->references('id')->on('alternatif')->onDelete('cascade');
             $table->double('nilai');
             $table->string('status', 100);
             $table->timestamps();
