@@ -27,7 +27,7 @@
                     </div>
 
                 </div>
-                <div class="table-wrap" x-data="itemSelected">
+                <div class="table-wrap">
                     <div class="relative">
                         <table class="w-full table-auto">
                             <thead class="border-b-2 bg-neutral-50">

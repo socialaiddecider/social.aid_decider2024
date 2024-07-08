@@ -237,25 +237,41 @@
             location.reload();
         }
 
+
+
         deleteSelected = (selected) => {
             selected = selected.split(',');
 
             selected.forEach((id) => {
-                let url = `{{ route('admin.data.kriteria.delete', ':id') }}`;
+                let url = `{{ route('admin.data.alternatif.delete', ':id') }}`;
                 id = id.replace(/\D/g, '')
                 url = url.replace(':id', id);
-                fetch(url, {
-                    method: 'GET',
+
+                $.ajax({
+                    method: 'DELETE',
+                    url: url,
                     headers: {
                         'Content-Type': 'application/json',
-                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
+
                     },
-                }).then((response) => {
-                    if (response.ok) {
-                        location.reload();
-                    }
-                });
-            });
+                    success: console.log('success')
+                })
+
+
+
+            })
+
+            $.ajax({
+                type: "GET",
+                url: location.href,
+                success: function(response) {
+                    response = new DOMParser().parseFromString(response,
+                        'text/html').querySelector('main').innerHTML;
+                    $('main').html(response);
+                }
+            })
+
         }
     </script>
 @endpush

@@ -231,20 +231,33 @@
             selected = selected.split(',');
 
             selected.forEach((id) => {
-                let url = `{{ route('admin.data.kriteria.delete', ':id') }}`;
+                let url = `{{ route('admin.data.subkriteria.delete', ':id') }}`;
                 id = id.replace(/\D/g, '')
                 url = url.replace(':id', id);
-                fetch(url, {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                    },
-                }).then((response) => {
-                    if (response.ok) {
-                        location.reload();
+
+                $.ajax(
+                    url, {
+                        method: 'DELETE',
+                        url: url,
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}',
+
+                        },
+                        success: console.log('success')
                     }
-                });
+                )
+
+            });
+
+            $.ajax({
+                type: "GET",
+                url: location.href,
+                success: function(response) {
+                    response = new DOMParser().parseFromString(response,
+                        'text/html').querySelector('main').innerHTML;
+                    $('main').html(response);
+                }
             });
         }
     </script>

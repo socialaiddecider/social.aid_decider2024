@@ -19,9 +19,9 @@
                 </div>
                 <div class="form-body mb-6">
                     <div class="field-text flex flex-col gap-4 mb-5">
-                        <x-input-form key="criteria_code" placeholder="Masukkan kode subkriteria" type="text"
-                            title="Kode Subkriteria" />
-                        <x-input-form key="criteria_name" placeholder="Masukkan nilai subkriteria" type="text"
+                        <x-input-form key="subcriteria_name" placeholder="Masukkan nama subkriteria" type="text"
+                            title="Nama Subkriteria" />
+                        <x-input-form key="subcriteria_value" placeholder="Masukkan nilai subkriteria" type="text"
                             title="Nilai Subkriteria" />
                     </div>
 
