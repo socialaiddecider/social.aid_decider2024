@@ -17,3 +17,6 @@ window.utils.Animate.counter = counter;
 
 // Alpine Start
 Alpine.start()
+
+// import image
+import.meta.glob(['../assets/**/*', '../assets/images/**/*']);
