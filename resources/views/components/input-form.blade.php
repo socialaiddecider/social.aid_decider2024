@@ -3,7 +3,7 @@
     <div class="">
         <input type="{{ $type }}" name="{{ $key }}" id="{{ $key }}"
             class="form-control w-full p-3 border rounded-lg" placeholder="{{ $placeholder }}" value="{{ $value }}"
-            @required($required)>
+            @required($required) @disabled($disabled)>
         @error($key)
             <div class="text-sm text-error-500">{{ $message }}</div>
         @enderror

@@ -11,9 +11,9 @@ class InputForm extends Component
     /**
      * Create a new component instance.
      */
-    public $key, $placeholder, $type, $value, $required, $title;
+    public $key, $placeholder, $type, $value, $required, $title, $disabled;
 
-    public function __construct($key, $title, $placeholder, $type, $value = null, $required = true)
+    public function __construct($key, $title, $placeholder, $type, $value = null, $required = true, $disabled = false)
     {
         $this->key = $key;
         $this->placeholder = $placeholder;
@@ -21,6 +21,7 @@ class InputForm extends Component
         $this->value = $value;
         $this->required = $required;
         $this->title = $title;
+        $this->disabled = $disabled;
     }
 
 
