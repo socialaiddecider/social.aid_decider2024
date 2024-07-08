@@ -77,7 +77,20 @@ Route::group([
         'prefix' => 'management',
         'as' => 'management.',
     ], function () {
-        Route::get('penilaian', [PenilaianController::class, 'index'])->name('penilaian');
+
+        // auth routes Penilaian
+        Route::group([
+            'prefix' => 'penilaian',
+            'as' => 'penilaian.',
+        ], function () {
+            Route::get('/', [PenilaianController::class, 'index'])->name('index');
+            Route::get('create', [PenilaianController::class, 'create'])->name('create');
+            Route::post('store', [PenilaianController::class, 'store'])->name('store');
+            Route::get('edit/{date}/{id}', [PenilaianController::class, 'edit'])->name('edit');
+            Route::put('update', [PenilaianController::class, 'update'])->name('update');
+            Route::delete('delete/{date}/{id}', [PenilaianController::class, 'destroy'])->name('delete');
+        });
+
         Route::get('perhitungan', [PerhitunganController::class, 'index'])->name('perhitungan');
         Route::get('penerima', [PenerimaController::class, 'index'])->name('penerima');
     });
@@ -87,8 +100,33 @@ Route::group([
         'prefix' => 'bobot',
         'as' => 'bobot.',
     ], function () {
-        Route::get('data-asli', [DataAsliController::class, 'index'])->name('data-asli');
-        Route::get('kriteria', [BobotKriteriaController::class, 'index'])->name('kriteria');
+
+        // auth routes Data Asli
+        Route::group([
+            'prefix' => 'data-asli',
+            'as' => 'data-asli.',
+        ], function () {
+            Route::get('/', [DataAsliController::class, 'index'])->name('index');
+            Route::get('create', [DataAsliController::class, 'create'])->name('create');
+            Route::post('store', [DataAsliController::class, 'store'])->name('store');
+            Route::get('edit/{id}', [DataAsliController::class, 'edit'])->name('edit');
+            Route::put('update/{id}', [DataAsliController::class, 'update'])->name('update');
+            Route::delete('delete/{id}', [DataAsliController::class, 'destroy'])->name('delete');
+        });
+
+        // auth routes Bobot Kriteria
+        Route::group(
+            [
+                'prefix' => 'kriteria',
+                'as' => 'kriteria.',
+            ],
+            function () {
+                Route::get('/', [BobotKriteriaController::class, 'index'])->name('index');
+                Route::post('calc', [BobotKriteriaController::class, 'calc'])->name('calc');
+                Route::post('save', [BobotKriteriaController::class, 'save'])->name('save');
+            }
+        );
+
     });
 
     // auth routes logout
