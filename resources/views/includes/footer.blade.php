@@ -35,7 +35,7 @@
 @endphp
 
 <footer>
-    <x-footer-layout :brandLogo="$brandLogo" :belowLinks="$belowLinks" :sosmedLinks="$sosmedLinks">
+    <x-footer-layout>
         <x-slot:body>
             <div class="product-links">
                 <h1 class="font-bold mb-4">Product</h1>
@@ -100,5 +100,33 @@
                 </div>
             </div>
         </x-slot:action>
+        <x-slot:bellow>
+            <div class="grid grid-cols-2 lg:grid-cols-3 w-full justify-between items-center">
+                <div class="brand-footer fill-white">
+                    {!! file_get_contents($brandLogo) !!}
+                </div>
+                <div class="footer-below-link gap-8 justify-self-center hidden lg:flex">
+                    @foreach ($belowLinks as $link => $url)
+                        <div class="text-neutral-50 text-sm font-medium">
+                            <a href="{{ $url }}">
+                                <h6>{{ $link }}</h6>
+                            </a>
+                        </div>
+                    @endforeach
+                </div>
+                <div class="footer-below-sosmed flex gap-2 justify-self-end">
+                    @foreach ($sosmedLinks as $sosmed => $data)
+                        <div class="fill-neutral-50 p-2 md:p-4 lg:border rounded-full border-neutral-50">
+                            <a href="{{ $data['link'] }}">
+                                <div class="w-5 h-5">
+                                    {!! file_get_contents($data['icon']) !!}
+                                </div>
+                                <p class="sr-only">{{ $sosmed }}</p>
+                            </a>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </x-slot:bellow>
     </x-footer-layout>
 </footer>

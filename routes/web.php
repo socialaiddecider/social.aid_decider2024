@@ -1,10 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Shared\SharedController;
 
-Route::get('/', function () {
-    return view('index');
-})->name('index');
+
+Route::get('/', [SharedController::class, 'index'])->name('index');
 
 require __DIR__ . '/auth.php';
 require __DIR__ . '/admin.php';

@@ -52,26 +52,29 @@
     <main class="overflow-scroll h-screen no-scrollbar">
 
         @include('includes.navbar')
-        <section id="hero" class="mx-20 flex justify-between xl:justify-around mt-3 mb-20">
-            <div class="hero-desc flex justify-start animate-fadeIn transition-all">
-                <div class="w-[453px]">
+        <section id="hero"
+            class="mx-6 sm:mx-10 md:mx-20 flex flex-wrap gap-5 xl:gap-0 justify-between xl:justify-around mt-3 mb-20">
+            <div class="hero-desc flex  justify-start animate-fadeIn transition-all">
+                <div class=" sm:w-[453px]">
                     <div class="text mb-8">
                         <h1
-                            class="inline-block text-[64px] font-bold leading-snug mb-4 bg-gradient-to-r from-[#194F1F] -from-[0.85%] via-[#649069] via-[38%] to-[#4D7151] to-[97%] text-transparent bg-clip-text">
+                            class="inline-block xl:text-[64px] text-4xl font-bold leading-snug mb-4 bg-gradient-to-r from-[#194F1F] -from-[0.85%] via-[#649069] via-[38%] to-[#4D7151] to-[97%] text-transparent bg-clip-text">
                             Meningkatkan
                             Kesejahteraan
                             Masyarakat</h1>
-                        <p class="text-neutral-base font-normal leading-6">Website kami digunakan untuk menginput data calon
+                        <p class="text-neutral-base text-xs md:text-base font-normal leading-6">Website kami digunakan untuk
+                            menginput data calon
                             penerima bantuan sosial yang akan diuji kelayakannya untuk menerima bantuan sosial sehingga
                             bantuan
                             sosial yang diberikan tepat sasaran.</p>
                     </div>
-                    <ul class="action flex gap-8">
+                    <ul class="action flex gap-6 xl:gap-8">
                         <li>
                             <a href="{{ route('index') }}">
                                 <button onclick="window.utils.Animate.ripple.rippleEffect(event)"
                                     class="overflow-hidden relative">
-                                    <h1 class="px-8 py-6 bg-primary-base rounded-2xl text-neutral-50 leading-5">
+                                    <h1
+                                        class="px-4 py-3 lg:px-8 lg:py-6 bg-primary-base text-xs md:text-base rounded-lg xl:rounded-2xl text-neutral-50 leading-5">
                                         {{ Auth::user() ? 'Masukkan Data' : 'Lihat Data' }}
                                     </h1>
                                 </button>
@@ -81,7 +84,8 @@
                             <a href="{{ route('index') }}">
                                 <button onclick="window.utils.Animate.ripple.rippleEffect(event)"
                                     class="overflow-hidden relative">
-                                    <h1 class="px-8 py-6 rounded-2xl border border-primary-300 text-primary-base leading-5">
+                                    <h1
+                                        class="px-4 py-3 lg:px-8 lg:py-6 rounded-lg  xl:rounded-2xl border text-xs md:text-base border-primary-300 text-primary-base leading-5">
                                         {{ Auth::user() ? 'Penerima yang ideal' : 'Bergabung sekarang' }}
                                     </h1>
                                 </button>
@@ -90,28 +94,29 @@
                     </ul>
                 </div>
             </div>
-            <div class="hero-image flex justify-end">
+            <div class="hero-image flex justify-end order-first lg:order-last">
                 <div class="relative animate-fadeIn">
-                    <div class="w-[568px] h-[568px] rounded-xl rotate-6 bg-primary-base transition-all animate-shiftRight">
+                    <div
+                        class="relative z-0 w-[310px] h-[310px] xl:w-[568px] xl:h-[568px] rounded-xl rotate-6 bg-primary-base transition-all animate-shiftRight">
                     </div>
-                    <div class="absolute top-0 w-[568px] h-[568px] animate-shiftLeft transition-all rounded-xl bg-primary-base !bg-cover !bg-center"
+                    <div class="absolute z-10 top-0 w-[310px] h-[310px] xl:w-[568px] xl:h-[568px] animate-shiftLeft transition-all rounded-xl bg-primary-base !bg-cover !bg-center"
                         style="background: url({{ $heroImage }});"></div>
                 </div>
             </div>
         </section>
         <section id="banner" class="hero-label bg-gradient-to-r from-primary-500 to-[#1A5020] to-[55%] px-20 py-10">
-            <ul class="flex text-neutral-50 justify-around" x-data="{}">
-                <li class="w-60">
-                    <h1 class="text-[64px] mb-1 font-bold "><span class="Count">15</span>k+</h1>
+            <ul class="flex text-neutral-50 justify-around flex-wrap gap-4 xl:gap-0" x-data="{}">
+                <li class="w-60 text-center sm:text-start">
+                    <h1 class="text-5xl xl:text-[64px] mb-1 font-bold "><span class="Count">15</span>k+</h1>
                     <p class="font-normal leading-6">15 ribu lebih orang telah terbantu dengan baik melalui sistem ini</p>
                 </li>
-                <li class="w-60">
-                    <h1 class="text-[64px] mb-1 font-bold"><span class="Count">50</span></h1>
+                <li class="w-60 text-center sm:text-start">
+                    <h1 class="text-5xl xl:text-[64px] mb-1 font-bold"><span class="Count">50</span></h1>
                     <p class="font-normal leading-6">50 desa sudah menggunakan sistem ini untuk membantu menentukan penerima
                     </p>
                 </li>
-                <li class="w-60">
-                    <h1 class="text-[64px] mb-1 font-bold"><span class="Count">5</span></h1>
+                <li class="w-60 text-center sm:text-start">
+                    <h1 class="text-5xl xl:text-[64px] mb-1 font-bold"><span class="Count">5</span></h1>
                     <p class="font-normal leading-6">5 Sertifikasi langsung dari pemerintah dan lisensi penggunaan sistem
                     </p>
                 </li>
@@ -120,15 +125,16 @@
         <section class="h-screen">
 
         </section>
-        <section id="our-team" class="px-11 mb-16">
-            <div class="grid grid-rows-3 grid-cols-1 justify-center gap-8">
-                <div class="py-16 px-20 text-neutral-100 text-center bg-primary-base rounded-xl ">
+        <section id="our-team" class="px-3 md:px-11 mb-16">
+            <div class="grid grid-flow-row grid-cols-1 justify-center gap-8">
+                <div class="py-8 px-5 md:py-16 md:px-20 text-neutral-100 text-center bg-primary-base rounded-xl ">
                     <div class="text">
-                        <h3 class="text-[32px] font-medium">Tentang Kami 🔫</h3>
-                        <h1 class="text-[80px] text-neutral-50 font-medium"><span class="font-bold">Kenali Lebih
-                                Dekat</span> <br> Tentang Kami
+                        <h3 class="text-xs lg:text-3xl font-medium mb-1">Tentang Kami 🔫</h3>
+                        <h1 class="text-2xl sm:text-4xl lg:text-7xl text-neutral-50 font-medium mb-2"><span
+                                class="font-bold">Kenali
+                                Lebih Dekat</span> <br> Tentang Kami
                         </h1>
-                        <h6 class="text-[32px]">Tak kenal maka tak terkenal maka dari itu mari kenalan</h6>
+                        <h6 class="text-xs lg:text-4xl">Tak kenal maka tak terkenal maka dari itu mari kenalan</h6>
                     </div>
                 </div>
                 <div class="row-span-2">
@@ -139,7 +145,7 @@
                         <div class="grid grid-rows-2 grid-cols-1 gap-4">
                             <div
                                 class="bg-primary-base text-center rounded-xl relative flex items-center justify-center text-neutral-50 overflow-hidden">
-                                <h1 class="font-extrabold text-[64px]">WE ARE HERE <br> FOR YOU</h1>
+                                <h1 class="font-extrabold text-xl sm:text-3xl md:text-6xl">WE ARE HERE <br> FOR YOU</h1>
                                 <svg width="270" height="270" viewBox="0 0 270 270" fill="none"
                                     class="absolute -top-24 -left-[105px]" xmlns="http://www.w3.org/2000/svg">
                                     <circle opacity=".5" cx="135" cy="135" r="120.5" stroke="#D1DCD2"
@@ -162,9 +168,9 @@
                                 </svg>
                             </div>
                             <div class=" rounded-xl overflow-hidden flex justify-center items-center bg-neutral-50">
-                                <div class="brand-logo fill-primary-base">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="506" height="199"
-                                        viewBox="0 0 84 34" fill="inherit" class="w-full">
+                                <div class="brand-logo fill-primary-base px-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 84 34" fill="inherit"
+                                        class="w-full">
                                         <g clip-path="url(#a)" fill="inherit">
                                             <path id="logo1" class="animate-[slideRight_1.5s_ease-in-out]"
                                                 d="M19.939.5a12.24 12.24 0 0 0-8.746 3.7l-7.57 7.733A12.77 12.77 0 0 0 0 20.866C0 27.844 5.538 33.5 12.369 33.5a12.24 12.24 0 0 0 8.746-3.7l5.236-5.349L41.608 8.867A5.85 5.85 0 0 1 45.785 7.1c2.623 0 4.847 1.746 5.618 4.163l4.815-4.919C54.02 2.83 50.169.5 45.785.5a12.24 12.24 0 0 0-8.746 3.7L16.546 25.133a5.85 5.85 0 0 1-4.177 1.767c-3.263 0-5.907-2.701-5.907-6.034a6.1 6.1 0 0 1 1.73-4.266l7.57-7.733A5.85 5.85 0 0 1 19.939 7.1c2.623 0 4.847 1.746 5.618 4.163l4.815-4.919C28.175 2.83 24.323.5 19.939.5" />
@@ -184,14 +190,15 @@
                 </div>
             </div>
         </section>
-        <section id="our-team-people" class="px-11 mb-16">
-            <div class="header mb-8">
-                <h6 class="text-primary-500 text-xl font-medium">Our Team</h6>
-                <h1 class="text-neutral-base text-[40px] font-semibold">Our Excellence Team</h1>
+        <section id="our-team-people" class="px-3 md:px-11 mb-16">
+            <div class="header mb-8 px-1 md:px-0">
+                <h6 class="text-primary-500 text-sm md:text-xl font-medium">Our Team</h6>
+                <h1 class="text-neutral-base text-lg md:text-4xl font-semibold">Our Excellence Team</h1>
             </div>
-            <div class="grid grid-cols-3 grid-rows-2 gap-4">
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 grid-rows-2 gap-4">
                 @foreach ($teamImage as $memberName => $data)
-                    <div class="team-card rounded-xl overflow-hidden">
+                    <div
+                        class="team-card rounded-xl overflow-hidden @if ($data['nim'] == '') order-first md:order-none @endif">
                         <div class="image-team w-full h-[564px] bg-cover bg-center hover:scale-110 transition-all duration-300 ease-in-out delay-150"
                             @if ($data['nim'] == '') style="background: linear-gradient(180deg, rgba(0, 0, 0, 0.00) 15.45%, rgba(0, 0, 0, 0.60) 77.73%), url({{ $data['path'] }}) lightgray 0px -2.842px / 100% 117.586% no-repeat;" 
                             @elseif($data['nim'] == '2241720052') style="background: linear-gradient(180deg, rgba(0, 0, 0, 0.00) 15.45%, rgba(0, 0, 0, 0.60) 77.73%), url({{ $data['path'] }}) lightgray -54px -122.153px / 124.434% 130.024% no-repeat;" 

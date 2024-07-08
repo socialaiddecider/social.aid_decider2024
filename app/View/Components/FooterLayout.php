@@ -12,13 +12,9 @@ class FooterLayout extends Component
      * Create a new component instance.
      */
 
-    public $brandLogo, $belowLinks, $sosmedLinks;
 
-    public function __construct($brandLogo, $belowLinks, $sosmedLinks)
+    public function __construct()
     {
-        $this->brandLogo = $brandLogo;
-        $this->belowLinks = $belowLinks;
-        $this->sosmedLinks = $sosmedLinks;
     }
 
 
