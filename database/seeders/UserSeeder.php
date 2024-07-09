@@ -15,6 +15,7 @@ class UserSeeder extends Seeder
     public function run(): void
     {
 
+
         // Note: This is a seeder file for seeding user table
 
         // create user
