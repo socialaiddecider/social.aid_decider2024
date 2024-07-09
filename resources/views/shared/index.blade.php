@@ -134,7 +134,7 @@
             <div class="news-contents ">
                 <div class="wrap relative ">
                     <div class="grid grid-flow-rows  sm:grid-cols-2 xl:grid-cols-4 gap-11 ">
-                        @foreach ($berita as $berita)
+                        @foreach ($news as $berita)
                             @if ($loop->iteration == 1)
                                 <div class="news-card-first sm:col-span-2 w-full min-h-96 xl:h-full rounded-xl overflow-hidden "
                                     style="background: url('{{ $berita->image_url }}'); background-size:cover;">

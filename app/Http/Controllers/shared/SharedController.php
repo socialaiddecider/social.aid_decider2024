@@ -12,7 +12,7 @@ class SharedController extends Controller
     {
         $berita = Berita::all();
         $data = [
-            'berita' => $berita
+            'news' => $berita
         ];
 
         return view('shared.index', $data);
