@@ -4,12 +4,18 @@ namespace App\Http\Controllers\Shared;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Berita;
 
 class SharedController extends Controller
 {
     public function index()
     {
-        return view('shared.index');
+        $berita = Berita::all();
+        $data = [
+            'news' => $berita
+        ];
+
+        return view('shared.index', $data);
     }
 
 }
