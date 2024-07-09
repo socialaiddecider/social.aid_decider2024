@@ -72,6 +72,9 @@
                                 </div>
                             </div>
                         </div>
+                        @error('criteria_type')
+                            <div class="text-sm text-error-500">{{ $message }}</div>
+                        @enderror
                     </div>
                 </div>
                 <div class="form-action flex justify-end">

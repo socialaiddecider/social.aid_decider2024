@@ -9,6 +9,12 @@ class PerhitunganController extends Controller
 {
     public function index()
     {
-        return view('pages.admin.management.perhitungan');
+        $title = 'Hasil Perhitungan';
+
+        $data = [
+            'title' => $title,
+        ];
+
+        return view('pages.admin.management.perhitungan', $data);
     }
 }

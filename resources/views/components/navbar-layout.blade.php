@@ -1,4 +1,4 @@
-<div class="w-full px-10 pt-8 sticky top-0 z-30 backdrop-blur-md mb-14">
+<div class="w-full px-10 pt-4 md:pt-8 sticky top-0 z-30 backdrop-blur-md mb-14">
     <nav class="w-full grid grid-cols-2 md:grid-cols-3 bg-white/95 backdrop-opacity-60 shadow-baseShadow px-8 py-4 rounded-2xl"
         x-data="{ dropdown: false }">
         <div class="nav-brand flex items-center">
