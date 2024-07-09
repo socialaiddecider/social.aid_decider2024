@@ -12,7 +12,7 @@
             'Berita' => [
                 'icon' =>
                     'M21.75 9v.906a2.25 2.25 0 0 1-1.183 1.981l-6.478 3.488M2.25 9v.906a2.25 2.25 0 0 0 1.183 1.981l6.478 3.488m8.839 2.51-4.66-2.51m0 0-1.023-.55a2.25 2.25 0 0 0-2.134 0l-1.022.55m0 0-4.661 2.51m16.5 1.615a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V8.844a2.25 2.25 0 0 1 1.183-1.981l7.5-4.039a2.25 2.25 0 0 1 2.134 0l7.5 4.039a2.25 2.25 0 0 1 1.183 1.98z',
-                'link' => ['admin.news'],
+                'link' => ['admin.news.index', 'admin.news.create', 'admin.news.edit'],
             ],
         ],
         'Master Data' => [
@@ -78,7 +78,7 @@
     <div class="flex">
         <aside
             class="sidebar px-6 py-6 bg-neutral-50 h-screen flex flex-col transition-all duration-500 ease-in-out border-e-2 border-neutral-200"
-            :class="!detailSidebarOpen ? 'w-fit' : 'w-72'" x-data="{ detailSidebarOpen: true }">
+            :class="!detailSidebarOpen ? 'w-fit' : 'min-w-72'" x-data="{ detailSidebarOpen: true }">
             <div class="sidebar-header mb-12 flex justify-between">
                 <div class="brand flex items-center" :class="!detailSidebarOpen ? 'hidden' : ''">
                     <a href="{{ route('index') }}" class="flex items-center">
@@ -122,7 +122,7 @@
                                                             d="{{ $value['icon'] }}" />
                                                     </svg>
                                                 </div>
-                                                <h1 class="text-neutral-950 text-base font-medium"
+                                                <h1 class="text-neutral-950 text-base font-medium text-nowrap"
                                                     :class="!detailSidebarOpen ? 'hidden' : ''">{{ $key }}
                                                 </h1>
                                             </a>
