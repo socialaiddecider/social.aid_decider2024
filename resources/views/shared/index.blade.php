@@ -50,12 +50,11 @@
 
 @section('contents')
     <main class="overflow-scroll h-screen no-scrollbar">
-
         @include('includes.navbar')
         <section id="hero"
             class="mx-6 sm:mx-10 md:mx-20 flex flex-wrap gap-5 xl:gap-0 justify-between xl:justify-around mt-3 mb-20">
-            <div class="hero-desc flex  justify-start animate-fadeIn transition-all">
-                <div class=" sm:w-[453px]">
+            <div class="hero-desc sm:ms-4  flex justify-start animate-fadeIn transition-all">
+                <div class="sm:w-[353px] md:w-[453px]">
                     <div class="text mb-8">
                         <h1
                             class="inline-block xl:text-[64px] text-4xl font-bold leading-snug mb-4 bg-gradient-to-r from-[#194F1F] -from-[0.85%] via-[#649069] via-[38%] to-[#4D7151] to-[97%] text-transparent bg-clip-text">
@@ -95,16 +94,19 @@
                 </div>
             </div>
             <div class="hero-image flex justify-end order-first lg:order-last">
-                <div class="relative animate-fadeIn">
-                    <div
-                        class="relative z-0 w-[310px] h-[310px] xl:w-[568px] xl:h-[568px] rounded-xl rotate-6 bg-primary-base transition-all animate-shiftRight">
+                <div class="relative">
+                    <div class="relative animate-fadeIn translate-x-2">
+                        <div
+                            class="z-0 w-[310px] h-[310px]  lg:w-[368px] lg:h-[368px] xl:w-[568px] xl:h-[568px] rounded-xl rotate-6 bg-primary-base transition-all animate-shiftRight">
+                        </div>
+                        <div class="absolute z-10 top-0 w-[310px] h-[310px] lg:w-[368px] lg:h-[368px] xl:w-[568px] xl:h-[568px] animate-shiftLeft transition-all rounded-xl bg-primary-base !bg-cover !bg-center"
+                            style="background: url({{ $heroImage }});"></div>
                     </div>
-                    <div class="absolute z-10 top-0 w-[310px] h-[310px] xl:w-[568px] xl:h-[568px] animate-shiftLeft transition-all rounded-xl bg-primary-base !bg-cover !bg-center"
-                        style="background: url({{ $heroImage }});"></div>
                 </div>
             </div>
         </section>
-        <section id="banner" class="hero-label bg-gradient-to-r from-primary-500 to-[#1A5020] to-[55%] px-20 py-10">
+        <section id="banner"
+            class="mb-16 hero-label bg-gradient-to-r from-primary-500 to-[#1A5020] to-[55%] px-20 py-10">
             <ul class="flex text-neutral-50 justify-around flex-wrap gap-4 xl:gap-0" x-data="{}">
                 <li class="w-60 text-center sm:text-start">
                     <h1 class="text-5xl xl:text-[64px] mb-1 font-bold "><span class="Count">15</span>k+</h1>
@@ -122,8 +124,75 @@
                 </li>
             </ul>
         </section>
-        <section class="h-screen">
+        <section class="news px-3 md:px-11 mb-16">
+            <div class="header mb-8 px-1 md:px-0">
+                <div class="header-title">
+                    <h6 class="text-primary-500 text-sm md:text-xl font-medium">Berita</h6>
+                    <h1 class="text-neutral-base text-lg md:text-4xl font-semibold">Jelajahi Berita Terbaru Kami.</h1>
+                </div>
+            </div>
+            <div class="news-contents ">
+                <div class="wrap relative ">
+                    <div class="grid grid-flow-rows  sm:grid-cols-2 xl:grid-cols-4 gap-11 ">
+                        @foreach ($berita as $berita)
+                            @if ($loop->iteration == 1)
+                                <div class="news-card-first sm:col-span-2 w-full min-h-96 xl:h-full rounded-xl overflow-hidden "
+                                    style="background: url('{{ $berita->image_url }}'); background-size:cover;">
+                                    <div class="card backdrop-brightness-50 pt-auto px-4 py-5 flex items-end h-full">
+                                        <div class="">
+                                            <div class="header-card w-3/5">
+                                                <div class="category">
+                                                    <h3 class="text-neutral-50">{{ $berita->category }}</h3>
+                                                </div>
+                                                <div class="header-title">
+                                                    <h1 class="text-neutral-50 font-semibold text-2xl">{{ $berita->title }}
+                                                    </h1>
+                                                </div>
+                                                <div class="header-date">
+                                                    <h2 class="text-sm text-neutral-50 font-medium">
+                                                        {{ date_format($berita->created_at, 'd M Y') }}
+                                                    </h2>
+                                                </div>
+                                            </div>
+                                            <div class="body-card">
+                                                <p class="text-neutral-50/70 text-sm font-medium">{{ $berita->description }}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @else
+                                <div class="news-card-second">
+                                    <div class="card">
+                                        <div class="header-card mb-4">
+                                            <img class="rounded-xl object-cover w-full min-h-[310px]"
+                                                src="{{ $berita->image_url }}" alt="{{ $berita->title }}">
+                                            <div class="header-category mt-3">
+                                                <h3 class="text-primary-base font-medium text-sm">{{ $berita->category }}
+                                                </h3>
+                                            </div>
+                                            <div class="header-title">
+                                                <h1 class="text-neutral-base font-semibold text-2xl">{{ $berita->title }}
+                                                </h1>
+                                            </div>
+                                            <div class="header-date">
+                                                <h2 class="text-sm text-neutral-500 font-medium">
+                                                    {{ date_format($berita->created_at, 'd M Y') }}
+                                                </h2>
+                                            </div>
+                                        </div>
+                                        <div class="body-card">
+                                            <p class="text-neutral-500 text-sm font-medium tracking-wide">
+                                                {{ $berita->description }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endif
+                        @endforeach
 
+                    </div>
+                </div>
+            </div>
         </section>
         <section id="our-team" class="px-3 md:px-11 mb-16">
             <div class="grid grid-flow-row grid-cols-1 justify-center gap-8">

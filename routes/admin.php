@@ -23,7 +23,20 @@ Route::group([
     Route::get('dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
 
     // auth routes news
-    Route::get('news', [NewsController::class, 'index'])->name('news');
+    Route::group(
+        [
+            'prefix' => 'news',
+            'as' => 'news.',
+        ],
+        function () {
+            Route::get('/', [NewsController::class, 'index'])->name('index');
+            Route::get('create', [NewsController::class, 'create'])->name('create');
+            Route::post('store', [NewsController::class, 'store'])->name('store');
+            Route::get('edit/{id}', [NewsController::class, 'edit'])->name('edit');
+            Route::put('update/{id}', [NewsController::class, 'update'])->name('update');
+            Route::delete('delete/{id}', [NewsController::class, 'destroy'])->name('delete');
+        }
+    );
 
     // auth routes Data
     Route::group([
