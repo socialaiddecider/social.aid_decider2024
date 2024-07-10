@@ -78,7 +78,7 @@
                                         'publish' => 'bg-primary-200 text-primary-500',
                                     ];
                                 @endphp
-                                @foreach ($news as $key => $item)
+                                @foreach ($berita as $key => $item)
                                     <tr class="">
                                         <td class="px-6 py-4 relative z-30">
                                             <div id="checkbox" class="inline-flex gap-2 items-center">

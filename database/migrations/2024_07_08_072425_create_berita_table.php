@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('berita', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->text('image_url')->nullable();
+            $table->text('url_image')->nullable();
             $table->text('description');
             $table->string('category');
             $table->string('author');

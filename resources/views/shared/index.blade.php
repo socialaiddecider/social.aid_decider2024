@@ -137,7 +137,7 @@
                         @foreach ($news as $berita)
                             @if ($loop->iteration == 1)
                                 <div class="news-card-first sm:col-span-2 w-full min-h-96 xl:h-full rounded-xl overflow-hidden "
-                                    style="background: url('{{ $berita->image_url }}'); background-size:cover;">
+                                    style="background: url('{{ $berita->url_image }}'); background-size:cover;">
                                     <div class="card backdrop-brightness-50 pt-auto px-4 py-5 flex items-end h-full">
                                         <div class="">
                                             <div class="header-card w-3/5">
@@ -166,7 +166,7 @@
                                     <div class="card">
                                         <div class="header-card mb-4">
                                             <img class="rounded-xl object-cover w-full min-h-[310px]"
-                                                src="{{ $berita->image_url }}" alt="{{ $berita->title }}">
+                                                src="{{ $berita->url_image }}" alt="{{ $berita->title }}">
                                             <div class="header-category mt-3">
                                                 <h3 class="text-primary-base font-medium text-sm">{{ $berita->category }}
                                                 </h3>

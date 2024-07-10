@@ -1,4 +1,7 @@
 import module.waspas as waspas
+import module.algoritma_genetika as ga
 
 
-waspas = waspas.CalcWaspas()
+def main():
+    ga = ga.AlgoritmaGenetika()
+    
