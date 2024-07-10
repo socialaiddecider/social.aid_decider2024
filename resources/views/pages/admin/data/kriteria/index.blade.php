@@ -36,7 +36,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="table-wrap" x-data="itemSelected">
+                <div class="table-wrap" x-data="itemSelected" x-effect="$data.elementUpdate()">
                     <div class="relative">
                         <table class="w-full table-auto">
                             <thead class="border-b-2 bg-neutral-50">
@@ -188,28 +188,40 @@
                 },
 
                 elementShow() {
-                    let element = ` <div id="action-selected" class="absolute bottom-3 inset-x-0 flex justify-center">
-                    <div class="inline-flex items-center gap-14 rounded-full p-3 bg-[#201E2B]">
-            <button type="button" class="inline-flex gap-3" onclick="clearSelected()">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                    fill="none">
-                    <path fill-rule="evenodd" clip-rule="evenodd"
-                        d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25m-1.72 6.97a.75.75 0 1 0-1.06 1.06L10.94 12l-1.72 1.72a.75.75 0 1 0 1.06 1.06L12 13.06l1.72 1.72a.75.75 0 1 0 1.06-1.06L13.06 12l1.72-1.72a.75.75 0 1 0-1.06-1.06L12 10.94z"
-                        fill="#fff" />
-                </svg>
-                <span class="text-neutral-50">${this.selected.length} item selected</span>
-            </button>
-            <button type="button" onclick="deleteSelected('${this.selected}')" class="px-4 py-2 inline-flex gap-2 bg-error-base rounded-full">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                    fill="none">
-                    <path
-                        d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21q.512.078 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48 48 0 0 0-3.478-.397m-12 .562q.51-.088 1.022-.165m0 0a48 48 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a52 52 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a49 49 0 0 0-7.5 0"
-                        stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
-                <span class="text-neutral-50 font-semibold">Delete</span>
-            </button> </div>
-        </div>`
-                    return element
+                    let el = /*html*/ `
+<div id="action-selected" class="absolute bottom-3 inset-x-0 flex justify-center">
+    <div class="inline-flex items-center gap-14 rounded-full p-3 bg-[#201E2B]">
+        <button type="button" class="inline-flex gap-3" onclick="clearSelected()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25m-1.72 6.97a.75.75 0 1 0-1.06 1.06L10.94 12l-1.72 1.72a.75.75 0 1 0 1.06 1.06L12 13.06l1.72 1.72a.75.75 0 1 0 1.06-1.06L13.06 12l1.72-1.72a.75.75 0 1 0-1.06-1.06L12 10.94z"
+                    fill="#fff" />
+            </svg>
+            <span class="text-neutral-50">${this.selected.length} item selected</span>
+        </button>
+        <button type="button" onclick="deleteSelected('${this.selected}')"
+            class="px-4 py-2 inline-flex gap-2 bg-error-base rounded-full">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path
+                    d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21q.512.078 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48 48 0 0 0-3.478-.397m-12 .562q.51-.088 1.022-.165m0 0a48 48 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a52 52 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a49 49 0 0 0-7.5 0"
+                    stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            <span class="text-neutral-50 font-semibold">Delete</span>
+        </button> 
+    </div>
+</div>
+        `
+                    return el
+                },
+
+                isSelected() {
+                    return this.selected.length > 0;
+                },
+
+                elementUpdate() {
+                    if (!this.isSelected()) {
+                        this.removeElement();
+                    }
                 },
 
                 showDisplay() {
@@ -229,6 +241,9 @@
                     }
                     this.showDisplay();
                 },
+                removeElement() {
+                    document.querySelector('#action-selected')?.remove()
+                }
             }));
         });
 
@@ -245,7 +260,7 @@
             selected = selected.split(',');
 
             selected.forEach((id) => {
-                let url = `{{ route('admin.data.kriteria.delete', ':id') }}`;
+                let url = `{{ route($deleteLocation, ':id') }}`;
                 id = id.replace(/\D/g, '')
                 url = url.replace(':id', id);
 

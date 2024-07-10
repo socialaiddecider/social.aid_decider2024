@@ -50,7 +50,7 @@
                                 <label for="image" class="text-neutral-950 font-medium">URL Gambar Berita</label>
                                 <input type="text" name="image" id="image_url"
                                     class="form-control w-full p-3 border rounded-lg mt-3"
-                                    placeholder="Masukkan url gambar berita" value="{{ $berita->image_url }}">
+                                    placeholder="Masukkan url gambar berita" value="{{ $berita->url_image }}">
 
                             </div>
                             <div class="image ms-3 mt-2">

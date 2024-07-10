@@ -250,7 +250,7 @@
             selected = selected.split(',');
 
             selected.forEach((id) => {
-                let url = `{{ route('admin.data.alternatif.delete', ':id') }}`;
+                let url = `{{ route($deleteLocation, ':id') }}`;
                 id = id.replace(/\D/g, '')
                 url = url.replace(':id', id);
 

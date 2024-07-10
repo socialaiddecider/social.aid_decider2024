@@ -91,9 +91,12 @@
                     <button type="button" @click="detailSidebarOpen = !detailSidebarOpen"
                         class="stroke-primary-base opacity-80 p-2 transition-all duration-500"
                         :class="!detailSidebarOpen ? 'rotate-180' : 'pe-0'">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                            stroke="inherit" class="size-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            fill="none">
+                            <path d="M21.97 15V9c0-5-2-7-7-7h-6c-5 0-7 2-7 7v6c0 5 2 7 7 7h6c5 0 7-2 7-7m-14-13v20"
+                                stroke="#1B1B1B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M14.97 9.44 12.41 12l2.56 2.56" stroke="#1B1B1B" stroke-width="1.5"
+                                stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
                     </button>
                 </div>
