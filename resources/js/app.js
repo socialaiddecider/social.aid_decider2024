@@ -10,6 +10,9 @@ window.$ = jQuery;
 // inject Alpine to window
 window.Alpine = Alpine
 
+// inject ApexCharts to window
+window.ApexCharts = ApexCharts
+
 // Import animate js
 window.utils = {};
 window.utils.Animate = {};
