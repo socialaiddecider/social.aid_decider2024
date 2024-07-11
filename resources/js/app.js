@@ -2,6 +2,7 @@ import jQuery from 'jquery'; // Import jQuery
 import Alpine from 'alpinejs' // Import Alpine
 import * as ripple from './animate/ripple' // Import animate ripple
 import * as counter from './animate/counter' // Import animate counter
+import ApexCharts from 'apexcharts' // Import ApexCharts
 
 
 // inject jQuery to window

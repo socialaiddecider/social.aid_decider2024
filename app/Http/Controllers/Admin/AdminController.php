@@ -9,6 +9,12 @@ class AdminController extends Controller
 {
     function dashboard()
     {
-        return view('pages.admin.dashboard');
+        $title = 'Dashboard';
+
+        $data = [
+            'title' => $title,
+        ];
+
+        return view('pages.admin.dashboard', $data);
     }
 }
