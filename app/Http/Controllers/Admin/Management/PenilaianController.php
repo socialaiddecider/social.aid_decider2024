@@ -11,7 +11,7 @@ use App\Models\Subkriteria;
 
 class PenilaianController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
         $title = 'Data Penilaian';
         $addLocation = route('admin.management.penilaian.create');
@@ -22,7 +22,7 @@ class PenilaianController extends Controller
         $subkriteria = Subkriteria::with('kriteria')->get();
 
 
-        $periode = $request->input('periode');
+        $periode = request()->date;
         $tanggalAwal = null ?? now()->startOfMonth();
         $tanggalAkhir = null ?? now()->endOfMonth();
 
@@ -30,11 +30,13 @@ class PenilaianController extends Controller
 
         if ($periode) {
             $bulanTahun = explode('-', $periode);
-            $tahun = $bulanTahun[0];
-            $bulan = $bulanTahun[1];
+
+            $tahun = (int) $bulanTahun[0];
+            $bulan = (int) $bulanTahun[1];
             $tanggalAwal = now()->setYear($tahun)->setMonth($bulan)->startOfMonth();
             $tanggalAkhir = now()->setYear($tahun)->setMonth($bulan)->endOfMonth();
         }
+
 
         $penilaian = Penilaian::whereBetween('created_at', [$tanggalAwal, $tanggalAkhir])->get();
 
@@ -53,7 +55,9 @@ class PenilaianController extends Controller
             'kriteria' => $kriteria,
             'subkriteria' => $subkriteria,
             'alternatif' => $alternatif,
-            'penilaian' => $penilaian
+            'penilaian' => $penilaian,
+            'tanggalAwal' => $tanggalAwal,
+            'tanggalAkhir' => $tanggalAkhir,
         ];
 
         // dd($data);
