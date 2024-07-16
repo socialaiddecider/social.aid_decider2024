@@ -5,24 +5,32 @@ namespace App\Http\Controllers\Admin\Data;
 use App\Http\Controllers\Controller;
 use App\Models\Kriteria;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Schema;
 
 class KriteriaController extends Controller
 {
     public function index()
     {
+        $sortby = request()->query('sortby');
+
         $title = 'Data Kriteria';
         $addLocation = route('admin.data.kriteria.create');
         $editLocation = 'admin.data.kriteria.edit';
         $deleteLocation = 'admin.data.kriteria.delete';
         $kriteria = Kriteria::all();
+        $sortable = ['kode_kriteria' => 'Kode Kriteria', 'nama' => "Nama", 'jenis' => 'Jenis', 'bobot' => 'Bobot'];
+
+        $kriteria = $sortby ? Kriteria::orderBy($sortby)->get() : $kriteria;
 
         $data = [
             'title' => $title,
             'addLocation' => $addLocation,
             'editLocation' => $editLocation,
             'deleteLocation' => $deleteLocation,
-            'kriteria' => $kriteria
+            'kriteria' => $kriteria,
+            'sortable' => $sortable
         ];
+
         return view('pages.admin.data.kriteria.index', $data);
     }
 

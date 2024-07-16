@@ -178,7 +178,7 @@
                                         stroke-linecap="round" stroke-linejoin="round" />
                                 </svg>
                             </button>
-                            <div class="dropdown ring-1 ring-neutral-300 absolute w-fit bg-neutral-50 rounded-xl px-3 py-2 right-0 top-10"
+                            <div class="z-50 dropdown ring-1 ring-neutral-300 absolute w-fit bg-neutral-50 rounded-xl px-3 py-2 right-0 top-10"
                                 x-show="isDropdownOpen" @click.away="isDropdownOpen =false">
                                 <a href="{{ route('auth.signOut') }}"
                                     class="text-nowrap rounded-lg hover:bg-neutral-200 transition-all px-2 py-1">Sign
