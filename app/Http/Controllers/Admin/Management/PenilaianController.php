@@ -21,6 +21,20 @@ class PenilaianController extends Controller
         $kriteria = Kriteria::all();
         $subkriteria = Subkriteria::with('kriteria')->get();
 
+        $monthName = [
+            'January',
+            'February',
+            'March',
+            'April',
+            'May',
+            'June',
+            'July',
+            'August',
+            'September',
+            'October',
+            'November',
+            'December',
+        ];
 
         $periode = request()->date;
         $tanggalAwal = null ?? now()->startOfMonth();
@@ -58,6 +72,7 @@ class PenilaianController extends Controller
             'penilaian' => $penilaian,
             'tanggalAwal' => $tanggalAwal,
             'tanggalAkhir' => $tanggalAkhir,
+            'monthName' => $monthName,
         ];
 
         // dd($data);

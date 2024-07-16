@@ -12,6 +12,7 @@ class KriteriaController extends Controller
     public function index()
     {
         $sortby = request()->query('sortby');
+        $orderby = request()->orderby;
 
         $title = 'Data Kriteria';
         $addLocation = route('admin.data.kriteria.create');
@@ -20,7 +21,9 @@ class KriteriaController extends Controller
         $kriteria = Kriteria::all();
         $sortable = ['kode_kriteria' => 'Kode Kriteria', 'nama' => "Nama", 'jenis' => 'Jenis', 'bobot' => 'Bobot'];
 
-        $kriteria = $sortby ? Kriteria::orderBy($sortby)->get() : $kriteria;
+        $orderbyVal = in_array($orderby, ['asc', 'desc']) ? $orderby : 'asc';
+
+        $kriteria = $sortby ? Kriteria::orderBy($sortby, $orderbyVal)->get() : $kriteria;
 
         $data = [
             'title' => $title,

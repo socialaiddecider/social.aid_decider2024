@@ -11,15 +11,25 @@ class SubkriteriaController extends Controller
 {
     public function index()
     {
+        $sortby = request()->query('sortby');
+        $orderby = request()->orderby;
+
         $title = 'Data Subkriteria';
         $detailLocation = 'admin.data.subkriteria.detail';
 
         $kriteria = Kriteria::all();
+        $sortable = ['kode_kriteria' => 'Kode Kriteria', 'nama' => "Nama", 'jenis' => 'Jenis', 'bobot' => 'Bobot'];
+        $orderbyVal = in_array($orderby, ['asc', 'desc']) ? $orderby : 'asc';
+
+
+        $kriteria = $sortby ? Kriteria::orderBy($sortby, $orderbyVal)->get() : $kriteria;
+
 
         $data = [
             'title' => $title,
             'kriteria' => $kriteria,
-            'detailLocation' => $detailLocation
+            'detailLocation' => $detailLocation,
+            'sortable' => $sortable
 
         ];
         return view('pages.admin.data.subkriteria.index', $data);
@@ -27,19 +37,28 @@ class SubkriteriaController extends Controller
 
     public function detail($id)
     {
+        $sortby = request()->query('sortby');
+        $orderby = request()->orderby;
+
+
         $title = 'Detail Data Subkriteria';
         $subkriteria = Subkriteria::where('kriteria_id', $id)->get();
         $addLocation = route('admin.data.subkriteria.create', $id);
         $editLocation = 'admin.data.subkriteria.edit';
         $deleteLocation = 'admin.data.subkriteria.delete';
+        $sortable = ['nama' => "Nama", 'nilai' => 'Nilai'];
 
+        $orderbyVal = in_array($orderby, ['asc', 'desc']) ? $orderby : 'asc';
+
+        $subkriteria = $sortby ? Subkriteria::where('kriteria_id', $id)->orderBy($sortby, $orderbyVal)->get() : $subkriteria;
 
         $data = [
             'title' => $title,
             'subkriteria' => $subkriteria,
             'addLocation' => $addLocation,
             'editLocation' => $editLocation,
-            'deleteLocation' => $deleteLocation
+            'deleteLocation' => $deleteLocation,
+            'sortable' => $sortable
         ];
 
         return view('pages.admin.data.subkriteria.detail', $data);

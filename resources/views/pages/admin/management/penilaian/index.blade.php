@@ -1,22 +1,5 @@
 @extends('layouts.admin.sidebar')
 
-@php
-    $monthName = [
-        'January',
-        'February',
-        'March',
-        'April',
-        'May',
-        'June',
-        'July',
-        'August',
-        'September',
-        'October',
-        'November',
-        'December',
-    ];
-@endphp
-
 
 @section('contents-admin')
     <section class="penilaian py-6 px-8 overflow-y-auto no-scrollbar min-h-screen">

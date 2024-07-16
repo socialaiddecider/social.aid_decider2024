@@ -10,18 +10,27 @@ class AlternatifController extends Controller
 {
     public function index()
     {
+        $sortby = request()->query('sortby');
+        $orderby = request()->orderby;
+
         $title = 'Data Alternatif';
         $addLocation = route('admin.data.alternatif.create');
         $editLocation = 'admin.data.alternatif.edit';
         $deleteLocation = 'admin.data.alternatif.delete';
         $alternatif = Alternatif::all();
 
+        $sortable = ['kode_alternatif' => 'Kode Alternatif', 'nama' => "Nama", 'nik' => 'NIK', 'alamat' => 'Alamat'];
+        $orderbyVal = in_array($orderby, ['asc', 'desc']) ? $orderby : 'asc';
+
+        $alternatif = $sortby ? Alternatif::orderBy($sortby, $orderbyVal)->get() : $alternatif;
+
         $data = [
             'title' => $title,
             'alternatif' => $alternatif,
             'addLocation' => $addLocation,
             'editLocation' => $editLocation,
-            'deleteLocation' => $deleteLocation
+            'deleteLocation' => $deleteLocation,
+            'sortable' => $sortable
         ];
 
         return view('pages.admin.data.alternatif.index', $data);

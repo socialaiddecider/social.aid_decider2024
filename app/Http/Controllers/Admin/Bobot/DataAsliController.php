@@ -16,14 +16,29 @@ class DataAsliController extends Controller
         $editLocation = 'admin.bobot.data-asli.edit';
         $deleteLocation = 'admin.bobot.data-asli.delete';
 
-        $periode = $request->input('periode');
+        $periode = request()->date;
         $tanggalAwal = null ?? now()->startOfMonth();
         $tanggalAkhir = null ?? now()->endOfMonth();
 
+        $monthName = [
+            'January',
+            'February',
+            'March',
+            'April',
+            'May',
+            'June',
+            'July',
+            'August',
+            'September',
+            'October',
+            'November',
+            'December',
+        ];
+
         if ($periode) {
             $bulanTahun = explode('-', $periode);
-            $tahun = $bulanTahun[0];
-            $bulan = $bulanTahun[1];
+            $tahun = (int) $bulanTahun[0];
+            $bulan = (int) $bulanTahun[1];
             $tanggalAwal = now()->setYear($tahun)->setMonth($bulan)->startOfMonth();
             $tanggalAkhir = now()->setYear($tahun)->setMonth($bulan)->endOfMonth();
         }
@@ -36,11 +51,27 @@ class DataAsliController extends Controller
             'addLocation' => $addLocation,
             'editLocation' => $editLocation,
             'deleteLocation' => $deleteLocation,
-            'dataAsli' => $dataAsli
+            'dataAsli' => $dataAsli,
+            'tanggalAwal' => $tanggalAwal,
+            'tanggalAkhir' => $tanggalAkhir,
+            'monthName' => $monthName
         ];
 
 
         return view('pages.admin.bobot.data-asli.index', $data);
+    }
+
+    public function importXLXS()
+    {
+        $title = 'Import Data Asli';
+        $storeLocation = route('admin.bobot.data-asli.storeXLXS');
+
+        $data = [
+            'title' => $title,
+            'storeLocation' => $storeLocation
+        ];
+
+        return view('pages.admin.bobot.data-asli.import', $data);
     }
 
     public function create()
