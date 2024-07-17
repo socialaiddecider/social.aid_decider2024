@@ -12,18 +12,32 @@ class NewsController extends Controller
 {
     public function index()
     {
+        $sortby = request()->query('sortby');
+        $orderby = request()->query('orderby');
+
         $title = "Kelola Berita";
         $berita = Berita::all();
         $addLocation = route('admin.news.create');
         $editLocation = 'admin.news.edit';
         $deleteLocation = 'admin.news.delete';
 
+        $berita = $sortby && $orderby ? Berita::orderBy($sortby, $orderby)->get() : $berita;
+
+        $sortable = [
+            'title' => 'Judul',
+            'description' => 'Deskripsi',
+            'author' => 'Author',
+            'status' => 'Status',
+            'created_at' => 'Tanggal',
+        ];
+
         $data = [
             'title' => $title,
             'addLocation' => $addLocation,
             'editLocation' => $editLocation,
             'deleteLocation' => $deleteLocation,
-            'berita' => $berita
+            'berita' => $berita,
+            'sortable' => $sortable
         ];
 
         return view('pages.admin.features.news.index', $data);
