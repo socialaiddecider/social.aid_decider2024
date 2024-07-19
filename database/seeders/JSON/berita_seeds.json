@@ -7,6 +7,7 @@
         "category": "Bansos",
         "author": "Ignacio Geordi Oswaldo",
         "url_image": "https://res.cloudinary.com/dckj6rrf8/image/upload/v1720514355/ckgrjmhejsxmzxlohiic.jpg",
+        "status": "publish",
         "created_at": "2024-05-25 14:15:00",
         "updated_at": "2024-05-25 14:15:00"
     },
@@ -18,6 +19,7 @@
         "category": "Berita",
         "author": "Dwi Rahmawati",
         "url_image": "https://res.cloudinary.com/dckj6rrf8/image/upload/v1720515804/p8fausfpvnkfwuexxzkd.jpg",
+        "status": "publish",
         "created_at": "2024-05-21 23:09:00",
         "updated_at": "2024-05-21 23:09:00"
     },
@@ -29,6 +31,7 @@
         "category": "Sosial",
         "author": "Samuel Gading",
         "url_image": "https://res.cloudinary.com/dckj6rrf8/image/upload/v1720517990/xijfzecdgztmoye4twvg.jpg",
+        "status": "publish",
         "created_at": "2024-05-21 15:12:00",
         "updated_at": "2024-05-21 15:12:00"
     },
@@ -40,6 +43,7 @@
         "category": "Bansos",
         "author": "Tiara Aliya Azzahra",
         "url_image": "https://res.cloudinary.com/dckj6rrf8/image/upload/v1720518075/lcani9oprchqtcu4qaya.jpg",
+        "status": "publish",
         "created_at": "2024-05-18 11:03:00",
         "updated_at": "2024-05-18 11:03:00"
     },
@@ -51,6 +55,7 @@
         "category": "Bansos",
         "author": "Raphaella Ade Siallagan",
         "url_image": "https://res.cloudinary.com/dckj6rrf8/image/upload/v1720518120/miv7mhf0i36e9tpbvdnb.png",
+        "status": "publish",
         "created_at": "2024-05-14 21:03:00",
         "updated_at": "2024-05-14 21:03:00"
     },
@@ -62,6 +67,7 @@
         "category": "Ekonomi",
         "author": "Herdi Alif Al Hikam",
         "url_image": "https://res.cloudinary.com/dckj6rrf8/image/upload/v1720518219/zp033p7upkkdzzvpbqvj.jpg",
+        "status": "publish",
         "created_at": "2024-05-13 12:30:00",
         "updated_at": "2024-05-13 12:30:00"
     },
@@ -73,6 +79,7 @@
         "category": "Ekonomi",
         "author": "Rumondang Naibaho",
         "url_image": "https://res.cloudinary.com/dckj6rrf8/image/upload/v1720518265/rtmd72g42rrgx5inbthy.jpg",
+        "status": "publish",
         "created_at": "2024-05-08 18:53:00",
         "updated_at": "2024-05-08 18:53:00"
     }

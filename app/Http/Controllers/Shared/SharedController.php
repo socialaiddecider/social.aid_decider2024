@@ -10,7 +10,8 @@ class SharedController extends Controller
 {
     public function index()
     {
-        $berita = Berita::all();
+        $berita = Berita::where('status', 'publish')->get();
+
         $data = [
             'berita' => $berita,
             'news' => $berita

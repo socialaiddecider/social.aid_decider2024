@@ -93,7 +93,7 @@ class NewsController extends Controller
             'url' => $request->url,
             'author' => $request->author,
             'status' => $request->status_news,
-            'image_url' => $resultUrl
+            'url_image' => $resultUrl
         ];
 
         Berita::create($data);
@@ -153,7 +153,7 @@ class NewsController extends Controller
                 'url' => $request->url,
                 'author' => $request->author,
                 'status' => $request->status_news,
-                'image_url' => $resultUrl
+                'url_image' => $resultUrl
             ];
 
             $berita->update($data);
