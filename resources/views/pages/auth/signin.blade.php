@@ -9,8 +9,8 @@
     <main class="pb-12 overflow-auto h-screen">
         @include('includes.navbar')
         <section class="relative">
-            <div class="mx-[73px] grid grid-cols-2 gap-6">
-                <div class="left animate-fadeIn">
+            <div class="mx-4 md:mx-[73px] grid md:grid-cols-2 md:gap-6">
+                <div class="left animate-fadeIn hidden md:block">
                     <div class="header py-16">
                         <div class="text-header text-center mb-8">
                             <h2 class="text-[32px] text-primary-base ">Social Aid Decider
@@ -26,12 +26,11 @@
                             </p>
                         </div>
                         <div class="action-header text-center antialiased">
-                            <h4 class="mb-4 text-neutral-400">Belum punya akun?</h4>
+                            <h4 class="mb-4 text-neutral-400">Pantau Terus Kami</h4>
                             <a href="" class="inline-flex justify-self-center">
                                 <h4
                                     class="w-fit px-4 relative after:absolute after:h-0.5 after:rounded-full after:mt-2 after:top-3/4 after:-z-10 after:inset-1 after:bg-black">
-                                    Buat
-                                    akun
+                                    Stay Care
                                 </h4>
                             </a>
                         </div>
@@ -47,10 +46,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="right rounded-2xl overflow-hidden animate-[fadeIn_800ms_ease-in]">
+                <div class="right rounded-2xl h-screen md:h-full overflow-hidden animate-[fadeIn_800ms_ease-in]">
                     <div class="signIn h-full !bg-cover !bg-center flex justify-center items-center"
                         style="background: url({{ $backgroundImage }})">
-                        <div class="px-9 py-16 bg-neutral-50  rounded-2xl min-w-[400px] w-4/5 ">
+                        <div class="px-9 py-16 bg-neutral-50  rounded-2xl md:min-w-[400px] md:w-4/5 w-11/12 ">
                             <form action="{{ route('auth.postSignIn') }}" method="post">
                                 @csrf
                                 <div class="header mb-7 text-center">
@@ -117,11 +116,6 @@
                                                     Remember Me
                                                 </label>
                                             </div>
-                                            <a href="">
-                                                <p class="text-xs font-normal text-neutral-400 antialiased">Forgot password
-                                                    your password?
-                                                </p>
-                                            </a>
                                         </div>
                                     </div>
                                     <div class="form-action">

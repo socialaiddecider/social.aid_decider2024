@@ -179,11 +179,37 @@
                                         stroke-linecap="round" stroke-linejoin="round" />
                                 </svg>
                             </button>
-                            <div class="z-50 dropdown ring-1 ring-neutral-300 absolute w-fit bg-neutral-50 rounded-xl px-3 py-2 right-0 top-10"
+                            <div class="z-50 dropdown shadow-lg absolute w-fit bg-neutral-50 rounded-lg p-4 right-0 top-16"
                                 x-show="isDropdownOpen" @click.away="isDropdownOpen = false" x-cloak>
-                                <a href="{{ route('auth.signOut') }}"
-                                    class="text-nowrap rounded-lg hover:bg-neutral-200 transition-all px-2 py-1">Sign
-                                    Out</a>
+                                <div class="min-w-40">
+                                    <div class="min-w-full border-b pb-3">
+                                        <a href="{{ route('admin.profile') }}"
+                                            class="w-full text-nowrap rounded-md hover:bg-neutral-200 transition-all p-2 inline-flex gap-2 items-center">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 18 22" fill="none">
+                                                <path class="stroke-neutral-base"
+                                                    d="M12.75 5a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0M1.501 19.118a7.5 7.5 0 0 1 14.998 0A17.9 17.9 0 0 1 9 20.75c-2.676 0-5.216-.584-7.499-1.632"
+                                                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                            </svg>
+                                            <span class="text-sm font-medium text-neutral-base">
+                                                Profile
+                                            </span>
+                                        </a>
+                                    </div>
+                                    <a href="{{ route('auth.signOut') }}"
+                                        class="w-full text-nowrap rounded-md hover:bg-neutral-200 transition-all p-2 inline-flex gap-2 items-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none">
+                                            <path
+                                                d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15m3 0 3-3m0 0-3-3m3 3H9"
+                                                stroke="#1B1B1B" stroke-width="1.5" stroke-linecap="round"
+                                                stroke-linejoin="round" />
+                                        </svg>
+                                        <span class="text-sm font-medium text-neutral-base">
+                                            Sign Out
+                                        </span>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>

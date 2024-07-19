@@ -17,4 +17,14 @@ class AdminController extends Controller
 
         return view('pages.admin.dashboard', $data);
     }
+
+    public function profile()
+    {
+        $title = 'Profile';
+        $data = [
+            'title' => $title,
+        ];
+
+        return view('pages.user.profile', $data);
+    }
 }

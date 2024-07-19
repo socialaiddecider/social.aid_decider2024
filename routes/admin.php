@@ -22,6 +22,9 @@ Route::group([
     // auth routes dashboard
     Route::get('dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
 
+    // auth routes profile
+    Route::get('profile', [AdminController::class, 'profile'])->name('profile');
+
     // auth routes news
     Route::group(
         [
