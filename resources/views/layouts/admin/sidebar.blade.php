@@ -7,6 +7,8 @@
         'General' => [
             'Dashboard' => [
                 'icon' => 'm21 7.5-9-5.25L3 7.5m18 0-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9',
+                'icon-solid' =>
+                    'M12.378 1.602a.75.75 0 0 0-.756 0L3 6.632l9 5.25 9-5.25zM21.75 7.93l-9 5.25v9l8.628-5.032a.75.75 0 0 0 .372-.648zm-10.5 14.25v-9l-9-5.25v8.57a.75.75 0 0 0 .372.648z',
                 'link' => ['admin.dashboard'],
             ],
             'Berita' => [
@@ -55,7 +57,7 @@
             'Hasil Penerima' => [
                 'icon' =>
                     'M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"',
-                'link' => ['admin.management.penerima'],
+                'link' => ['admin.management.penerima.index'],
             ],
         ],
         'Pencarian Bobot' => [
@@ -113,19 +115,18 @@
                                 </div>
                                 <ul class="sidebar-group-content pt-3 pb-4">
                                     @foreach ($value as $key => $value)
-                                        <li class="sidebar-link hover:bg-neutral-100 mb-1 {{ request()->routeIs($value['link']) ? 'bg-neutral-100' : '' }}"
-                                            :class="!detailSidebarOpen ? 'rounded-full' : 'rounded-lg'">
+                                        <li
+                                            class="sidebar-link hover:bg-primary-100 mb-1 rounded-lg {{ request()->routeIs($value['link']) ? 'bg-primary-100' : '' }}">
                                             <a href="{{ route($value['link'][0]) }}" class="flex gap-3"
                                                 :class="!detailSidebarOpen ? 'p-2 justify-center' : 'py-3 ps-3'">
                                                 <div class="icon-sidebar-link">
                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                                        class="size-6">
-                                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                                            d="{{ $value['icon'] }}" />
+                                                        viewBox="0 0 24 24"
+                                                        class="size-6 stroke-primary-base {{ request()->routeIs($value['link']) ? 'stroke-2' : 'stroke-[1.5px]' }}">
+                                                        <path d="{{ $value['icon'] }}" />
                                                     </svg>
                                                 </div>
-                                                <h1 class="text-neutral-950 text-base font-medium text-nowrap"
+                                                <h1 class="text-neutral-base font-medium text-nowrap {{ request()->routeIs($value['link']) ? 'text-primary-base font-semibold' : '' }}"
                                                     :class="!detailSidebarOpen ? 'hidden' : ''">{{ $key }}
                                                 </h1>
                                             </a>
@@ -179,7 +180,7 @@
                                 </svg>
                             </button>
                             <div class="z-50 dropdown ring-1 ring-neutral-300 absolute w-fit bg-neutral-50 rounded-xl px-3 py-2 right-0 top-10"
-                                x-show="isDropdownOpen" @click.away="isDropdownOpen =false">
+                                x-show="isDropdownOpen" @click.away="isDropdownOpen = false" x-cloak>
                                 <a href="{{ route('auth.signOut') }}"
                                     class="text-nowrap rounded-lg hover:bg-neutral-200 transition-all px-2 py-1">Sign
                                     Out</a>

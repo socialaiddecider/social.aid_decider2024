@@ -13,16 +13,32 @@ class KriteriaController extends Controller
 {
     public function index()
     {
+        $sortby = request()->query('sortby');
+        $orderby = request()->query('orderby');
+
         $title = 'Hitung Bobot Kriteria';
-        $bobot = Bobot::with('kriteria')->get();
+        $bobot = Bobot::join('kriteria', 'bobot.kriteria_id', '=', 'kriteria.id')->get();
         $calcLocation = route('admin.bobot.kriteria.calc');
         $saveLocation = 'admin.bobot.kriteria.save';
+
+        $orderbyVal = in_array($orderby, ['asc', 'desc']) ? $orderby : 'asc';
+        $orderbyVal = $orderbyVal == 'asc' ? false : true;
+
+        $bobot = $sortby && $orderby ? $bobot->sortBy($sortby, SORT_REGULAR, $orderbyVal) : $bobot;
+
+
+        $sortable = [
+            'kode_kriteria' => 'Kode Kriteria',
+            'bobot' => 'Bobot',
+            'nama' => 'Nama',
+        ];
 
         $data = [
             'title' => $title,
             'calcLocation' => $calcLocation,
             'saveLocation' => $saveLocation,
             'bobot' => $bobot,
+            'sortable' => $sortable,
         ];
 
         return view('pages.admin.bobot.kriteria', $data);
@@ -33,7 +49,7 @@ class KriteriaController extends Controller
         $request->validate([
             'periode' => 'required',
             'iteration' => 'required|integer',
-            'popsize' => 'required|integer',
+            'popsize' => 'required|numeric',
             'crossover_rate' => 'required|numeric',
             'mutation_rate' => 'required|numeric',
             'sum_penerima' => 'required|integer',
@@ -54,8 +70,8 @@ class KriteriaController extends Controller
         // format periode to Y-m
         $periode = date('Y-m', strtotime($periode));
 
-        $pyGA = config('python_path.python_ga');
-        $pyBin = config('python_path.python_bin');
+        $pyGA = env('PYTHON_GA_PATH');
+        $pyBin = env('PYTHON_BINARY_PATH');
         $output = shell_exec("{$pyBin} {$pyGA} {$periode}");
 
         Log::info('Output from ga.py: ' . $output);

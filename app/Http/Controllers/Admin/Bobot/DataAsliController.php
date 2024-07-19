@@ -6,19 +6,31 @@ use App\Http\Controllers\Controller;
 use App\Models\Alternatif;
 use App\Models\DataAsli;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\DataAsliImport;
 
 class DataAsliController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
+        $sortby = request()->query('sortby');
+        $orderby = request()->query('orderby');
+
         $title = 'Data Asli';
         $addLocation = route('admin.bobot.data-asli.create');
         $editLocation = 'admin.bobot.data-asli.edit';
         $deleteLocation = 'admin.bobot.data-asli.delete';
+        $importLocation = route('admin.bobot.data-asli.import-xlsx');
 
         $periode = request()->date;
         $tanggalAwal = null ?? now()->startOfMonth();
         $tanggalAkhir = null ?? now()->endOfMonth();
+
+        $sortable = [
+            'kode_alternatif' => 'Kode Alternatif',
+            'status' => 'Status',
+            'nama' => 'Nama',
+        ];
 
         $monthName = [
             'January',
@@ -43,8 +55,12 @@ class DataAsliController extends Controller
             $tanggalAkhir = now()->setYear($tahun)->setMonth($bulan)->endOfMonth();
         }
 
-        $dataAsli = DataAsli::with('alternatif')->whereBetween('created_at', [$tanggalAwal, $tanggalAkhir])->get();
+        $dataAsli = DataAsli::join('alternatif', 'alternatif.id', '=', 'data_asli.alternatif_id')->whereBetween('data_asli.created_at', [$tanggalAwal, $tanggalAkhir])->get();
 
+        $orderbyVal = in_array($orderby, ['asc', 'desc']) ? $orderby : 'asc';
+        $orderbyVal = $orderbyVal == 'asc' ? false : true;
+
+        $dataAsli = $sortby && $orderby ? $dataAsli->sortBy($sortby, SORT_REGULAR, $orderbyVal) : $dataAsli;
 
         $data = [
             'title' => $title,
@@ -54,25 +70,15 @@ class DataAsliController extends Controller
             'dataAsli' => $dataAsli,
             'tanggalAwal' => $tanggalAwal,
             'tanggalAkhir' => $tanggalAkhir,
-            'monthName' => $monthName
+            'monthName' => $monthName,
+            'sortable' => $sortable,
+            'importLocation' => $importLocation
         ];
 
 
         return view('pages.admin.bobot.data-asli.index', $data);
     }
 
-    public function importXLXS()
-    {
-        $title = 'Import Data Asli';
-        $storeLocation = route('admin.bobot.data-asli.storeXLXS');
-
-        $data = [
-            'title' => $title,
-            'storeLocation' => $storeLocation
-        ];
-
-        return view('pages.admin.bobot.data-asli.import', $data);
-    }
 
     public function create()
     {
@@ -159,5 +165,25 @@ class DataAsliController extends Controller
         $dataAsli->delete();
 
         return redirect()->route('admin.bobot.data-asli.index');
+    }
+
+    public function importXlsx(Request $request)
+    {
+        $request->validate([
+            'date' => 'required',
+            'xlsxFile' => 'required|mimes:xlsx,xls'
+        ]);
+
+        if ($request->fails()) {
+            return redirect()->back();
+        }
+
+        $periode = $request->date;
+        $file = $request->file('file');
+
+        Excel::import(new DataAsliImport($periode), $file);
+
+        return redirect()->route('admin.management.penilaian.index');
+
     }
 }

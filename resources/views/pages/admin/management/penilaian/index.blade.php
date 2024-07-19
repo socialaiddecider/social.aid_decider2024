@@ -10,14 +10,8 @@
                 </div>
                 <div class="action inline-flex items-center gap-3">
                     <div class="sort">
-                        <button class="button flex items-center gap-2 bg-neutral-50 p-3 rounded-xl">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6" viewBox="0 0 24 24" fill="none">
-                                <path fill-rule="evenodd" clip-rule="evenodd"
-                                    d="M2.6875 8.15954C3.05174 8.49776 3.6212 8.47667 3.95942 8.11243L6.29991 5.59191L6.29991 15.9C6.29991 16.3971 6.70285 16.8 7.19991 16.8C7.69696 16.8 8.09991 16.3971 8.09991 15.9V5.59191L10.4404 8.11243C10.7786 8.47667 11.3481 8.49776 11.7123 8.15954C12.0766 7.82132 12.0976 7.25186 11.7594 6.88762L7.85942 2.68762C7.68913 2.50423 7.45017 2.40002 7.19991 2.40002C6.94964 2.40002 6.71068 2.50423 6.54039 2.68762L2.64039 6.88762C2.30217 7.25186 2.32326 7.82132 2.6875 8.15954ZM12.2875 15.8405C11.9233 16.1787 11.9022 16.7482 12.2404 17.1124L16.1404 21.3124C16.3107 21.4958 16.5496 21.6 16.7999 21.6C17.0502 21.6 17.2891 21.4958 17.4594 21.3124L21.3594 17.1124C21.6976 16.7482 21.6765 16.1787 21.3123 15.8405C20.9481 15.5023 20.3786 15.5234 20.0404 15.8876L17.6999 18.4081V8.10003C17.6999 7.60297 17.297 7.20003 16.7999 7.20003C16.3028 7.20003 15.8999 7.60297 15.8999 8.10003V18.4081L13.5594 15.8876C13.2212 15.5234 12.6517 15.5023 12.2875 15.8405Z"
-                                    fill="#7F7F7F" />
-                            </svg>
-                            <h6 class="text-sm font-medium text-neutral-500">Sort</h6>
-                        </button>
+                        <x-sort-button :sortable="$sortable"></x-sort-button>
+
                     </div>
                     <div class="get-by-month relative" x-data="{ isOpen: false }">
                         <button type="button" @click="isOpen= !isOpen"
@@ -150,7 +144,7 @@
                     <div class="header-title">
                         <h1 class="text-2xl font-semibold">Masukkan Data Penilaian</h1>
                     </div>
-                    <div class="header-action">
+                    <div class="header-action inline-flex items-center gap-4">
                         <a href="{{ $addLocation }}"
                             class="bg-primary-base inline-flex p-3 rounded-lg gap-2 items-center">
                             <svg xmlns="http://www.w3.org/2000/svg" class="w-6" viewBox="0 0 24 24" fill="none">
@@ -158,11 +152,89 @@
                                     d="M12 3.75C12.4142 3.75 12.75 4.08579 12.75 4.5V11.25H19.5C19.9142 11.25 20.25 11.5858 20.25 12C20.25 12.4142 19.9142 12.75 19.5 12.75H12.75V19.5C12.75 19.9142 12.4142 20.25 12 20.25C11.5858 20.25 11.25 19.9142 11.25 19.5V12.75H4.5C4.08579 12.75 3.75 12.4142 3.75 12C3.75 11.5858 4.08579 11.25 4.5 11.25H11.25V4.5C11.25 4.08579 11.5858 3.75 12 3.75Z"
                                     fill="white" />
                             </svg>
-                            <h6 class="text-neutral-50 font-medium text-sm">Tambah Kriteria</h6>
+                            <h6 class="text-neutral-50 font-medium text-sm">Tambah Penilaian</h6>
                         </a>
+                        <div class="import-action relative order-first" x-data="{ isShowModal: false }">
+                            <button type="button" @click="isShowModal = !isShowModal"
+                                class="inline-flex p-3 items-center gap-2 border border-primary-base rounded-lg">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                    viewBox="0 0 24 24" fill="none">
+                                    <path
+                                        d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m6.75 12-3-3m0 0-3 3m3-3v6m-1.5-15H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9"
+                                        stroke="#194F1F" stroke-width="1.5" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                </svg>
+                                <span class="text-primary-base text-sm font-medium">Import Excel</span>
+                            </button>
+                            <!-- Background overlay -->
+                            <div x-show="isShowModal" class="fixed z-40 inset-0 transition-opacity" aria-hidden="true">
+                                <div class="absolute inset-0 bg-gray-500 opacity-80"></div>
+                            </div>
+                            <!-- Modal -->
+                            <div x-show="isShowModal" x-transition:enter="transition ease-out duration-300 transform"
+                                x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                                x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
+                                x-transition:leave="transition ease-in duration-200 transform"
+                                x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
+                                x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                                class="fixed z-50 inset-0 overflow-y-auto" x-cloak>
+                                <div
+                                    class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+                                    <!-- Modal panel -->
+                                    <div class="w-full inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full"
+                                        @click.away="isShowModal = false" role="dialog" aria-modal="true"
+                                        aria-labelledby="modal-headline">
+                                        <form action="{{ $importLocation }}" method="POST">
+                                            @csrf
+                                            <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                                                <!-- Modal content -->
+                                                <div class="sm:flex sm:items-start">
+                                                    <div
+                                                        class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-primary-100 sm:mx-0 sm:h-10 sm:w-10">
+                                                        <!-- Icon for newsletter -->
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                            height="24" viewBox="0 0 24 24" class="fill-primary-600">
+                                                            <path d="M13 19v-4h3l-4-5-4 5h3v4z" />
+                                                            <path
+                                                                d="M7 19h2v-2H7c-1.654 0-3-1.346-3-3 0-1.404 1.199-2.756 2.673-3.015l.581-.102.192-.558C8.149 8.274 9.895 7 12 7c2.757 0 5 2.243 5 5v1h1c1.103 0 2 .897 2 2s-.897 2-2 2h-3v2h3c2.206 0 4-1.794 4-4a4.01 4.01 0 0 0-3.056-3.888C18.507 7.67 15.56 5 12 5 9.244 5 6.85 6.611 5.757 9.15 3.609 9.792 2 11.82 2 14c0 2.757 2.243 5 5 5" />
+                                                        </svg>
+                                                    </div>
+                                                    <div class="w-full mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+
+                                                        <h3 class="text-lg leading-6 font-medium text-gray-900"
+                                                            id="modal-headline">Upload Excel document</h3>
+                                                        <p class="text-sm text-gray-500">Masukkan Periode serta file yang
+                                                            akan di upload</p>
+                                                        <div class="mt-2">
+                                                            <x-input-form key="created_at" title="Pilih Periode"
+                                                                placeholder="1/2/2024" type="date" />
+                                                        </div>
+                                                        <div class="mt-2">
+                                                            <!-- File input -->
+                                                            <x-input-form key="xlsxFile" title="Upload xlsx file"
+                                                                placeholder="1/2/2024" type="file" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="bg-neutral-100 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                                                <!-- Upload button -->
+                                                <button type="submit"
+                                                    class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-primary-500 text-base font-medium text-neutral-50 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 sm:ml-3 sm:w-auto sm:text-sm">
+                                                    Upload </button>
+                                                <!-- Cancel button -->
+                                                <button @click="isShowModal = false" type="button"
+                                                    class="mt-3 w-full inline-flex justify-center rounded-md border border-neutral-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-neutral-700 hover:bg-neutral-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-neutral-200 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
+                                                    Cancel </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="table-wrap" x-data="itemSelected">
+                <div class="table-wrap" x-data="itemSelected" x-effect="$data.elementUpdate()">
                     <div class="relative">
                         <table class="w-full table-auto">
                             <thead class="border-b-2 bg-neutral-50">
@@ -212,11 +284,11 @@
                                                 <label class="relative rounded-full cursor-pointer flex items-center">
 
                                                     <input id="check-box-{{ $item->id }}" type="checkbox"
-                                                        class="peer relative h-4 w-4 cursor-pointer appearance-none rounded-sm border border-primary-200 transition-all  checked:border-primary-base checked:bg-primary-base"
+                                                        class="peer relative  h-4 w-4 cursor-pointer appearance-none rounded-sm border border-primary-200 transition-all  checked:border-primary-base checked:bg-primary-base"
                                                         name="check-box-{{ $item->id }}"
                                                         @change="toggleCheckbox(event)" />
                                                     <span
-                                                        class="absolute text-white transition-opacity opacity-0 pointer-events-none top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 peer-checked:opacity-100">
+                                                        class="absolute z-0 text-white transition-opacity opacity-0 pointer-events-none top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 peer-checked:opacity-100">
                                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-2.5 w-2.5"
                                                             viewBox="0 0 20 20" fill="currentColor" stroke="currentColor"
                                                             stroke-width="1">
@@ -335,28 +407,40 @@
                 },
 
                 elementShow() {
-                    let element = ` <div id="action-selected" class="absolute bottom-3 inset-x-0 flex justify-center">
-                    <div class="inline-flex items-center gap-14 rounded-full p-3 bg-[#201E2B]">
-            <button type="button" class="inline-flex gap-3" onclick="clearSelected()">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                    fill="none">
-                    <path fill-rule="evenodd" clip-rule="evenodd"
-                        d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25m-1.72 6.97a.75.75 0 1 0-1.06 1.06L10.94 12l-1.72 1.72a.75.75 0 1 0 1.06 1.06L12 13.06l1.72 1.72a.75.75 0 1 0 1.06-1.06L13.06 12l1.72-1.72a.75.75 0 1 0-1.06-1.06L12 10.94z"
-                        fill="#fff" />
-                </svg>
-                <span class="text-neutral-50">${this.selected.length} item selected</span>
-            </button>
-            <button type="button" onclick="deleteSelected('${this.selected}')" class="px-4 py-2 inline-flex gap-2 bg-error-base rounded-full">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                    fill="none">
-                    <path
-                        d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21q.512.078 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48 48 0 0 0-3.478-.397m-12 .562q.51-.088 1.022-.165m0 0a48 48 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a52 52 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a49 49 0 0 0-7.5 0"
-                        stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
-                <span class="text-neutral-50 font-semibold">Delete</span>
-            </button> </div>
-        </div>`
-                    return element
+                    let el = /*html*/ `
+<div id="action-selected" class="absolute bottom-3 inset-x-0 flex justify-center">
+<div class="inline-flex items-center gap-14 rounded-full p-3 bg-[#201E2B]">
+    <button type="button" class="inline-flex gap-3" onclick="clearSelected()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path fill-rule="evenodd" clip-rule="evenodd"
+                d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25m-1.72 6.97a.75.75 0 1 0-1.06 1.06L10.94 12l-1.72 1.72a.75.75 0 1 0 1.06 1.06L12 13.06l1.72 1.72a.75.75 0 1 0 1.06-1.06L13.06 12l1.72-1.72a.75.75 0 1 0-1.06-1.06L12 10.94z"
+                fill="#fff" />
+        </svg>
+        <span class="text-neutral-50">${this.selected.length} item selected</span>
+    </button>
+    <button type="button" onclick="deleteSelected('${this.selected}')"
+        class="px-4 py-2 inline-flex gap-2 bg-error-base rounded-full">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path
+                d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21q.512.078 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48 48 0 0 0-3.478-.397m-12 .562q.51-.088 1.022-.165m0 0a48 48 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a52 52 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a49 49 0 0 0-7.5 0"
+                stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+        <span class="text-neutral-50 font-semibold">Delete</span>
+    </button> 
+</div>
+</div>
+    `
+                    return el
+                },
+
+                isSelected() {
+                    return this.selected.length > 0;
+                },
+
+                elementUpdate() {
+                    if (!this.isSelected()) {
+                        this.removeElement();
+                    }
                 },
 
                 showDisplay() {
@@ -376,6 +460,9 @@
                     }
                     this.showDisplay();
                 },
+                removeElement() {
+                    document.querySelector('#action-selected')?.remove()
+                }
             }));
         });
 
@@ -392,9 +479,11 @@
             selected = selected.split(',');
 
             selected.forEach((id) => {
-                let url = `{{ route('admin.data.kriteria.delete', ':id') }}`;
+                let url = `{{ route($deleteLocation, [':date', ':id']) }}`;
                 id = id.replace(/\D/g, '')
                 url = url.replace(':id', id);
+                url = url.replace(':date', '{{ $tanggalAwal->format('Y-m') }}');
+                console.log(url);
 
                 $.ajax(
                     url, {

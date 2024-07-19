@@ -8,12 +8,19 @@ use Illuminate\Http\Request;
 use App\Models\Penilaian;
 use App\Models\Kriteria;
 use App\Models\Subkriteria;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\PenilaianImport;
+
 
 class PenilaianController extends Controller
 {
     public function index()
     {
+        $sortby = request()->query('sortby');
+        $orderby = request()->query('orderby');
+
         $title = 'Data Penilaian';
+        $importLocation = route('admin.management.penilaian.import-xlsx');
         $addLocation = route('admin.management.penilaian.create');
         $editLocation = 'admin.management.penilaian.edit';
         $deleteLocation = 'admin.management.penilaian.delete';
@@ -40,7 +47,6 @@ class PenilaianController extends Controller
         $tanggalAwal = null ?? now()->startOfMonth();
         $tanggalAkhir = null ?? now()->endOfMonth();
 
-        $initPenilaian = [];
 
         if ($periode) {
             $bulanTahun = explode('-', $periode);
@@ -58,6 +64,17 @@ class PenilaianController extends Controller
             $query->whereBetween('created_at', [$tanggalAwal, $tanggalAkhir]);
         })->get();
 
+        $orderbyVal = in_array($orderby, ['asc', 'desc']) ? $orderby : 'asc';
+        $orderbyVal = $orderbyVal == 'asc' ? false : true;
+
+        $penilaian = $sortby ? $penilaian->sortBy($sortby, SORT_REGULAR, $orderbyVal) : $penilaian;
+
+        $alternatif = $sortby ? $alternatif->sortBy($sortby, SORT_REGULAR, $orderbyVal) : $alternatif;
+
+        $sortable = [
+            'nama' => 'Alternatif',
+            'kode_alternatif' => 'Kode',
+        ];
 
 
 
@@ -73,9 +90,10 @@ class PenilaianController extends Controller
             'tanggalAwal' => $tanggalAwal,
             'tanggalAkhir' => $tanggalAkhir,
             'monthName' => $monthName,
+            'sortable' => $sortable,
+            'importLocation' => $importLocation,
         ];
 
-        // dd($data);
         return view('pages.admin.management.penilaian.index', $data);
     }
 
@@ -221,6 +239,25 @@ class PenilaianController extends Controller
         if ($penilaian->exists()) {
             $penilaian->delete();
         }
+
+        return redirect()->route('admin.management.penilaian.index');
+    }
+
+    public function importXlsx(Request $request)
+    {
+        $request->validate([
+            'date' => 'required',
+            'xlsxFile' => 'required|mimes:xlsx,xls'
+        ]);
+
+        if ($request->fails()) {
+            return redirect()->back();
+        }
+
+        $periode = $request->date;
+        $file = $request->file('file');
+
+        Excel::import(new PenilaianImport($periode), $file);
 
         return redirect()->route('admin.management.penilaian.index');
     }

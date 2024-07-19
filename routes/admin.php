@@ -102,10 +102,22 @@ Route::group([
             Route::get('edit/{date}/{id}', [PenilaianController::class, 'edit'])->name('edit');
             Route::put('update', [PenilaianController::class, 'update'])->name('update');
             Route::delete('delete/{date}/{id}', [PenilaianController::class, 'destroy'])->name('delete');
+            Route::post('import-xlsx', [PenilaianController::class, 'importXlsx'])->name('import-xlsx');
         });
 
         Route::get('perhitungan', [PerhitunganController::class, 'index'])->name('perhitungan');
-        Route::get('penerima', [PenerimaController::class, 'index'])->name('penerima');
+
+        // auth routes Penerima
+        Route::group(
+            [
+                'prefix' => 'penerima',
+                'as' => 'penerima.',
+            ],
+            function () {
+                Route::get('/', [PenerimaController::class, 'index'])->name('index');
+                Route::get('exportPdf/{date}', [PenerimaController::class, 'exportPdf'])->name('exportPdf');
+            }
+        );
     });
 
     // auth routes Bobot
@@ -125,6 +137,7 @@ Route::group([
             Route::get('edit/{id}', [DataAsliController::class, 'edit'])->name('edit');
             Route::put('update/{id}', [DataAsliController::class, 'update'])->name('update');
             Route::delete('delete/{id}', [DataAsliController::class, 'destroy'])->name('delete');
+            Route::post('import-xlsx', [DataAsliController::class, 'importXlsx'])->name('import-xlsx');
         });
 
         // auth routes Bobot Kriteria
