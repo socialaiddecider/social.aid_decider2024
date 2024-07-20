@@ -30,6 +30,7 @@ Route::group([
         Route::get('/', [AdminController::class, 'profile'])->name('index');
         Route::post('update-avatar', [AdminController::class, 'updateAvatar'])->name('update-avatar');
         Route::post('update-background', [AdminController::class, 'saveBackgroundProfile'])->name('update-background');
+        Route::post('update-password', [AdminController::class, 'updatePassword'])->name('update-password');
     });
 
     // auth routes news

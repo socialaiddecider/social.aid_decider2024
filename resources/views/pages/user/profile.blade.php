@@ -73,10 +73,46 @@
             </div>
         </div>
         <div class="content-body p-4 mt-20 relative">
-            <div class="profile-content">
-                <div class="profile-info">
+            <div class="profile-content grid grid-cols-2 divide-x">
+                <div class="profile-info px-4">
+                    <div class="header mb-4">
+                        <h2 class="text-lg font-bold">Profile </h2>
+                    </div>
                     <form action="" method="POST">
-
+                        @csrf
+                        <div class="grid grid-flow-row gap-4">
+                            <x-input-form key="username" type="text" placeholder="username" title="Username"
+                                :value="$user->username" />
+                            <div class="grid grid-flow-row gap-2">
+                                <x-input-form key="name" type="text" placeholder="nama lengkap" title="Nama Lengkap"
+                                    :value="$user->name" />
+                                <x-input-form key="email" type="email" placeholder="email" title="Email"
+                                    :value="$user->email" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="change-password px-4">
+                    <div class="header mb-4">
+                        <h2 class="text-lg font-bold">Perbarui Password</h2>
+                    </div>
+                    <form action="{{ $updatePasswordLocation }}" method="POST">
+                        @csrf
+                        <div class="grid grid-flow-row gap-4">
+                            <x-input-form key="current_password" type="password" placeholder="password"
+                                title="Password Saat Ini" />
+                            <div class="grid grid-flow-row gap-2">
+                                <x-input-form key="new_password" type="password" placeholder="password"
+                                    title="Password Baru" />
+                                <x-input-form key="new_password_confirmation" type="password" placeholder="password"
+                                    title="Konfirmasi Password Baru" />
+                            </div>
+                        </div>
+                        <div class="form-action flex my-4 justify-end">
+                            <button type="submit"
+                                class="btn bg-primary-base text-white transition-all duration-200 px-6 py-3 font-semibold rounded-lg">Perbarui
+                                Password</button>
+                        </div>
                     </form>
                 </div>
             </div>

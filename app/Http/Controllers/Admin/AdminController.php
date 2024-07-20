@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
+use Illuminate\Support\Facades\Hash;
 use Carbon\Carbon;
 
 
@@ -63,6 +64,7 @@ class AdminController extends Controller
         $title = 'Profile';
         $updateAvatarLocation = route('admin.profile.update-avatar');
         $updateBackgroundLocation = route('admin.profile.update-background');
+        $updatePasswordLocation = route('admin.profile.update-password');
         $perPageQuery = 80;
         $pageQuery = rand(0, (8000 / $perPageQuery));
         $apiQuery = 'abstract';
@@ -86,7 +88,8 @@ class AdminController extends Controller
             'images' => $dataImage,
             'user' => Auth::user(),
             'updateAvatarLocation' => $updateAvatarLocation,
-            'updateBackgroundLocation' => $updateBackgroundLocation
+            'updateBackgroundLocation' => $updateBackgroundLocation,
+            'updatePasswordLocation' => $updatePasswordLocation
         ];
 
         return view('pages.user.profile', $data);
@@ -137,5 +140,34 @@ class AdminController extends Controller
         return redirect()->route('admin.profile.index');
 
 
+    }
+
+    public function updatePassword(Request $request)
+    {
+        $request->validate([
+            'current_password' => 'required',
+            'new_password' => 'required',
+            'new_password_confirmation' => 'required',
+        ]);
+
+        $user = User::find(Auth::user()->id);
+
+        if (!$user) {
+            session()->flash('danger', ['title' => 'Update Failed.', 'description' => 'Update Failed.']);
+        } else {
+            if (request()->new_password != $request->new_password_confirmation) {
+                session()->flash('danger', ['title' => 'Update Failed - Passwords do not match.', 'description' => 'Update Failed - Passwords do not match.']);
+            } else if (!password_verify($request->current_password, $user->password)) {
+                session()->flash('danger', ['title' => 'Update Failed - Current password is incorrect.', 'description' => 'Update Failed - Current password is incorrect.']);
+            } else {
+                $newPassword = Hash::make($request->new_password);
+                $user->password = $newPassword;
+                $user->save();
+
+                session()->flash('success', ['title' => 'Update Success.', 'description' => 'Update Success.']);
+            }
+        }
+
+        return redirect()->route('admin.profile.index');
     }
 }
