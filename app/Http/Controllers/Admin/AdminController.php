@@ -99,7 +99,7 @@ class AdminController extends Controller
     {
 
         $request->validate([
-            'image_avatar' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+            'image_avatar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
 
