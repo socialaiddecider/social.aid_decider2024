@@ -3,7 +3,7 @@
 @php
     $badge = [
         'kriteria' => [
-            'value' => 40689,
+            'value' => $kriteriaCount,
             'icon' =>
                 'M2.789 13.57v-.75a2.25 2.25 0 0 1 2.25-2.25h15a2.25 2.25 0 0 1 2.25 2.25v.75m-8.69-6.44-2.121-2.12a1.5 1.5 0 0 0-1.06-.44h-5.38a2.25 2.25 0 0 0-2.25 2.25v12a2.25 2.25 0 0 0 2.25 2.25h15a2.25 2.25 0 0 0 2.25-2.25v-9a2.25 2.25 0 0 0-2.25-2.25H14.66a1.5 1.5 0 0 1-1.06-.44',
             'badge' => '<svg xmlns="http://www.w3.org/2000/svg" width="61" height="61" viewBox="0 0 61 61" fill="none">
@@ -13,7 +13,7 @@
 </svg>',
         ],
         'alternatif' => [
-            'value' => 40689,
+            'value' => $alternatifCount,
             'icon' =>
                 'M15.539 14.32h-6m4.06-7.19-2.121-2.12a1.5 1.5 0 0 0-1.06-.44h-5.38a2.25 2.25 0 0 0-2.25 2.25v12a2.25 2.25 0 0 0 2.25 2.25h15a2.25 2.25 0 0 0 2.25-2.25v-9a2.25 2.25 0 0 0-2.25-2.25H14.66a1.5 1.5 0 0 1-1.06-.44',
             'badge' => '<svg xmlns="http://www.w3.org/2000/svg" width="61" height="61" viewBox="0 0 61 61" fill="none">
@@ -23,7 +23,7 @@
 </svg>',
         ],
         'total Data' => [
-            'value' => 40689,
+            'value' => $totalData,
             'icon' =>
                 'M4.289 10.596a2 2 0 0 1 .344-.026h15.811q.177 0 .345.026m-16.5 0a2.25 2.25 0 0 0-1.884 2.542l.858 6A2.25 2.25 0 0 0 5.49 21.07h14.097a2.25 2.25 0 0 0 2.228-1.932l.857-6a2.25 2.25 0 0 0-1.883-2.542m-16.5 0V6.82a2.25 2.25 0 0 1 2.25-2.25h3.878a1.5 1.5 0 0 1 1.06.44L13.6 7.13a1.5 1.5 0 0 0 1.06.44h3.88a2.25 2.25 0 0 1 2.25 2.25v.776',
             'badge' => '<svg xmlns="http://www.w3.org/2000/svg" width="61" height="61" viewBox="0 0 61 61" fill="none">
@@ -33,7 +33,7 @@
 </svg>',
         ],
         'Penerima' => [
-            'value' => 40689,
+            'value' => $menerimaCount,
             'icon' =>
                 'M12.539 11.32v6m3-3h-6m4.06-7.19-2.121-2.12a1.5 1.5 0 0 0-1.06-.44h-5.38a2.25 2.25 0 0 0-2.25 2.25v12a2.25 2.25 0 0 0 2.25 2.25h15a2.25 2.25 0 0 0 2.25-2.25v-9a2.25 2.25 0 0 0-2.25-2.25H14.66a1.5 1.5 0 0 1-1.06-.44',
             'badge' => '<svg xmlns="http://www.w3.org/2000/svg" width="61" height="61" viewBox="0 0 61 61" fill="none">
@@ -80,7 +80,7 @@
                                 </div>
                                 <h2 class="text-sm font-medium capitalize">{{ $key }}</h2>
                             </div>
-                            <h1 class="text-3xl font-bold px-3">40,689</h1>
+                            <h1 class="text-3xl font-bold px-3">{{ $value['value'] }}</h1>
                         </div>
                         <div class="icon">
                             {!! $value['badge'] !!}
@@ -129,8 +129,8 @@
     <script type="module">
         var options = {
             series: [{
-                name: 'Inflation',
-                data: [2.3, 3.1, 4.0, 10.1, 4.0, 3.6, 3.2, 2.3, 1.4, 0.8, 0.5, 0.2]
+                name: 'Data Penilaian',
+                data: @json($dataPenilaian)
             }],
             chart: {
                 type: 'bar',
