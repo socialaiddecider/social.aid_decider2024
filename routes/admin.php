@@ -114,8 +114,14 @@ Route::group([
             Route::delete('delete/{date}/{id}', [PenilaianController::class, 'destroy'])->name('delete');
             Route::post('import-xlsx', [PenilaianController::class, 'importXlsx'])->name('import-xlsx');
         });
-
-        Route::get('perhitungan', [PerhitunganController::class, 'index'])->name('perhitungan');
+        // auth routes Perhitungan
+        Route::group([
+            'prefix' => 'perhitungan',
+            'as' => 'perhitungan.',
+        ], function () {
+            Route::get('/', [PerhitunganController::class, 'index'])->name('index');
+            Route::get('/calc/{date}', [PerhitunganController::class, 'calc'])->name('calc');
+        });
 
         // auth routes Penerima
         Route::group(
