@@ -164,10 +164,10 @@
                     </div>
                     <div class="profile flex ps-6 items-center">
                         <div class="profile-image w-8 h-8 rounded-full me-2"
-                            style="background: url({{ Vite::asset('resources/assets/images/team/Thoriq_Fathurrozi.jpeg') }});background-size:cover; background-position:center;">
+                            style="background: url({{ Auth::user()->url_avatar }});background-size:cover; background-position:center;">
                         </div>
                         <div class="profile-name">
-                            <h1 class="text-sm text-neutral-base">Thoriq</h1>
+                            <h1 class="text-sm text-neutral-base capitalize">{{ Auth::user()->username }}</h1>
                             <p class="text-xs text-neutral-300">Admin</p>
                         </div>
                         <div class="action relative" x-data="{ isDropdownOpen: false }">
@@ -183,7 +183,7 @@
                                 x-show="isDropdownOpen" @click.away="isDropdownOpen = false" x-cloak>
                                 <div class="min-w-40">
                                     <div class="min-w-full border-b pb-3">
-                                        <a href="{{ route('admin.profile') }}"
+                                        <a href="{{ route('admin.profile.index') }}"
                                             class="w-full text-nowrap rounded-md hover:bg-neutral-200 transition-all p-2 inline-flex gap-2 items-center">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                 viewBox="0 0 18 22" fill="none">

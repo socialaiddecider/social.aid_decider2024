@@ -23,7 +23,14 @@ Route::group([
     Route::get('dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
 
     // auth routes profile
-    Route::get('profile', [AdminController::class, 'profile'])->name('profile');
+    Route::group([
+        'prefix' => 'profile',
+        'as' => 'profile.',
+    ], function () {
+        Route::get('/', [AdminController::class, 'profile'])->name('index');
+        Route::post('update-avatar', [AdminController::class, 'updateAvatar'])->name('update-avatar');
+        Route::post('update-background', [AdminController::class, 'saveBackgroundProfile'])->name('update-background');
+    });
 
     // auth routes news
     Route::group(
