@@ -83,7 +83,7 @@
                                             stroke-linejoin="round" />
                                     </svg>
                                 </div>
-                                <input type="tel" inputmode="numeric" x-model="inputYear" size='2'
+                                <input type="tel" inputmode="numeric" x-model="inputYear" size='3'
                                     x-on:focusout="if(year == ''){ $data.thisYear()}">
                                 <div class="right" @click="inputYear -= 1">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" class="stroke-neutral-base"
