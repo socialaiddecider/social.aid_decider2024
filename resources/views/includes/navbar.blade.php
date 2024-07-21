@@ -20,10 +20,10 @@
         <li class="active-navbar hover:text-primary-base"><a href="{{ route('index') }}">
                 <h1 class="leading-tight">Beranda</h1>
             </a></li>
-        <li class="hover:text-primary-base"><a href="{{ route('auth.signIn') }}">
+        <li class="hover:text-primary-base"><a href="{{ route('index', '#news') }}">
                 <h1 class="leading-tight">Berita</h1>
             </a></li>
-        <li class="hover:text-primary-base text-nowrap"><a href="{{ route('auth.signIn') }}">
+        <li class="hover:text-primary-base text-nowrap"><a href="{{ route('index', '#our-team') }}">
                 <h1 class="leading-tight">Tentang Kami</h1>
             </a></li>
     </ul>
