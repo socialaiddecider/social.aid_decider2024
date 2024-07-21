@@ -17,7 +17,7 @@ class SharedController extends Controller
             'news' => $berita
         ];
 
-        return view('shared.index', $data);
+        return view('pages.shared.index', $data);
     }
 
 }

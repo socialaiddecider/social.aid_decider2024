@@ -124,7 +124,7 @@
                 </li>
             </ul>
         </section>
-        <section class="news px-3 md:px-11 mb-16">
+        <section id="news" class="news px-3 md:px-11 mb-16">
             <div class="header mb-8 px-1 md:px-0">
                 <div class="header-title">
                     <h6 class="text-primary-500 text-sm md:text-xl font-medium">Berita</h6>
@@ -136,7 +136,8 @@
                     <div class="grid grid-flow-rows  sm:grid-cols-2 xl:grid-cols-4 gap-11 ">
                         @foreach ($news as $berita)
                             @if ($loop->iteration == 1)
-                                <div class="news-card-first sm:col-span-2 w-full min-h-96 xl:h-full rounded-xl overflow-hidden "
+                                <a href="{{ $berita->url }}" target="_blank"
+                                    class="news-card-first sm:col-span-2 w-full min-h-96 xl:h-full rounded-xl overflow-hidden "
                                     style="background: url('{{ $berita->url_image }}'); background-size:cover;">
                                     <div class="card backdrop-brightness-50 pt-auto px-4 py-5 flex items-end h-full">
                                         <div class="">
@@ -155,12 +156,13 @@
                                                 </div>
                                             </div>
                                             <div class="body-card">
-                                                <p class="text-neutral-50/70 text-sm font-medium">{{ $berita->description }}
+                                                <p class="text-neutral-50/70 text-sm font-medium">
+                                                    {{ $berita->description }}
                                                 </p>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </a>
                             @else
                                 <div class="news-card-second">
                                     <div class="card">
