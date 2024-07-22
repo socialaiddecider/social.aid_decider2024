@@ -17,7 +17,7 @@ class KriteriaController extends Controller
         $orderby = request()->query('orderby');
 
         $title = 'Hitung Bobot Kriteria';
-        $bobot = Bobot::join('kriteria', 'bobot.kriteria_id', '=', 'kriteria.id')->get();
+        $bobot = Bobot::join('kriteria', 'bobot.kriteria_id', '=', 'kriteria.id')->select('bobot.bobot', 'kriteria.kode_kriteria', 'kriteria.nama')->get();
         $calcLocation = route('admin.bobot.kriteria.calc');
         $saveLocation = 'admin.bobot.kriteria.save';
 
@@ -64,6 +64,8 @@ class KriteriaController extends Controller
             'mr' => $request->input('mutation_rate'),
             'jumlah_penerima' => $request->input('sum_penerima'),
         ]);
+
+        $algoritmaGenetics->save();
 
         $periode = escapeshellarg($request->input('periode'));
 

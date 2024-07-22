@@ -76,8 +76,8 @@
                                 @foreach ($bobot as $key => $item)
                                     <tr class="">
                                         <td class="px-6 py-4 text-sm ">{{ $loop->iteration }}</td>
-                                        <td class="px-4 py-4 text-sm w-fit">{{ $item->kriteria->kode_kriteria }}</td>
-                                        <td class="px-6 py-4 text-sm">{{ $item->kriteria->nama }}</td>
+                                        <td class="px-4 py-4 text-sm w-fit">{{ $item->kode_kriteria }}</td>
+                                        <td class="px-6 py-4 text-sm">{{ $item->nama }}</td>
                                         <td class="px-6 py-4 text-sm">{{ $item->bobot }}</td>
                                     </tr>
                                 @endforeach
