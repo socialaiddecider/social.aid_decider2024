@@ -164,11 +164,19 @@ class PenilaianController extends Controller
         $title = 'Edit Data Penilaian';
         $updateLocation = route('admin.management.penilaian.update', $id);
 
-        $year = (int) substr($date, 0, 4);
-        $month = (int) substr($date, 5);
+        $dateYear = date('Y-m', strtotime($date));
 
-        $penilaian = Penilaian::where('penilaian.created_at', now()->setYear($year)->setMonth($month)->startOfMonth())
+        $bulanTahun = explode('-', $dateYear);
+
+        $tahun = (int) $bulanTahun[0];
+        $bulan = (int) $bulanTahun[1];
+        $tanggalAwal = now()->setYear($tahun)->setMonth($bulan)->startOfMonth();
+        $tanggalAkhir = now()->setYear($tahun)->setMonth($bulan)->endOfMonth();
+
+
+        $penilaian = Penilaian::whereBetween('penilaian.created_at', [$tanggalAwal, $tanggalAkhir])
             ->where('penilaian.alternatif_id', $id)->get();
+
 
         $alternatif = Alternatif::find($id);
         $kriteria = Kriteria::with('subkriteria')->get();

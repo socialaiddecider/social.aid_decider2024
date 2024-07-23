@@ -17,7 +17,7 @@ class KriteriaController extends Controller
         $orderby = request()->query('orderby');
 
         $title = 'Hitung Bobot Kriteria';
-        $bobot = Bobot::join('kriteria', 'bobot.kriteria_id', '=', 'kriteria.id')->get();
+        $bobot = Bobot::join('kriteria', 'bobot.kriteria_id', '=', 'kriteria.id')->select('bobot.bobot', 'kriteria.kode_kriteria', 'kriteria.nama')->get();
         $calcLocation = route('admin.bobot.kriteria.calc');
         $saveLocation = 'admin.bobot.kriteria.save';
 
@@ -65,14 +65,18 @@ class KriteriaController extends Controller
             'jumlah_penerima' => $request->input('sum_penerima'),
         ]);
 
-        $periode = escapeshellarg($request->input('periode'));
+        $algoritmaGenetics->save();
+        
+        $periodeInput = $request->input('periode'); 
+        $periode = substr($periodeInput, 0, 7);
 
         // format periode to Y-m
-        $periode = date('Y-m', strtotime($periode));
+        // $periode = date('Y-m', strtotime($periode));
 
         $pyGA = env('PYTHON_GA_PATH');
         $pyBin = env('PYTHON_BINARY_PATH');
         $output = shell_exec("{$pyBin} {$pyGA} {$periode}");
+        dd($output);
 
         Log::info('Output from ga.py: ' . $output);
 
