@@ -66,15 +66,17 @@ class KriteriaController extends Controller
         ]);
 
         $algoritmaGenetics->save();
-
-        $periode = escapeshellarg($request->input('periode'));
+        
+        $periodeInput = $request->input('periode'); 
+        $periode = substr($periodeInput, 0, 7);
 
         // format periode to Y-m
-        $periode = date('Y-m', strtotime($periode));
+        // $periode = date('Y-m', strtotime($periode));
 
         $pyGA = env('PYTHON_GA_PATH');
         $pyBin = env('PYTHON_BINARY_PATH');
         $output = shell_exec("{$pyBin} {$pyGA} {$periode}");
+        dd($output);
 
         Log::info('Output from ga.py: ' . $output);
 
