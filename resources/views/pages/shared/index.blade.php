@@ -196,7 +196,7 @@
                 </div>
             </div>
         </section>
-        <section id="our-team" class="px-3 md:px-11 mb-16">
+        <section id="team" class="px-3 md:px-11 mb-16">
             <div class="grid grid-flow-row grid-cols-1 justify-center gap-8">
                 <div class="py-8 px-5 md:py-16 md:px-20 text-neutral-100 text-center bg-primary-base rounded-xl ">
                     <div class="text">
@@ -319,6 +319,27 @@
                 }
             });
         });
+
+
+        function observerCallback(entries, observer) {
+            entries.forEach(entry => {
+                let name = $(entry.target).attr('id')
+                if (entry.isIntersecting) {
+                    $('#nav-' + name).addClass('active-navbar')
+                } else {
+                    $('#nav-' + name).removeClass('active-navbar')
+
+                }
+            });
+        }
+        const observerNews = new IntersectionObserver(observerCallback);
+        observerNews.observe(document.querySelector('#news'))
+
+        const observerHero = new IntersectionObserver(observerCallback);
+        observerHero.observe(document.querySelector('#hero'))
+
+        const observerTeam = new IntersectionObserver(observerCallback);
+        observerTeam.observe(document.querySelector('#team'))
 
         // Tell the observer which elements to track
         observer.observe(document.querySelector('.Count'));

@@ -17,13 +17,13 @@
         </div>
     </x-slot:brand>
     <ul class="gap-10 items-center text-neutral-300 flex" :class="dropdown ? 'flex-col ' : ''">
-        <li class="active-navbar hover:text-primary-base"><a href="{{ route('index') }}">
+        <li class="hover:text-primary-base" id="nav-hero"><a href="{{ route('index') }}">
                 <h1 class="leading-tight">Beranda</h1>
             </a></li>
-        <li class="hover:text-primary-base"><a href="{{ route('index', '#news') }}">
+        <li class="hover:text-primary-base" id="nav-news"><a href="{{ route('index', '#news') }}">
                 <h1 class="leading-tight">Berita</h1>
             </a></li>
-        <li class="hover:text-primary-base text-nowrap"><a href="{{ route('index', '#our-team') }}">
+        <li class="hover:text-primary-base text-nowrap" id="nav-team"><a href="{{ route('index', '#team') }}">
                 <h1 class="leading-tight">Tentang Kami</h1>
             </a></li>
     </ul>
