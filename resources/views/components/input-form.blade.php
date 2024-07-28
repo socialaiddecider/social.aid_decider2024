@@ -1,4 +1,4 @@
-<div class="form-group flex flex-col gap-3">
+<div class="form-group flex flex-col gap-1">
     <label for="{{ $key }}" class="text-neutral-950 font-medium">{{ $title }}</label>
     <div class="">
         <input type="{{ $type }}" name="{{ $key }}" id="{{ $key }}"

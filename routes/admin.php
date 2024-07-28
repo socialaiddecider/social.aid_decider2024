@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::group([
     'prefix' => 'admin',
     'as' => 'admin.',
-    'middleware' => 'auth',
+    'middleware' => ['auth', 'hasRole:admin'],
 ], function () {
     // auth routes dashboard
     Route::get('dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
