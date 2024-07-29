@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\User\Feature\PengajuanController;
+use App\Http\Controllers\User\Features\PengajuanController;
 use App\Http\Controllers\User\UserController;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;

@@ -10,8 +10,8 @@
             <form action="{{ $updateLocation }}" method="POST" class="pt-6 pb-10">
                 @csrf
                 <div class="form-header mb-2">
-                    <h2 class="text-4xl font-bold">Ajukan Data Penilaian</h2>
-                    <p class="text-sm mt-1">Lakukan pengisian data sesuai dengan kondisi anda saat ini</p>
+                    <h2 class="text-3xl md:text-4xl font-bold">Ajukan Data Penilaian</h2>
+                    <p class="text-xs md:text-sm mt-1">Lakukan pengisian data sesuai dengan kondisi anda saat ini</p>
                 </div>
                 <div class="form-body mb-2">
                     <div class="field-text flex flex-col gap-3 mb-5">
@@ -36,14 +36,14 @@
                     </div>
                 </div>
                 <div class="form-footer flex justify-between">
-                    <p class="text-sm mt-3 tracking-wide">Pengajuan pada tanggal
+                    <p class="text-xs md:text-sm mt-1 md:mt-3 tracking-wide">Pengajuan pada tanggal
                         <span class="text-primary-base font-medium">{{ Carbon\Carbon::now()->format('d M Y') }}</span>
                         oleh
                         <span class="text-primary-base">{{ Auth::user()->name }}</span>
                     </p>
                     <div class="form-action flex justify-end">
                         <button type="submit"
-                            class="btn bg-primary-base text-white transition-all duration-200 px-10 py-3 font-semibold rounded-lg">Submit</button>
+                            class="btn bg-primary-base text-white transition-all duration-200 px-5 md:px-10 py-3 font-semibold rounded-lg">Submit</button>
                     </div>
 
                 </div>

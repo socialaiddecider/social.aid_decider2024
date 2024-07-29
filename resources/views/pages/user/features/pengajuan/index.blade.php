@@ -10,8 +10,8 @@
     <main class="pengajuan overflow-scroll h-screen no-scrollbar">
         @include('includes.navbar')
         <section class="mx-6 sm:mx-10 md:mx-20 -mt-8">
-            <div class="header flex justify-between">
-                <h1 class="text-3xl font-bold">Pengajuan Penilaian</h1>
+            <div class="header flex justify-between items-center">
+                <h1 class="text-xl md:text-3xl font-bold">Pengajuan Penilaian</h1>
                 <div class="action">
                     <div class="add-pengajuan">
                         <a href="{{ $submissionLocation }}" class="inline-flex gap-2 items-center flex-row-reverse">
@@ -23,23 +23,24 @@
                                         fill="inherit" />
                                 </svg>
                             </div>
-                            <h1 class="text-lg font-semibold text-primary-base">Ajukan Penilaian</h1>
+                            <h1 class="hidden md:block text-lg font-semibold text-primary-base">Ajukan Penilaian</h1>
                         </a>
                     </div>
                 </div>
             </div>
             <div class="wrap-pengajuan w-full py-5 mt-3 grid grid-cols-1 gap-4">
                 @foreach ($pengajuan as $item)
-                    <div class="card min-w-fit w-full grid grid-flow-col bg-neutral-50 px-6 py-2 rounded-xl items-center">
+                    <div
+                        class="card min-w-fit w-full grid md:grid-flow-col gap-2 md:gap-0 bg-neutral-50 px-6 py-2 rounded-xl items-center">
                         <div class="card-header">
-                            <h1 class="text-lg font-medium tracking-wide text-nowrap">Pengajuan pada tanggal <span
-                                    class="text-primary-700">{{ $item->created_at->format('M, d-Y') }}</span>
+                            <h1 class="text-md md:text-lg font-medium tracking-wide md:text-nowrap">Pengajuan pada tanggal
+                                <span class="text-primary-700">{{ $item->created_at->format('M, d-Y') }}</span>
                             </h1>
-                            <p class="text-sm text-nowrap text-neutral-500">Diajukan oleh <span
+                            <p class="text-xs md:text-sm md:text-nowrap text-neutral-500">Diajukan oleh <span
                                     class="text-primary-500">{{ $item->user->name }}</span>
                             </p>
                         </div>
-                        <div class="card-body justify-self-center">
+                        <div class="card-body justify-self-start md:justify-self-center">
                             <div class="status px-4 py-1 rounded-full {{ $statusStyle[$item->status]['bg'] }}">
                                 <h1 class="text-sm font-medium {{ $statusStyle[$item->status]['text'] }}">
                                     {{ $item->status }}</h1>

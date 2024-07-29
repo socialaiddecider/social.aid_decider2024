@@ -1,5 +1,5 @@
 <div class="bg-neutral-50 rounded-2xl m-4 py-6 px-8">
-    <div class="header mb-6">
+    <div class="header mb-32 sm:mb-6">
         <div class="image-profile w-full min-h-64 rounded-2xl relative flex justify-end items-stretch"
             x-ref="imageProfile" x-data="{
                 image: '',
@@ -44,7 +44,8 @@
                 </form>
             </div>
 
-            <div class="avatar-image absolute -bottom-14 left-9 inline-flex gap-2 items-end">
+            <div
+                class="avatar-image absolute -bottom-28 md:-bottom-14 left-3 md:left-9 inline-flex flex-col sm:flex-row gap-5 sm:gap-2 sm:items-end">
                 <div class="avatar image w-24 h-24 rounded-md relative"
                     style="background:url({{ $user->url_avatar }}); background-size:cover; background-position:center;">
                     <img src="{{ Auth::user()->url_avatar }}" class="rounded-md" alt="">
@@ -67,18 +68,21 @@
                             @enderror
                     </form>
                 </div>
-                <div class="text p-2">
-                    <h1 class="text-neutral-base font-semibold text-lg leading-none mb-0.5  ">
+                <div class="text p-2 w-auto">
+                    <h1 class="text-neutral-base font-semibold text-md md:text-lg leading-none mb-0.5  ">
                         {{ $user->name }}
                     </h1>
-                    <p class="text-xs text-primary-base">{{ $user->email }}</p>
+                    <p class="text-[10px] hidden sm:block md:text-xs text-primary-base">
+                        {{ $user->email }}
+                    </p>
+                    <p class="text-[10px] sm:hidden text-primary-base">{{ '@' . explode('@', $user->email)[0] }}</p>
                 </div>
             </div>
         </div>
     </div>
-    <div class="content-body p-4 mt-20 relative">
-        <div class="profile-content grid grid-cols-2 divide-x">
-            <div class="profile-info px-4">
+    <div class="content-body p-0 md:p-4 mt-20 relative">
+        <div class="profile-content grid gap-5 divide-y md:grid-cols-2 md:divide-y-0 md:divide-x">
+            <div class="profile-info p-0 md:px-4 py-2">
                 <div class="header mb-4">
                     <h2 class="text-lg font-bold">Profile </h2>
                 </div>
@@ -106,7 +110,7 @@
                     </div>
                 </form>
             </div>
-            <div class="change-password px-4">
+            <div class="change-password px-0 md:px-4 py-2">
                 <div class="header mb-4">
                     <h2 class="text-lg font-bold">Perbarui Password</h2>
                 </div>

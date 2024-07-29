@@ -52,7 +52,7 @@
                             <img src="{{ Auth::user()->url_avatar }}" alt="">
                         </div>
                     </button>
-                    <div class="z-50 dropdown shadow-lg absolute w-fit bg-neutral-50 rounded-lg p-4 right-0 top-16"
+                    <div class="z-50 dropdown shadow-lg absolute w-fit bg-neutral-50 rounded-lg p-4 left-0 md:right-0 top-16"
                         x-show="isDropdownOpen" @click.away="isDropdownOpen = false" x-cloak>
                         <div class="min-w-40">
                             <div class="min-w-full border-b pb-3">
