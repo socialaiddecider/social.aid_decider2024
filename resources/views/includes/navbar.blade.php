@@ -23,9 +23,15 @@
         <li class="hover:text-primary-base" id="nav-news"><a href="{{ route('index', '#news') }}">
                 <h1 class="leading-tight">Berita</h1>
             </a></li>
+        @if (Auth::user()?->role === 'user')
+            <li class="hover:text-primary-base text-nowrap"><a href="{{ route('user.pengajuan.index') }}">
+                    <h1 class="leading-tight">Pengajuan Penilaian</h1>
+                </a></li>
+        @endif
         <li class="hover:text-primary-base text-nowrap" id="nav-team"><a href="{{ route('index', '#team') }}">
                 <h1 class="leading-tight">Tentang Kami</h1>
             </a></li>
+
     </ul>
     <x-slot:action>
         @if (Auth::user()?->role === 'admin')

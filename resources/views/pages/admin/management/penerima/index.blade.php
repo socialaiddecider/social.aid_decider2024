@@ -139,7 +139,7 @@
             <div class="table w-full">
                 <div class="header-table flex justify-between items-center mb-6">
                     <div class="header-title">
-                        <h1 class="text-2xl font-semibold">Masukkan Data Subkriteria</h1>
+                        <h1 class="text-2xl font-semibold">Masukkan Data Penerima</h1>
                     </div>
                     <div class="export-action">
                         <a href="{{ route($exportLocation, $periode) }}" target="_blank"

@@ -50,4 +50,12 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function getRedirectByRole()
+    {
+        if ($this->role == 'admin') {
+            return redirect()->route('admin.dashboard');
+        }
+        return redirect()->route('index');
+    }
 }

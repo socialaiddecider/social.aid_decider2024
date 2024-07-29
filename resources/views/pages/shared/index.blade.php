@@ -69,7 +69,7 @@
                     </div>
                     <ul class="action flex gap-6 xl:gap-8">
                         <li>
-                            <a href="{{ route('index') }}">
+                            <a href="{{ Auth::user() ? route('index') : route('index') }}">
                                 <button onclick="window.utils.Animate.ripple.rippleEffect(event)"
                                     class="overflow-hidden relative">
                                     <h1
@@ -80,7 +80,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="{{ route('index') }}">
+                            <a href="{{ Auth::user() ? route('index') : route('auth.signUp') }}">
                                 <button onclick="window.utils.Animate.ripple.rippleEffect(event)"
                                     class="overflow-hidden relative">
                                     <h1

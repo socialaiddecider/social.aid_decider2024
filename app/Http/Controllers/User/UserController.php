@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Http;
 use App\Models\User;
 use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
+
 class UserController extends Controller
 {
     public function profile()
@@ -46,6 +47,9 @@ class UserController extends Controller
             'updatePasswordLocation' => $updatePasswordLocation,
             'updateProfileLocation' => $updateProfileLocation,
         ];
+        if (Auth::user()->role == 'admin') {
+            return view('pages.user.profile', $data);
+        }
 
         return view('pages.user.profileUser', $data);
     }
