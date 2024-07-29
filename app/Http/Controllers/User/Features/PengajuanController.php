@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\User\Feature;
+namespace App\Http\Controllers\User\Features;
 
 use App\Http\Controllers\Controller;
 use App\Models\DetailPengajuan;
@@ -67,8 +67,25 @@ class PengajuanController extends Controller
 
     public function show($id)
     {
+        $pengajuan = Pengajuan::join('users', 'pengajuan.user_id', '=', 'users.id')
+            ->where('pengajuan.id', $id)->select('*', 'users.name as user_name')->first();
 
-        return view('pages.user.feature.pengajuan.show');
+        $detailPengajuan = DetailPengajuan::join('kriteria', 'detail_pengajuan.kriteria_id', '=', 'kriteria.id')
+            ->join('subkriteria', 'detail_pengajuan.subkriteria_id', '=', 'subkriteria.id')
+            ->where('pengajuan_id', $id)->select('*', 'kriteria.nama as kriteria_nama', 'subkriteria.nama as subkriteria_nama')
+            ->get();
+
+        if ($pengajuan?->user_id != auth()->id()) {
+            abort(403, 'Unauthorized action.');
+        }
+
+        $data = [
+            'pengajuan' => $pengajuan,
+            'detailPengajuan' => $detailPengajuan,
+
+        ];
+
+        return view('pages.user.features.pengajuan.show', $data);
     }
 
     public function destroy($id)
@@ -78,6 +95,6 @@ class PengajuanController extends Controller
             $pengajuan->delete();
         }
 
-        return redirect()->route('user.pengajuan.index');
+        return redirect()->route('user.features.pengajuan.show');
     }
 }
