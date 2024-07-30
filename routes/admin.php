@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\Features\NewsController;
 use App\Http\Controllers\Admin\Management\PenerimaController;
 use App\Http\Controllers\Admin\Management\PenilaianController;
 use App\Http\Controllers\Admin\Management\PerhitunganController;
+use App\Http\Controllers\Admin\Features\PengajuanController;
 use App\Http\Controllers\Admin\Bobot\KriteriaController as BobotKriteriaController;
 use App\Http\Controllers\Auth\AuthController;
 use Illuminate\Support\Facades\Route;
@@ -17,21 +18,11 @@ use Illuminate\Support\Facades\Route;
 Route::group([
     'prefix' => 'admin',
     'as' => 'admin.',
-    'middleware' => 'auth',
+    'middleware' => ['auth', 'hasRole:admin'],
 ], function () {
     // auth routes dashboard
     Route::get('dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
 
-    // auth routes profile
-    Route::group([
-        'prefix' => 'profile',
-        'as' => 'profile.',
-    ], function () {
-        Route::get('/', [AdminController::class, 'profile'])->name('index');
-        Route::post('update-avatar', [AdminController::class, 'updateAvatar'])->name('update-avatar');
-        Route::post('update-background', [AdminController::class, 'saveBackgroundProfile'])->name('update-background');
-        Route::post('update-password', [AdminController::class, 'updatePassword'])->name('update-password');
-    });
 
     // auth routes news
     Route::group(
@@ -48,6 +39,17 @@ Route::group([
             Route::delete('delete/{id}', [NewsController::class, 'destroy'])->name('delete');
         }
     );
+
+    // auth routes Pengajuan
+    Route::group([
+        'prefix' => 'pengajuan',
+        'as' => 'pengajuan.',
+    ], function () {
+        Route::get('/', [PengajuanController::class, 'index'])->name('index');
+        Route::get('show/{id}', [PengajuanController::class, 'show'])->name('show');
+        Route::put('update/{id}', [PengajuanController::class, 'update'])->name('update');
+        Route::delete('delete/{id}', [PengajuanController::class, 'destroy'])->name('delete');
+    });
 
     // auth routes Data
     Route::group([

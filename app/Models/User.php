@@ -20,6 +20,9 @@ class User extends Authenticatable
         'name',
         'username',
         'email',
+        'nik',
+        'address',
+        'role',
         'password',
         'url_image',
         'url_avatar',
@@ -46,5 +49,13 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function getRedirectByRole()
+    {
+        if ($this->role == 'admin') {
+            return redirect()->route('admin.dashboard');
+        }
+        return redirect()->route('index');
     }
 }

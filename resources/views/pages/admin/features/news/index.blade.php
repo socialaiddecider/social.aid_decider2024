@@ -17,7 +17,7 @@
             <div class="table w-full">
                 <div class="header-table flex justify-between items-center mb-6">
                     <div class="header-title">
-                        <h1 class="text-2xl font-semibold">Masukkan Data Alternatif</h1>
+                        <h1 class="text-2xl font-semibold">Data Berita</h1>
                     </div>
                     <div class="header-action">
                         <a href="{{ $addLocation }}" class="bg-primary-base inline-flex p-3 rounded-lg gap-2 items-center">

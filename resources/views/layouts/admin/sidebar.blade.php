@@ -16,6 +16,11 @@
                     'M21.75 9v.906a2.25 2.25 0 0 1-1.183 1.981l-6.478 3.488M2.25 9v.906a2.25 2.25 0 0 0 1.183 1.981l6.478 3.488m8.839 2.51-4.66-2.51m0 0-1.023-.55a2.25 2.25 0 0 0-2.134 0l-1.022.55m0 0-4.661 2.51m16.5 1.615a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V8.844a2.25 2.25 0 0 1 1.183-1.981l7.5-4.039a2.25 2.25 0 0 1 2.134 0l7.5 4.039a2.25 2.25 0 0 1 1.183 1.98z',
                 'link' => ['admin.news.index', 'admin.news.create', 'admin.news.edit'],
             ],
+            'Pengajuan' => [
+                'icon' =>
+                    'M10.125 2.25h-4.5c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125v-9M10.125 2.25h.375a9 9 0 0 1 9 9v.375M10.125 2.25A3.375 3.375 0 0 1 13.5 5.625v1.5c0 .621.504 1.125 1.125 1.125h1.5a3.375 3.375 0 0 1 3.375 3.375M9 15l2.25 2.25L15 12',
+                'link' => ['admin.pengajuan.index', 'admin.pengajuan.show'],
+            ],
         ],
         'Master Data' => [
             'Data Kriteria' => [
@@ -183,7 +188,7 @@
                                 x-show="isDropdownOpen" @click.away="isDropdownOpen = false" x-cloak>
                                 <div class="min-w-40">
                                     <div class="min-w-full border-b pb-3">
-                                        <a href="{{ route('admin.profile.index') }}"
+                                        <a href="{{ route('user.profile.index') }}"
                                             class="w-full text-nowrap rounded-md hover:bg-neutral-200 transition-all p-2 inline-flex gap-2 items-center">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                 viewBox="0 0 18 22" fill="none">

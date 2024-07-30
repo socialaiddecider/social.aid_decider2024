@@ -26,11 +26,11 @@
                             </p>
                         </div>
                         <div class="action-header text-center antialiased">
-                            <h4 class="mb-4 text-neutral-400">Pantau Terus Kami</h4>
-                            <a href="" class="inline-flex justify-self-center">
+                            <h4 class="mb-4 text-neutral-400">Belum punya akun?</h4>
+                            <a href="{{ route('auth.signUp') }}" class="inline-flex justify-self-center">
                                 <h4
                                     class="w-fit px-4 relative after:absolute after:h-0.5 after:rounded-full after:mt-2 after:top-3/4 after:-z-10 after:inset-1 after:bg-black">
-                                    Stay Care
+                                    Buat akun
                                 </h4>
                             </a>
                         </div>
@@ -50,7 +50,7 @@
                     <div class="signIn h-full !bg-cover !bg-center flex justify-center items-center"
                         style="background: url({{ $backgroundImage }})">
                         <div class="px-9 py-16 bg-neutral-50  rounded-2xl md:min-w-[400px] md:w-4/5 w-11/12 ">
-                            <form action="{{ route('auth.postSignIn') }}" method="post">
+                            <form action="{{ $actionLocation }}" method="post">
                                 @csrf
                                 <div class="header mb-7 text-center">
                                     <h1 class="font-semibold text-neutral-base">Login to your account</h1>

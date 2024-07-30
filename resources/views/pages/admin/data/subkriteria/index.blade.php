@@ -1,7 +1,7 @@
 @extends('layouts.admin.sidebar')
 
 @section('contents-admin')
-    <section class="kriteria py-6 px-8 overflow-y-auto no-scrollbar ">
+    <section class="subkriteria py-6 px-8 overflow-y-auto no-scrollbar ">
         <div class="header mb-6">
             <div class="wrap flex justify-between">
                 <div class="title text-2xl font-semibold">
