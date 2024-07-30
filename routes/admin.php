@@ -47,6 +47,7 @@ Route::group([
     ], function () {
         Route::get('/', [PengajuanController::class, 'index'])->name('index');
         Route::get('show/{id}', [PengajuanController::class, 'show'])->name('show');
+        Route::put('update/{id}', [PengajuanController::class, 'update'])->name('update');
         Route::delete('delete/{id}', [PengajuanController::class, 'destroy'])->name('delete');
     });
 
