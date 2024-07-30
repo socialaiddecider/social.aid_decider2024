@@ -110,7 +110,7 @@
                                         <button
                                             class="w-full py-3 px-4 relative overflow-hidden bg-primary-base rounded-2xl text-neutral-50 font-semibold transition-all hover:bg-primary-500"
                                             type="submit" onclick="window.utils.Animate.ripple.rippleEffect(event)"
-                                            data-action="submit">Send Reset Password Link</button>
+                                            data-action="submit">Reset Password</button>
                                     </div>
                                 </div>
                             </form>
