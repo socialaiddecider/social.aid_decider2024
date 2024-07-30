@@ -164,7 +164,7 @@
                                     </div>
                                 </a>
                             @else
-                                <div class="news-card-second">
+                                <a href="{{ $berita->url }}" target="_blank" class="news-card-second">
                                     <div class="card">
                                         <div class="header-card mb-4">
                                             <img class="rounded-xl object-cover w-full min-h-[310px]"
@@ -188,7 +188,7 @@
                                                 {{ $berita->description }}</p>
                                         </div>
                                     </div>
-                                </div>
+                                </a>
                             @endif
                         @endforeach
 
