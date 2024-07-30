@@ -26,11 +26,11 @@
                             </p>
                         </div>
                         <div class="action-header text-center antialiased">
-                            <h4 class="mb-4 text-neutral-400">Belum punya akun?</h4>
-                            <a href="{{ route('auth.signUp') }}" class="inline-flex justify-self-center">
+                            <h4 class="mb-4 text-neutral-400">Sudah punya akun?</h4>
+                            <a href="{{ route('auth.signIn') }}" class="inline-flex justify-self-center">
                                 <h4
                                     class="w-fit px-4 relative after:absolute after:h-0.5 after:rounded-full after:mt-2 after:top-3/4 after:-z-10 after:inset-1 after:bg-black">
-                                    Buat akun
+                                    Login
                                 </h4>
                             </a>
                         </div>
@@ -52,34 +52,48 @@
                         <div class="px-9 py-16 bg-neutral-50  rounded-2xl md:min-w-[400px] md:w-4/5 w-11/12 ">
                             <form action="{{ $actionLocation }}" method="post">
                                 @csrf
+                                <input type="hidden" name="token" value="{{ $token }}">
                                 <div class="header mb-7 text-center">
-                                    <h1 class="font-semibold text-neutral-base">Login to your account</h1>
+                                    <h1 class="font-semibold text-neutral-base">Reset to your password account</h1>
                                 </div>
                                 <div class="form-content flex flex-col gap-6">
                                     <div class="form-body flex flex-col gap-[18px]">
                                         <div class="form-input">
-                                            <label for="username"
-                                                class="block text-neutral-400 antialiased">Username</label>
-                                            <input id="username" type="text" name="username"
-                                                value="{{ old('username') }}"
+                                            <label for="email" class="block text-neutral-400 antialiased">Email</label>
+                                            <input id="email" type="text" name="email" value="{{ old('email') }}"
                                                 class="w-full transition-all border-b py-3 outline-none focus:border-primary-500 placeholder:text-gray-200 
-                                            @error('username')
-                                                border-red-500
-                                            @enderror"
-                                                placeholder="Enter your username" autocomplete="off">
+                                        @error('email')
+                                            border-red-500
+                                        @enderror"
+                                                placeholder="Enter your email" autocomplete="off">
 
                                         </div>
-                                        <div class="form-input">
-                                            <label for="password"
-                                                class="block text-neutral-400 antialiased">Password</label>
-                                            <input id="password" type="password" name="password"
-                                                value="{{ old('password') }}"
-                                                class="w-full transition-all border-b py-3 outline-none focus:border-primary-500 placeholder:text-gray-200
+                                        <div class="password flex-col flex gap-3">
+
+                                            <div class="form-input">
+                                                <label for="password"
+                                                    class="block text-neutral-400 antialiased">Password</label>
+                                                <input id="password" type="password" name="password"
+                                                    value="{{ old('password') }}"
+                                                    class="w-full transition-all border-b py-3 outline-none focus:border-primary-500 placeholder:text-gray-200
                                             @error('password')
                                                 border-red-500
                                             @enderror"
-                                                placeholder="Enter your password" autocomplete="off">
+                                                    placeholder="Enter your password" autocomplete="off">
+                                            </div>
+                                            <div class="form-input">
+                                                <label for="password_confirmation"
+                                                    class="block text-neutral-400 antialiased">Password Confirmation</label>
+                                                <input id="password_confirmation" type="password"
+                                                    name="password_confirmation" value="{{ old('password_confirmation') }}"
+                                                    class="w-full transition-all border-b py-3 outline-none focus:border-primary-500 placeholder:text-gray-200
+                                            @error('password_confirmation')
+                                                border-red-500
+                                            @enderror"
+                                                    placeholder="Enter your password confirmation" autocomplete="off">
+                                            </div>
                                         </div>
+
                                         @if ($errors->any())
                                             <div class="text-xs bg-error-300 rounded p-3">
                                                 <p class="font-normal text-error-800">
@@ -92,42 +106,11 @@
                                             </div>
                                         @endif
                                     </div>
-                                    <div class="form-function">
-                                        <div class="flex justify-between items-center">
-                                            <div id="checkbox" class="inline-flex gap-2 items-center">
-                                                <label class="relative rounded-full cursor-pointer flex items-center">
-                                                    <input id="remember" type="checkbox"
-                                                        class="peer relative h-5 w-5 cursor-pointer appearance-none rounded-md border border-primary-200 transition-all before:absolute  before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-primary-500 before:opacity-0 before:transition-opacity checked:border-primary-base checked:bg-primary-base checked:before:bg-primary-base hover:before:opacity-10
-                                                        "
-                                                        name="remember" />
-                                                    <span
-                                                        class="absolute text-white transition-opacity opacity-0 pointer-events-none top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 peer-checked:opacity-100">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5"
-                                                            viewBox="0 0 20 20" fill="currentColor" stroke="currentColor"
-                                                            stroke-width="1">
-                                                            <path fill-rule="evenodd"
-                                                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                                                clip-rule="evenodd"></path>
-                                                        </svg>
-                                                    </span>
-                                                </label>
-                                                <label for="remember"
-                                                    class="text-xs font-light text-primary-700 cursor-pointer select-none">
-                                                    Remember Me
-                                                </label>
-                                            </div>
-                                            <a href="{{ $forgetPasswordLocation }}">
-                                                <p class="text-xs font-normal text-neutral-400 antialiased">Forgot your
-                                                    password?
-                                                </p>
-                                            </a>
-                                        </div>
-                                    </div>
                                     <div class="form-action">
                                         <button
                                             class="w-full py-3 px-4 relative overflow-hidden bg-primary-base rounded-2xl text-neutral-50 font-semibold transition-all hover:bg-primary-500"
                                             type="submit" onclick="window.utils.Animate.ripple.rippleEffect(event)"
-                                            data-action="submit">Login</button>
+                                            data-action="submit">Send Reset Password Link</button>
                                     </div>
                                 </div>
                             </form>
@@ -138,6 +121,3 @@
         </section>
     </main>
 @endsection
-
-@push('scripts')
-@endpush

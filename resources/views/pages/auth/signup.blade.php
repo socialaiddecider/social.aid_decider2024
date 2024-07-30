@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @php
-    $cardImage = Vite::asset('resources/assets/images/beranda/signInImageCard.jpg');
-    $backgroundImage = Vite::asset('resources/assets/images/beranda/signInImageBg.jpg');
+    $cardImage = Vite::asset($cardImagePath);
+    $backgroundImage = Vite::asset($backgroundImagePath);
 @endphp
 
 @section('contents')

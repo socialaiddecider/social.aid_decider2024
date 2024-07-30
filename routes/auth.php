@@ -16,11 +16,11 @@ Route::group([
     Route::post('register', [AuthController::class, 'register'])->name('register');
 
     Route::get('forgot-password', [AuthController::class, 'forgotPassword'])->name('forgotPassword');
-    Route::post('forgot-password', [AuthController::class, 'changePassword'])->name('changePassword');
+    Route::post('change-password', [AuthController::class, 'changePassword'])->name('changePassword');
 
     Route::get('signout', [AuthController::class, 'signOut'])->name('signOut')->withoutMiddleware('guest')->middleware('auth');
 });
 
 // special route for reset password
-Route::get('auth/reset-password/{token}', [AuthController::class, 'resetPassword'])->name('auth.resetPassword');
-Route::post('auth/reset-password', [AuthController::class, 'doResetPassword'])->name('auth.doResetPassword');
+Route::get('auth/reset-password/{token}', [AuthController::class, 'resetPassword'])->middleware('guest')->name('password.reset');
+Route::post('auth/reset-password', [AuthController::class, 'doResetPassword'])->middleware('guest')->name('password.update');
