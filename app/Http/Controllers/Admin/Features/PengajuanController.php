@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\DetailPengajuan;
 use Illuminate\Http\Request;
 use App\Models\Pengajuan;
+use App\Models\User;
+use App\Notifications\StatusChanged;
 
 class PengajuanController extends Controller
 {
@@ -59,6 +61,7 @@ class PengajuanController extends Controller
     public function update(Request $request, $id)
     {
         $pengajuan = Pengajuan::find($id);
+        $user = User::find($pengajuan->user_id);
 
         $request->validate([
             'status' => 'required',
@@ -73,6 +76,8 @@ class PengajuanController extends Controller
         } else {
             return redirect()->route('admin.pengajuan.show', $id)->with('error', 'Status pengajuan tidak valid');
         }
+
+        $user->notify(new StatusChanged($pengajuan, $user));
 
         return redirect()->route('admin.pengajuan.show', $id)->with('success', 'Status pengajuan berhasil diubah');
     }

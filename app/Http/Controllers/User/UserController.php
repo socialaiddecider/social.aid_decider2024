@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Http;
 use App\Models\User;
 use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+
 
 
 class UserController extends Controller
@@ -153,4 +155,38 @@ class UserController extends Controller
 
         return redirect()->route('user.profile.index');
     }
+
+    public function verifyEmail()
+    {
+        $user = User::find(auth()->id());
+        $verifyEmailLocation = route('verification.send');
+
+        $data = [
+            'user' => $user,
+            'verifyEmailLocation' => $verifyEmailLocation,
+        ];
+
+        if ($user->hasVerifiedEmail()) {
+            return redirect()->route('user.profile.index');
+        }
+
+        return view('pages.user.verifyEmail', $data);
+    }
+
+    public function sendEmailVerification(Request $request)
+    {
+        $request->user()->sendEmailVerificationNotification();
+
+        return back()->with('message', 'Verification link sent!');
+    }
+
+    public function verifyEmailToken(EmailVerificationRequest $request)
+    {
+        $request->fulfill();
+
+        $user = User::find(auth()->id());
+
+        $user->getRedirectByRole();
+    }
+
 }

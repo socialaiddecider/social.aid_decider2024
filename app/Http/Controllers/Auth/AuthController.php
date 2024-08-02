@@ -9,6 +9,8 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Auth\Events\PasswordReset;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Auth\Events\Registered;
 
 class AuthController extends Controller
 {
@@ -59,6 +61,14 @@ class AuthController extends Controller
              * @var User $user
              */
             $user = Auth::user();
+
+            //verify email check
+            if (!$user->hasVerifiedEmail()) {
+                return redirect()->route('verification.notice');
+
+            }
+
+            // redirect user based on role
             $user->getRedirectByRole();
         }
         $request->flashOnly('username');
@@ -68,6 +78,7 @@ class AuthController extends Controller
             'password' => 'The provided credentials do not match our records.',
         ]);
     }
+
 
     public function signUp()
     {
@@ -104,6 +115,12 @@ class AuthController extends Controller
         $user->role = 'user';
         $user->url_avatar = 'https://api.dicebear.com/9.x/big-ears-neutral/svg?seed=' . $request->name;
         $user->save();
+
+        event(new Registered($user));
+
+        if (!$user->hasVerifiedEmail()) {
+            return route('verification.notice');
+        }
 
         return redirect()->route('auth.signIn');
     }
