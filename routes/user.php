@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\User\Features\PengajuanController;
 use App\Http\Controllers\User\UserController;
 use App\Models\User;
@@ -39,3 +40,8 @@ Route::group(
 
     }
 );
+
+// special route for verify email
+Route::get('/email/verify', [UserController::class, 'verifyEmail'])->middleware('auth')->name('verification.notice');
+Route::get('email/verify/{id}/{hash}', [UserController::class, 'verifyEmailToken'])->middleware(['auth', 'signed'])->name('verification.verify');
+Route::post('email/verification-notification', [UserController::class, 'sendEmailVerification'])->middleware(['auth', 'throttle:6,1'])->name('verification.send');

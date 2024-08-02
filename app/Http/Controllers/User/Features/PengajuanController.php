@@ -5,8 +5,10 @@ namespace App\Http\Controllers\User\Features;
 use App\Http\Controllers\Controller;
 use App\Models\DetailPengajuan;
 use App\Models\Kriteria;
-use Illuminate\Http\Request;
 use App\Models\Pengajuan;
+use App\Models\User;
+use App\Notifications\NewSubmission;
+use Illuminate\Http\Request;
 
 class PengajuanController extends Controller
 {
@@ -60,6 +62,14 @@ class PengajuanController extends Controller
                     'subkriteria_id' => $value,
                 ]);
             }
+        }
+
+        $user = User::find(auth()->id());
+
+        $userAdmin = User::where('role', 'admin')->get();
+
+        foreach ($userAdmin as $admin) {
+            $admin->notify(new NewSubmission($pengajuan, $admin, auth()->user()));
         }
 
         return redirect()->route('user.pengajuan.index');
