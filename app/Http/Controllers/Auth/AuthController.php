@@ -99,9 +99,9 @@ class AuthController extends Controller
     {
         $request->validate([
             'name' => 'required|min:6',
-            'username' => 'required|min:6',
-            'nik' => 'required|min:15',
-            'email' => 'required|email',
+            'username' => 'required|min:6|unique:users',
+            'nik' => 'required|max:16|unique:users',
+            'email' => 'required|email|unique:users',
             'password' => 'required|min:6',
             'confirm_password' => 'required|same:password',
         ]);
@@ -119,7 +119,7 @@ class AuthController extends Controller
         event(new Registered($user));
 
         if (!$user->hasVerifiedEmail()) {
-            return route('verification.notice');
+            return redirect()->route('verification.notice');
         }
 
         return redirect()->route('auth.signIn');

@@ -29,7 +29,7 @@ Route::group(
         Route::group([
             'prefix' => 'pengajuan',
             'as' => 'pengajuan.',
-            'middleware' => ['auth', 'hasRole:user'],
+            'middleware' => ['auth', 'hasRole:user', 'verified'],
         ], function () {
             Route::get('/', [PengajuanController::class, 'index'])->name('index');
             Route::get('create', [PengajuanController::class, 'create'])->name('create');
