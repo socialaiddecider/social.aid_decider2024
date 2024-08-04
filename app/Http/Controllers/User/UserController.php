@@ -184,9 +184,7 @@ class UserController extends Controller
     {
         $request->fulfill();
 
-        $user = User::find(auth()->id());
-
-        $user->getRedirectByRole();
+        return redirect()->route('index');
     }
 
 }
