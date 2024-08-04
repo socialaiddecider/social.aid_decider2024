@@ -118,6 +118,10 @@ class AuthController extends Controller
 
         event(new Registered($user));
 
+        $credentials = $request->only('username', 'password');
+        Auth::attempt($credentials);
+        $request->session()->regenerate();
+
         if (!$user->hasVerifiedEmail()) {
             return redirect()->route('verification.notice');
         }
