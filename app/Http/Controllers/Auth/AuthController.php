@@ -100,7 +100,7 @@ class AuthController extends Controller
         $request->validate([
             'name' => 'required|min:6',
             'username' => 'required|min:6|unique:users,username',
-            'nik' => 'required|max:16|unique:users,nik',
+            'nkk' => 'required|max:16|unique:users,nkk',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|min:6',
             'confirm_password' => 'required|same:password',
@@ -109,7 +109,7 @@ class AuthController extends Controller
         $user = new User();
         $user->name = $request->name;
         $user->username = $request->username;
-        $user->nik = $request->nik;
+        $user->nkk = $request->nkk;
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
         $user->role = 'user';
