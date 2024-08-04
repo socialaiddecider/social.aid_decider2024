@@ -44,7 +44,7 @@
                             </h3>
                         </div>
                     </div>
-                    @if (true || $pengajuan->status == 'pending')
+                    @if ($pengajuan->status == 'pending')
                         <div class="action px-4 flex gap-2 flex-row-reverse">
                             <div id="accept" x-data="{ modelOpen: false }">
                                 <button @click="modelOpen =!modelOpen"
