@@ -109,17 +109,17 @@
             class="mb-16 hero-label bg-gradient-to-r from-primary-500 to-[#1A5020] to-[55%] px-20 py-10">
             <ul class="flex text-neutral-50 justify-around flex-wrap gap-4 xl:gap-0" x-data="{}">
                 <li class="w-60 text-center sm:text-start">
-                    <h1 class="text-5xl xl:text-[64px] mb-1 font-bold "><span class="Count">15</span>k+</h1>
-                    <p class="font-normal leading-6">15 ribu lebih orang telah terbantu dengan baik melalui sistem ini</p>
+                    <h1 class="text-5xl xl:text-[64px] mb-1 font-bold "><span class="Count">4</span>k+</h1>
+                    <p class="font-normal leading-6">4 ribu lebih orang yang ada dalam Desa Darurejo, Plandaan, Jombang.</p>
                 </li>
                 <li class="w-60 text-center sm:text-start">
-                    <h1 class="text-5xl xl:text-[64px] mb-1 font-bold"><span class="Count">50</span></h1>
-                    <p class="font-normal leading-6">50 desa sudah menggunakan sistem ini untuk membantu menentukan penerima
+                    <h1 class="text-5xl xl:text-[64px] mb-1 font-bold"><span class="">1,7</span>k+</h1>
+                    <p class="font-normal leading-6">1,7k lebih keluarga yang berada di Desa Darurejo, Plandaan, Jombang
                     </p>
                 </li>
                 <li class="w-60 text-center sm:text-start">
-                    <h1 class="text-5xl xl:text-[64px] mb-1 font-bold"><span class="Count">5</span></h1>
-                    <p class="font-normal leading-6">5 Sertifikasi langsung dari pemerintah dan lisensi penggunaan sistem
+                    <h1 class="text-5xl xl:text-[64px] mb-1 font-bold"><span class="Count">46</span></h1>
+                    <p class="font-normal leading-6">46 RT yang ada di Desa Darurejo, Plandaan, Jombang
                     </p>
                 </li>
             </ul>
