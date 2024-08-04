@@ -60,8 +60,8 @@ class UserController extends Controller
     {
         $request->validate([
             'name' => 'required|min:3|max:255',
-            'email' => 'required|email',
-            'nik' => 'required|max:16',
+            'email' => 'required|email|unique:users,email,' . Auth::user()->id,
+            'nik' => 'required|max:16|unique:users,nik,' . Auth::user()->id,
             'address' => 'required|min:5',
         ]);
 
