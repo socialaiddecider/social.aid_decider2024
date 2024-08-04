@@ -23,8 +23,8 @@
                         <x-input-form key="alternatif_name" placeholder="Masukkan nama alternatif" type="text"
                             title="Nama Alternatif" />
 
-                        <x-input-form key="alternatif_nik" placeholder="Masukkan nik alternatif" type="text"
-                            title="NIK Alternatif" />
+                        <x-input-form key="alternatif_nkk" placeholder="Masukkan nkk alternatif" type="text"
+                            title="NKK Alternatif" />
                         <x-input-form key="alternatif_alamat" placeholder="Masukkan alamat alternatif" type="text"
                             title="Alamat Alternatif" />
                     </div>

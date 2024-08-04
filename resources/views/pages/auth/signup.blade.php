@@ -61,7 +61,7 @@
                                             type="text" />
                                         <x-input-form key="username" title="Username" placeholder="Masukkan username anda"
                                             type="text" />
-                                        <x-input-form key="nik" title="NIK" placeholder="Masukkan NIK anda"
+                                        <x-input-form key="nkk" title="NKK" placeholder="Masukkan NKK anda"
                                             type="text" />
                                         <x-input-form key="email" title="Email" placeholder="Masukkan email anda"
                                             type="email" />

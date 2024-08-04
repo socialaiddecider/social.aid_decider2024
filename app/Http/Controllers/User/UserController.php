@@ -61,7 +61,7 @@ class UserController extends Controller
         $request->validate([
             'name' => 'required|min:3|max:255',
             'email' => 'required|email|unique:users,email,' . Auth::user()->id,
-            'nik' => 'required|max:16|unique:users,nik,' . Auth::user()->id,
+            'nkk' => 'required|max:16|unique:users,nkk,' . Auth::user()->id,
             'address' => 'required|min:5',
         ]);
 
@@ -71,7 +71,7 @@ class UserController extends Controller
         $userMain->update([
             'name' => $request->name,
             'email' => $request->email,
-            'nik' => $request->nik,
+            'nkk' => $request->nkk,
             'address' => $request->address,
         ]);
 

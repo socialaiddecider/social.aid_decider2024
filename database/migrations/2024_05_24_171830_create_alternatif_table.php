@@ -20,7 +20,7 @@ return new class extends Migration
             $table->id('id');
             $table->string('kode_alternatif', 50);
             $table->string('nama', 100);
-            $table->string('nik', 100);
+            $table->string('nkk', 100);
             $table->string('alamat', 100);
             $table->timestamps();
         });

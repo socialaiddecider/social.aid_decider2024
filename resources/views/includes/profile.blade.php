@@ -92,8 +92,8 @@
                         <x-input-form key="username" type="text" placeholder="username" title="Username"
                             :value="$user->username" disabled=true />
                         <div class="grid grid-flow-row gap-2">
-                            <x-input-form key="nik" type="text" placeholder="nik" title="NIK"
-                                :value="$user->nik" />
+                            <x-input-form key="nkk" type="text" placeholder="nkk" title="NKK"
+                                :value="$user->nkk" />
                             <x-input-form key="name" type="text" placeholder="nama lengkap" title="Nama Lengkap"
                                 :value="$user->name" />
                             <x-input-form key="email" type="email" placeholder="email" title="Email"

@@ -1,4 +1,4 @@
-INSERT INTO `alternatif` (`id`, `kode_alternatif`, `nama`, `nik`, `alamat`, `created_at`, `updated_at`) VALUES
+INSERT INTO `alternatif` (`id`, `kode_alternatif`, `nama`, `nkk`, `alamat`, `created_at`, `updated_at`) VALUES
 (1, 'A1', 'Jebrak', '3517155604540002', 'Dsn. Klagen, RT/RW. 08/02', '2024-04-30 05:19:56', '2024-04-30 05:19:56'),
 (2, 'A2', 'Marlik', '3517154107590070', 'Dsn. Klagen, RT/RW. 06/02', '2024-04-30 05:21:09', '2024-04-30 05:21:09'),
 (3, 'A3', 'Juarmi', '3517154502750002', 'Dsn. Klagen, RT/RW. 06/02', '2024-04-30 05:22:15', '2024-04-30 05:22:15'),
