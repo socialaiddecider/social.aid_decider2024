@@ -55,7 +55,8 @@ class DataAsliController extends Controller
             $tanggalAkhir = now()->setYear($tahun)->setMonth($bulan)->endOfMonth();
         }
 
-        $dataAsli = DataAsli::join('alternatif', 'alternatif.id', '=', 'data_asli.alternatif_id')->whereBetween('data_asli.created_at', [$tanggalAwal, $tanggalAkhir])->get();
+        $dataAsli = DataAsli::join('alternatif', 'alternatif.id', '=', 'data_asli.alternatif_id')->whereBetween('data_asli.created_at', [$tanggalAwal, $tanggalAkhir])->select('alternatif.*', 'data_asli.*')->get();
+
 
         $orderbyVal = in_array($orderby, ['asc', 'desc']) ? $orderby : 'asc';
         $orderbyVal = $orderbyVal == 'asc' ? false : true;

@@ -294,8 +294,8 @@
                                             </div>
                                         </td>
                                         <td class="px-6 py-4 text-sm">{{ $loop->iteration }}</td>
-                                        <td class="px-6 py-4 text-sm w-fit">{{ $item->alternatif->kode_alternatif }}</td>
-                                        <td class="px-6 py-4 text-sm">{{ $item->alternatif->nama }}</td>
+                                        <td class="px-6 py-4 text-sm w-fit">{{ $item->kode_alternatif }}</td>
+                                        <td class="px-6 py-4 text-sm">{{ $item->nama }}</td>
                                         <td class="px-6 py-4 text-sm ">
                                             <span
                                                 class="px-4 py-1 rounded-full capitalize font-semibold {{ $item->status == 'Menerima' ? $styleStatus['menerima'] : $styleStatus['tidakmenerima'] }}">{{ $item->status }}</span>
