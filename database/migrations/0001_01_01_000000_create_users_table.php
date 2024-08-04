@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('username')->unique();
             $table->string('email')->unique();
-            $table->string('nik', 16)->unique();
+            $table->string('nkk', 16)->unique();
             $table->enum('role', ['admin', 'user'])->default('user');
             $table->text('address')->nullable();
             $table->string('url_image')->nullable();

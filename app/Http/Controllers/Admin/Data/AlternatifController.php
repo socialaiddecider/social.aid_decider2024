@@ -19,7 +19,7 @@ class AlternatifController extends Controller
         $deleteLocation = 'admin.data.alternatif.delete';
         $alternatif = Alternatif::all();
 
-        $sortable = ['kode_alternatif' => 'Kode Alternatif', 'nama' => "Nama", 'nik' => 'NIK', 'alamat' => 'Alamat'];
+        $sortable = ['kode_alternatif' => 'Kode Alternatif', 'nama' => "Nama", 'nkk' => 'NKK', 'alamat' => 'Alamat'];
         $orderbyVal = in_array($orderby, ['asc', 'desc']) ? $orderby : 'asc';
 
         $alternatif = $sortby ? Alternatif::orderBy($sortby, $orderbyVal)->get() : $alternatif;
@@ -54,14 +54,14 @@ class AlternatifController extends Controller
         $request->validate([
             'alternatif_code' => 'required|min:2|max:10|unique:alternatif,kode_Alternatif',
             'alternatif_name' => 'required|min:3',
-            'alternatif_nik' => 'required|min:16',
+            'alternatif_nkk' => 'required|min:16',
             'alternatif_address' => 'required|min:6'
         ]);
 
         $data = [
             'kode_Alternatif' => $request->get('alternatif_code'),
             'nama' => $request->get('alternatif_name'),
-            'nik' => $request->get('alternatif_nik'),
+            'nkk' => $request->get('alternatif_nkk'),
             'alamat' => $request->get('alternatif_address')
         ];
 
@@ -95,7 +95,7 @@ class AlternatifController extends Controller
         $data = [
             'kode_Alternatif' => $request->get('alternatif_code'),
             'nama' => $request->get('alternatif_name'),
-            'nik' => $request->get('alternatif_nik'),
+            'nkk' => $request->get('alternatif_nkk'),
             'alamat' => $request->get('alternatif_address')
         ];
 

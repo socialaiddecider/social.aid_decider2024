@@ -57,7 +57,7 @@
                                     <th class="px-6 py-4 text-start text-sm font-semibold">No</th>
                                     <th class="px-6 py-4 text-start text-sm font-semibold">Kode Alternatif</th>
                                     <th class="px-6 py-4 text-start text-sm font-semibold">Nama</th>
-                                    <th class="px-6 py-4 text-start text-sm font-semibold">NIK</th>
+                                    <th class="px-6 py-4 text-start text-sm font-semibold">NKK</th>
                                     <th class="px-6 py-4 text-start text-sm font-semibold">Alamat</th>
                                     <th class="px-6 py-4 text-start text-sm font-semibold">Aksi</th>
                                 </tr>
@@ -94,7 +94,7 @@
                                         <td class="px-6 py-4 text-sm">{{ $key + 1 }}</td>
                                         <td class="px-6 py-4 text-sm w-fit">{{ $item->kode_alternatif }}</td>
                                         <td class="px-6 py-4 text-sm">{{ $item->nama }}</td>
-                                        <td class="px-6 py-4 text-sm">{{ $item->nik }}</td>
+                                        <td class="px-6 py-4 text-sm">{{ $item->nkk }}</td>
                                         <td class="px-6 py-4 text-sm">{{ $item->alamat }}</td>
                                         <td class="px-6 py-4 text-sm inline-flex">
                                             <a href="{{ route($editLocation, $item->id) }}" class="p-2"><svg

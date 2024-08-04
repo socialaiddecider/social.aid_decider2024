@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Admin\Features;
 
 use App\Http\Controllers\Controller;
+use App\Models\Alternatif;
 use App\Models\DetailPengajuan;
 use Illuminate\Http\Request;
 use App\Models\Pengajuan;
+use App\Models\Penilaian;
 use App\Models\User;
 use App\Notifications\StatusChanged;
 
@@ -67,9 +69,47 @@ class PengajuanController extends Controller
             'status' => 'required',
         ]);
 
+        // if ($pengajuan->status == 'approved' || $pengajuan->status == 'rejected') {
+        //     return redirect()->route('admin.pengajuan.show', $id)->with('error', 'Status pengajuan tidak dapat diubah');
+        // }
+
         if ($request->status == 'save') {
             $pengajuan->status = 'approved';
             $pengajuan->save();
+
+            $detailPengajuan = DetailPengajuan::join('pengajuan', 'detail_pengajuan.pengajuan_id', '=', 'pengajuan.id')->join('subkriteria', 'subkriteria.id', '=', 'detail_pengajuan.subkriteria_id')->where('pengajuan_id', $id)->get();
+
+
+            $alternatif = Alternatif::where('nkk', $user->nkk);
+            $lastAlternatif = Alternatif::orderBy('kode_alternatif', 'desc')->first();
+            $splitKodeAlternatif = str_split($lastAlternatif->kode_alternatif, 1) ?? ['A', 0];
+            $kodeAlternatif = $splitKodeAlternatif[0] . end($splitKodeAlternatif) + 1;
+            if (!$alternatif?->exists()) {
+                $alternatif = Alternatif::create([
+                    'kode_Alternatif' => $kodeAlternatif,
+                    'nama' => $user->name,
+                    'nkk' => $user->nkk,
+                    'alamat' => $user->address ?? '-',
+                ]);
+            }
+            $created_at = substr($pengajuan->periode, 0, 7);
+
+            // split year and month
+            $month = (int) substr($created_at, 5);
+            $year = (int) substr($created_at, 0, 4);
+
+            foreach ($detailPengajuan as $detail) {
+                $created_at = now()->setYear($year)->setMonth($month)->startOfMonth();
+
+                Penilaian::create([
+                    'alternatif_id' => $alternatif->id,
+                    'kriteria_id' => $detail->kriteria_id,
+                    'nilai' => $detail->nilai,
+                    'created_at' => $created_at,
+                ]);
+            }
+
+
         } else if ($request->status == 'remove') {
             $pengajuan->status = 'rejected';
             $pengajuan->save();

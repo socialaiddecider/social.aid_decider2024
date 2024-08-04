@@ -13,7 +13,7 @@ class Alternatif extends Model
     protected $fillable = [
         'kode_Alternatif',
         'nama',
-        'nik',
+        'nkk',
         'alamat'
     ];
 

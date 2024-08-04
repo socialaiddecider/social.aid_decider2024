@@ -49,7 +49,7 @@
                                         </div>
                                     </th>
                                     <th class="px-6 py-4 text-start text-sm font-semibold">No</th>
-                                    <th class="px-6 py-4 text-start text-sm font-semibold">Nik</th>
+                                    <th class="px-6 py-4 text-start text-sm font-semibold">NKK</th>
                                     <th class="px-6 py-4 text-start text-sm font-semibold">Nama</th>
                                     <th class="px-6 py-4 text-start text-sm font-semibold">status</th>
                                     <th class="px-6 py-4 text-start text-sm font-semibold">Tanggal</th>
@@ -87,7 +87,7 @@
                                             </div>
                                         </td>
                                         <td class="px-6 py-4 text-sm">{{ $key + 1 }}</td>
-                                        <td class="px-6 py-4 text-sm  w-64">{{ $item->nik }}</td>
+                                        <td class="px-6 py-4 text-sm  w-64">{{ $item->nkk }}</td>
                                         <td class="px-6 py-4 text-sm ">{{ $item->name }}</td>
                                         <td class="px-6 py-4 text-sm"><span
                                                 class="px-4 py-1 rounded-full font-semibold {{ $statusStyle[$item->status] }}">{{ $item->status }}</span>
