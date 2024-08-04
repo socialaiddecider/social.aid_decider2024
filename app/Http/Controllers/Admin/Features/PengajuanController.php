@@ -15,6 +15,9 @@ class PengajuanController extends Controller
 {
     public function index()
     {
+        $sortby = request()->query('sortby');
+        $orderby = request()->query('orderby');
+
         $title = 'Kelola Pengajuan';
         $showLocation = 'admin.pengajuan.show';
 
@@ -22,8 +25,17 @@ class PengajuanController extends Controller
             ->orderBy('pengajuan.created_at', 'desc')
             ->get();
 
+
+        $orderbyVal = in_array($orderby, ['asc', 'desc']) ? $orderby : 'asc';
+
+        $pengajuan = $sortby ? Pengajuan::join('users', 'pengajuan.user_id', '=', 'users.id')->select('pengajuan.*', 'pengajuan.id as pengajuan_id', 'users.*')
+            ->orderBy('pengajuan.' . $sortby, $orderbyVal)
+            ->get() : $pengajuan;
+
         $sortable = $sortable = [
-            'created_at' => 'Tanggal',
+            'created_at' => 'Dibuat',
+            'status' => 'Status',
+            'periode' => 'Periode',
         ];
 
         $data = [
@@ -37,6 +49,9 @@ class PengajuanController extends Controller
 
     public function show($id)
     {
+        $sortby = request()->query('sortby');
+        $orderby = request()->query('orderby');
+
         $title = 'Detail Pengajuan';
         $updateLocation = 'admin.pengajuan.update';
 
@@ -45,9 +60,19 @@ class PengajuanController extends Controller
             ->where('pengajuan_id', $id)
             ->get();
 
+        $orderbyVal = in_array($orderby, ['asc', 'desc']) ? $orderby : 'asc';
+
+        $detailPengajuan = $sortby ? DetailPengajuan::join('kriteria', 'detail_pengajuan.kriteria_id', '=', 'kriteria.id')->join('subkriteria', 'detail_pengajuan.subkriteria_id', '=', 'subkriteria.id')->select('detail_pengajuan.*', 'kriteria.*', 'kriteria.nama as nama_kriteria', 'subkriteria.*')
+            ->where('pengajuan_id', $id)
+            ->orderBy($sortby, $orderbyVal)
+            ->get() : $detailPengajuan;
 
         $sortable = [
-            'created_at' => 'Tanggal',
+            'kriteria.kode_kriteria' => 'Kode Kriteria',
+            'kriteria.nama' => 'Kriteria',
+            'subkriteria.nama' => 'penilaian',
+            'subkriteria.nilai' => 'Nilai',
+            'kriteria.bobot' => 'Bobot',
         ];
 
         $data = [
@@ -69,9 +94,9 @@ class PengajuanController extends Controller
             'status' => 'required',
         ]);
 
-        // if ($pengajuan->status == 'approved' || $pengajuan->status == 'rejected') {
-        //     return redirect()->route('admin.pengajuan.show', $id)->with('error', 'Status pengajuan tidak dapat diubah');
-        // }
+        if ($pengajuan->status == 'approved' || $pengajuan->status == 'rejected') {
+            return redirect()->route('admin.pengajuan.show', $id)->with('error', 'Status pengajuan tidak dapat diubah');
+        }
 
         if ($request->status == 'save') {
             $pengajuan->status = 'approved';
