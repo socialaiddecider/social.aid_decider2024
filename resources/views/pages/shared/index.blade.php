@@ -5,6 +5,7 @@
     $heroImage = Vite::asset('resources/assets/images/beranda/heroImage.jpg');
     $aboutImage = Vite::asset('resources/assets/images/beranda/aboutImage.jpeg');
     $brandLogo = Vite::asset('resources/assets/brand/brandLogo.svg');
+    $mitraImage = Vite::asset('resources/assets/images/beranda/darurejoVillage.jpeg');
     $teamImage = [
         'Muhammad Al Kindy' => [
             'path' => Vite::asset('resources/assets/images/team/Muhammad_Al_Kindy.jpeg'),
@@ -261,6 +262,42 @@
                 </div>
             </div>
         </section>
+        <section id="mitra" class="px-3 md:px-11 mb-16">
+            <div class="bg-primary-base rounded-xl py-4 md:py-12 px-2 md:px-6">
+                <div class="header text-center">
+                    <h6 class="text-neutral-50 text-xl md:text-7xl font-bold mb-2">Mitra</h6>
+                    <h1 class="text-neutral-50 text-lg md:text-4xl font-normal">Desa Darurejo - Jombang</h1>
+                </div>
+                <div class="body grid lg:grid-cols-2 xl:grid-cols-3 gap-4 mt-5 lg:mt-10">
+                    <div class="xl:col-span-2 flex flex-col gap-4 justify-between">
+                        <div class="bg-neutral-50 rounded-xl xl:grow p-4 md:p-6">
+                            <h1 class="text-base md:text-xl lg:text-4xl 2xl:text-6xl font-bold">Desa Darurejo</h1>
+                            <div class="mt-2 md:mt-6">
+                                <p class="text-xs md:text-sm lg:text-base 2xl:text-xl">Darurejo adalah sebuah desa di
+                                    wilayah
+                                    Kecamatan
+                                    Plandaan,
+                                    Kabupaten
+                                    Jombang, Provinsi Jawa Timur.
+                                    Dengan jumlah penduduk 4.798 jiwa yang sebagian besar penduduk
+                                    bekerja di sektor pertanian, baik sebagai petani maupun buruh tani. Penghasilan yang
+                                    diperoleh bergantung pada kondisi alam dan musim. Ketika panen melimpah, penghasilan
+                                    yang diperoleh relatif stabil.</p>
+                            </div>
+                        </div>
+                        <div class="overflow-hidden rounded-xl lg:grow xl:shrink">
+                            <iframe
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31650.5527569458!2d112.1704836756068!3d-7.429896969030947!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e783c49504cfa87%3A0x6eab2dc5fe635aa2!2sDarurejo%2C%20Plandaan%2C%20Jombang%20Regency%2C%20East%20Java!5e0!3m2!1sen!2sid!4v1722839245433!5m2!1sen!2sid"
+                                class="w-full h-[397px] lg:h-full" style="border:0;" allowfullscreen="" loading="lazy"
+                                referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                    </div>
+                    <div class="rounded-xl overflow-hidden w-full">
+                        <img src="{{ $mitraImage }}" alt="" class="w-full object-cover">
+                    </div>
+                </div>
+            </div>
+        </section>
         <section id="our-team-people" class="px-3 md:px-11 mb-16">
             <div class="header mb-8 px-1 md:px-0">
                 <h6 class="text-primary-500 text-sm md:text-xl font-medium">Our Team</h6>
@@ -269,10 +306,13 @@
             <div class="grid sm:grid-cols-2 lg:grid-cols-3 grid-rows-2 gap-4">
                 @foreach ($teamImage as $memberName => $data)
                     <div
-                        class="team-card rounded-xl overflow-hidden @if ($data['nim'] == '') order-first md:order-none @endif">
+                        @if ($data['nim'] == '') class="team-card rounded-xl overflow-hidden order-first md:order-none" 
+                        @elseif ($data['nim'] == '2141762057') class="team-card rounded-xl overflow-hidden order-last md:order-none"
+                        @else class="team-card rounded-xl overflow-hidden" @endif>
                         <div class="image-team w-full h-[564px] bg-cover bg-center hover:scale-110 transition-all duration-300 ease-in-out delay-150"
                             @if ($data['nim'] == '') style="background: linear-gradient(180deg, rgba(0, 0, 0, 0.00) 15.45%, rgba(0, 0, 0, 0.60) 77.73%), url({{ $data['path'] }}) lightgray 0px -2.842px / 100% 117.586% no-repeat;" 
                             @elseif($data['nim'] == '2241720052') style="background: linear-gradient(180deg, rgba(0, 0, 0, 0.00) 15.45%, rgba(0, 0, 0, 0.60) 77.73%), url({{ $data['path'] }}) lightgray -54px -122.153px / 124.434% 130.024% no-repeat;" 
+                            
                             @else 
                             style="background:linear-gradient(180deg, rgba(0, 0, 0, 0.00) 15.45%, rgba(0, 0, 0, 0.60) 77.73%), url('{{ $data['path'] }}') lightgray 50% / cover no-repeat;" @endif>
 
