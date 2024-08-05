@@ -10,7 +10,11 @@
     $sosmedLinks = [
         'LinkedIn' => ['link' => '#', 'icon' => Vite::asset('resources/assets/icons/sosmedIcons/linkedIn.svg')],
         'Facebook' => ['link' => '#', 'icon' => Vite::asset('resources/assets/icons/sosmedIcons/facebook.svg')],
-        'Instagram' => ['link' => '#', 'icon' => Vite::asset('resources/assets/icons/sosmedIcons/instagram.svg')],
+        'Instagram' => [
+            'link' =>
+                'https://www.instagram.com/social_aid.decider?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==',
+            'icon' => Vite::asset('resources/assets/icons/sosmedIcons/instagram.svg'),
+        ],
         'Tiktok' => ['link' => '#', 'icon' => Vite::asset('resources/assets/icons/sosmedIcons/tiktok.svg')],
     ];
 
