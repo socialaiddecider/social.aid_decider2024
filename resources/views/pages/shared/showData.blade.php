@@ -5,9 +5,9 @@
     <main class="pengajuan overflow-scroll h-screen no-scrollbar">
         @include('includes.navbar')
         <section class="mx-6 sm:mx-10 md:mx-20 -mt-8">
-            <div class="header flex justify-between items-center mb-4">
+            <div class="header flex justify-between flex-wrap md:flex-auto items-center mb-4">
                 <h1 class="text-xl md:text-3xl font-bold">{{ $title }}</h1>
-                <div class="action">
+                <div class="action mt-4 md:mt-0 ">
                     <div class="get-by-month relative" x-data="{ isOpen: false }">
                         <button type="button" @click="isOpen= !isOpen"
                             class="p-3 divide-x-2 bg-neutral-50 rounded-xl flex items-center">
@@ -32,7 +32,7 @@
                                 </svg>
                             </div>
                         </button>
-                        <div class="absolute right-0 z-20 px-6 py-4 bg-neutral-50 rounded-xl top-14"
+                        <div class="absolute left-0 sm:left-auto sm:right-0 z-20 px-6 py-4 bg-neutral-50 rounded-xl top-14"
                             @click.away= "isOpen = false ; init()" x-show="isOpen" x-data="{
                                 inputYear: 0,
                                 year: 0,
@@ -88,7 +88,7 @@
                                     </svg>
                                 </div>
                             </div>
-                            <div class="w-96 grid grid-cols-3">
+                            <div class="w-60 sm:w-96 grid grid-cols-1 sm:grid-cols-3">
                                 @foreach ($monthName as $index => $value)
                                     @php
                                         $index += 1;
@@ -142,9 +142,9 @@
                             <table class="w-full table-auto">
                                 <thead class="border-b-2 bg-neutral-50">
                                     <tr class="">
-                                        <th class="px-6 py-4 text-start text-sm font-semibold">No</th>
-                                        <th class="px-6 py-4 text-start text-sm font-semibold">Nama</th>
-                                        <th class="px-6 py-4 text-start text-sm font-semibold">Status</th>
+                                        <th class="px-6 py-4 text-start text-sm font-semibold hidden md:block">No</th>
+                                        <th class="px-3 sm:px-6 py-4 text-start text-sm font-semibold">Nama</th>
+                                        <th class="px-3 sm:px-6 py-4 text-start text-sm font-semibold">Status</th>
                                     </tr>
                                 </thead>
                                 <tbody class="">
@@ -157,11 +157,11 @@
                                     @foreach ($penerima as $key => $item)
                                         <tr class="">
 
-                                            <td class="px-6 py-4 text-sm">{{ $loop->iteration }}</td>
-                                            <td class="px-6 py-4 text-sm">{{ $item->nama }}</td>
-                                            <td class="px-6 py-4 text-sm ">
+                                            <td class="px-6 py-4 text-sm hidden md:block">{{ $loop->iteration }}</td>
+                                            <td class="px-3 sm:px-6 py-4 text-sm">{{ $item->nama }}</td>
+                                            <td class="px-3 sm:px-6 py-4 text-sm ">
                                                 <span
-                                                    class="px-4 py-1 rounded-full capitalize font-semibold {{ $item->status == 'Menerima' ? $styleJenis['menerima'] : $styleJenis['tidak menerima'] }}">{{ $item->status }}</span>
+                                                    class="px-2 sm:px-4 py-1 rounded-full capitalize font-semibold {{ $item->status == 'Menerima' ? $styleJenis['menerima'] : $styleJenis['tidak menerima'] }}">{{ $item->status }}</span>
 
                                             </td>
 
