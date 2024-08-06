@@ -10,7 +10,7 @@ use App\Models\Kriteria;
 use App\Models\Subkriteria;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\PenilaianImport;
-
+use Carbon\Carbon;
 
 class PenilaianController extends Controller
 {
@@ -254,18 +254,17 @@ class PenilaianController extends Controller
     public function importXlsx(Request $request)
     {
         $request->validate([
-            'date' => 'required',
+            'created_at' => 'required',
             'xlsxFile' => 'required|mimes:xlsx,xls'
         ]);
 
-        if ($request->fails()) {
-            return redirect()->back();
-        }
 
-        $periode = $request->date;
-        $file = $request->file('file');
+        $periode = $request->created_at;
+        $file = $request->file('xlsxFile');
 
-        Excel::import(new PenilaianImport($periode), $file);
+        $date = Carbon::parse($periode);
+
+        Excel::import(new PenilaianImport($date), $file);
 
         return redirect()->route('admin.management.penilaian.index');
     }

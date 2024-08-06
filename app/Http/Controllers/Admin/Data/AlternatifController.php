@@ -17,12 +17,14 @@ class AlternatifController extends Controller
         $addLocation = route('admin.data.alternatif.create');
         $editLocation = 'admin.data.alternatif.edit';
         $deleteLocation = 'admin.data.alternatif.delete';
-        $alternatif = Alternatif::all();
+        $alternatif = Alternatif::paginate(20);
 
-        $sortable = ['kode_alternatif' => 'Kode Alternatif', 'nama' => "Nama", 'nkk' => 'NKK', 'alamat' => 'Alamat'];
+        $sortable = ['id' => 'Kode Alternatif', 'nama' => "Nama", 'nkk' => 'NKK', 'alamat' => 'Alamat'];
         $orderbyVal = in_array($orderby, ['asc', 'desc']) ? $orderby : 'asc';
 
-        $alternatif = $sortby ? Alternatif::orderBy($sortby, $orderbyVal)->get() : $alternatif;
+        $alternatif = $sortby ? Alternatif::orderBy($sortby, $orderbyVal)->paginate(20)->withQueryString() : $alternatif;
+
+
 
         $data = [
             'title' => $title,

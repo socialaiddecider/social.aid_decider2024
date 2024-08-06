@@ -2,7 +2,7 @@
 
 
 @section('contents-admin')
-    <section class="penilaian py-6 px-8 overflow-y-auto no-scrollbar min-h-screen">
+    <section class="penilaian py-6 px-8 overflow-y-auto no-scrollbar">
         <div class="header mb-6 ">
             <div class="wrap flex justify-between">
                 <div class="title text-2xl font-semibold">
@@ -184,7 +184,8 @@
                                     <div class="w-full inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full"
                                         @click.away="isShowModal = false" role="dialog" aria-modal="true"
                                         aria-labelledby="modal-headline">
-                                        <form action="{{ $importLocation }}" method="POST">
+                                        <form action="{{ $importLocation }}" method="POST"
+                                            enctype="multipart/form-data">
                                             @csrf
                                             <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                                                 <!-- Modal content -->

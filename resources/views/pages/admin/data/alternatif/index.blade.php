@@ -124,6 +124,7 @@
                                 @endforeach
                             </tbody>
                         </table>
+                        {{ $alternatif->links() }}
                     </div>
                 </div>
             </div>
