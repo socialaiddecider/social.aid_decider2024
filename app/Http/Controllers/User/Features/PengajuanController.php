@@ -105,6 +105,6 @@ class PengajuanController extends Controller
             $pengajuan->delete();
         }
 
-        return redirect()->route('user.features.pengajuan.show');
+        return redirect()->route('user.pengajuan.index');
     }
 }
