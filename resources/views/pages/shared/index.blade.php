@@ -70,18 +70,19 @@
                     </div>
                     <ul class="action flex gap-6 xl:gap-8">
                         <li>
-                            <a href="{{ Auth::user() ? route('index') : route('index') }}">
+                            <a
+                                href="{{ Auth::user()->role === 'user' ? route('user.pengajuan.index') : route('showData') }}">
                                 <button onclick="window.utils.Animate.ripple.rippleEffect(event)"
                                     class="overflow-hidden relative">
                                     <h1
                                         class="px-4 py-3 lg:px-8 lg:py-6 bg-primary-base text-xs md:text-base rounded-lg xl:rounded-2xl text-neutral-50 leading-5">
-                                        {{ Auth::user() ? 'Masukkan Data' : 'Lihat Data' }}
+                                        {{ Auth::user()->role == 'user' ? 'Masukkan Data' : 'Lihat Data' }}
                                     </h1>
                                 </button>
                             </a>
                         </li>
                         <li>
-                            <a href="{{ Auth::user() ? route('index') : route('auth.signUp') }}">
+                            <a href="{{ Auth::user() ? route('showData') : route('auth.signUp') }}">
                                 <button onclick="window.utils.Animate.ripple.rippleEffect(event)"
                                     class="overflow-hidden relative">
                                     <h1
