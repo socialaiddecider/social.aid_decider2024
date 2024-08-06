@@ -24,7 +24,8 @@
                 <h1 class="leading-tight">Berita</h1>
             </a></li>
         @if (Auth::user()?->role === 'user')
-            <li class="hover:text-primary-base text-nowrap"><a href="{{ route('user.pengajuan.index') }}">
+            <li class="hover:text-primary-base text-nowrap" id="nav-pengajuan"><a
+                    href="{{ route('user.pengajuan.index') }}">
                     <h1 class="leading-tight">Pengajuan Penilaian</h1>
                 </a></li>
         @endif

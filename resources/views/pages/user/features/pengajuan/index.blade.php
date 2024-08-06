@@ -9,7 +9,7 @@
 @section('contents')
     <main class="pengajuan overflow-scroll h-screen no-scrollbar">
         @include('includes.navbar')
-        <section class="mx-6 sm:mx-10 md:mx-20 -mt-8">
+        <section id="pengajuan" class="mx-6 sm:mx-10 md:mx-20 -mt-8">
             <div class="header flex justify-between items-center">
                 <h1 class="text-xl md:text-3xl font-bold">Pengajuan Penilaian</h1>
                 <div class="action">
@@ -137,3 +137,22 @@
         </section>
     </main>
 @endsection
+
+@push('scripts')
+    <script type="module">
+        function observerCallback(entries, observer) {
+            entries.forEach(entry => {
+                let name = $(entry.target).attr('id')
+                if (entry.isIntersecting) {
+                    $('#nav-' + name).addClass('active-navbar')
+                } else {
+                    $('#nav-' + name).removeClass('active-navbar')
+
+                }
+            });
+        }
+
+        const observerTeam = new IntersectionObserver(observerCallback);
+        observerTeam.observe(document.querySelector('#pengajuan'))
+    </script>
+@endpush
