@@ -26,7 +26,7 @@ class UserController extends Controller
         $pageQuery = rand(0, (8000 / $perPageQuery));
         $apiQuery = 'abstract';
         $images = Http::withHeaders([
-            'Authorization' => env('PEXELS_API_KEY')
+            'Authorization' => config('services.pexels')
         ])->accept('application/json')->retry(3, 100)->withQueryParameters([
                     'query' => $apiQuery,
                     'page' => $pageQuery,
@@ -158,7 +158,7 @@ class UserController extends Controller
 
     public function verifyEmail()
     {
-        $user = User::find(auth()->id());
+        $user = User::find(Auth::user()->id);
         $verifyEmailLocation = route('verification.send');
 
         $data = [
